@@ -10,8 +10,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="26*"/>
             <ColumnDefinition Width="164*"/>
-            <ColumnDefinition Width="38*"/>
-            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="32*"/>
+            <ColumnDefinition Width="27*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -25,38 +25,68 @@
 
         <Image Source="/PlanAU.png" Grid.RowSpan="2"></Image>
 
+        <Separator Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Bottom"></Separator>
+
         <Menu Grid.Row="0" Grid.Column="3" >
-            <MenuItem Header="👩🏻Username" FontSize="15" Height="39" Width="105">
+            <MenuItem Header="👩🏻Bob Bobson" FontSize="15" Height="39" Width="135">
                 <MenuItem Header="_Settings" />
                 <Separator></Separator>
                 <MenuItem Header="_Logout" />
             </MenuItem>
         </Menu>
 
-        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="5">
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="5,5,5,5">
             <Button Width="60">All</Button>
-            <Button Width="60">Course 1</Button>
-            <Button Width="60">Course 2</Button>
-            <Button Width="60">Course 3</Button>
-            <Button Width="60">Course 4</Button>
-            <Button Width="60">Course 5</Button>
-            <Button Width="60">Course 6</Button>
+            <Button Width="60">Project</Button>
+            <Button Width="60">NGK</Button>
+            <Button Width="60">SWT</Button>
+            <Button Width="60">SWD</Button>
+            <Button Width="60">DAB</Button>
+            <Button Width="60">GUI</Button>
         </StackPanel>
 
-        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="1" Margin="5">
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="1" Margin="5,5,5,5">
             <Calendar  HorizontalAlignment="Left" VerticalAlignment="Top"></Calendar>
         </Border>
 
-        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="2" Margin="5" Grid.ColumnSpan="2" >
-            <TextBlock FontSize="18" Canvas.Left="127">Preparation</TextBlock>
-        </Border>
-        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="2" Margin="5" Grid.ColumnSpan="2"  >
-            <TextBlock FontSize="18" Canvas.Left="127">Deadlines</TextBlock>
-        </Border>
-        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="1" Margin="5">
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="2" Margin="5,5,5,5" Grid.ColumnSpan="2" >
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="29*"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="349*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="-1,-1,-1,0">
+                    <TextBlock FontSize="18" HorizontalAlignment="Center" FontWeight="Bold" >Preparation</TextBlock>
+                </Border>
+                <StackPanel Grid.Row="1" Margin="5,5,0,5">
+                    <TextBlock>GUI: Head first side 105->198</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0,5,5,5">
+                    <TextBlock> Wednesday 25/07</TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="2" Margin="5,5,5,5" Grid.ColumnSpan="2"  >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="43*"/>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="-1,-1,-1,0" >
+                    <TextBlock FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" >Deadlines</TextBlock>
+                </Border>
+                <StackPanel Grid.Row="1" Margin="5,5,0,5">
+                    <TextBlock>DAB exc 2</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0,5,5,5">
+                    <TextBlock> Monday 23/07</TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="1" Margin="5,5,5,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
                     <RowDefinition Height="124*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -65,17 +95,22 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock FontSize="18" Canvas.Left="127" TextDecorations="Underline" FontWeight="Bold" Grid.ColumnSpan="4" HorizontalAlignment="Center">ToDo</TextBlock>
-                <Button Grid.Row="1">Add ToDo Item</Button>
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="-1,-1,-1,0" >
+                    <TextBlock FontSize="18" FontWeight="Bold" Grid.ColumnSpan="4" HorizontalAlignment="Center">ToDo</TextBlock>
 
-                <StackPanel Grid.Column="1" Margin="5,0,0,0" Grid.Row="1">
-                    
-                    <CheckBox>Group meeting</CheckBox>
-                    <CheckBox>Group work</CheckBox>
-                    <CheckBox>Cheese</CheckBox>
+                </Border>
+
+                <Button Grid.Row="0" Grid.RowSpan="2" >Add ToDo Item</Button>
+
+                <StackPanel Grid.Column="1" Margin="5,5,0,0" Grid.Row="1">
+
+                    <CheckBox>Create Mockup for Project 23/07</CheckBox>
+                    <CheckBox>Plan Group Meeting 26/07</CheckBox>
+                    <CheckBox>Buy cheese 01/08</CheckBox>
                 </StackPanel>
-                <StackPanel Grid.Column="2" Grid.Row="1">
-                    <CheckBox>Feed the cat</CheckBox>
+                
+                <StackPanel Grid.Column="2" Grid.Row="1" Margin="0,5,0,0">
+                    <CheckBox>Feed the cat 24/07</CheckBox>
                 </StackPanel>
 
             </Grid>
