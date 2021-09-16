@@ -77,6 +77,18 @@
                             <GradientStop Color="Black" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.BorderBrush>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="186*"/>
+                            <RowDefinition Height="67*"/>
+                            <RowDefinition Height="59*"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="1" Background="#FF7BEA88" BorderBrush="#FF7BEA88">
+                            <Label x:Name="label" Content="DAB"/>
+                        </Border>
+                        <Border BorderThickness="1" BorderBrush="#FFF8FF55" Grid.Row="1" Background="#FFF8FF55"/>
+                        <Label x:Name="label_homework" Content="Homework" Grid.Row="1"></Label>
+                    </Grid>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" Margin="-1">
 
