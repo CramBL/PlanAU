@@ -24,6 +24,7 @@
         </Grid.RowDefinitions>
 
         <Image Source="/PlanAU.png" Grid.RowSpan="2"></Image>
+
         <Menu Grid.Row="0" Grid.Column="3" >
             <MenuItem Header="👩🏻Username" FontSize="15" Height="39" Width="105">
                 <MenuItem Header="_Settings" />
