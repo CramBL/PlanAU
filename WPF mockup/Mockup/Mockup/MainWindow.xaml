@@ -45,8 +45,106 @@
             <Button Width="60">GUI</Button>
         </StackPanel>
 
-        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="1" Margin="5,5,5,5">
-            <Calendar  HorizontalAlignment="Left" VerticalAlignment="Top"></Calendar>
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="1" Margin="5">
+            <Grid x:Name="Grid_1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="23*"/>
+                    <RowDefinition Height="156*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="2" Grid.Column="0" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="2" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="3" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="4" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="4" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="5" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="6" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+
+
+
+                <Label x:Name="labelMonday" Content="Monday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C"/>
+                <Label x:Name="labelTuesday" Content="Tuesday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="1"/>
+                <Label x:Name="labelWedensday" Content="Wedensday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="2"/>
+                <Label x:Name="labelThursday" Content="Thursday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="3"/>
+                <Label x:Name="labelFriday" Content="Friday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="4"/>
+                <Label x:Name="labelSaturday" Content="Saturday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="5"/>
+                <Label x:Name="labelSunday" Content="Sunday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="6"/>
+            </Grid>
         </Border>
 
         <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="2" Margin="5,5,5,5" Grid.ColumnSpan="2" >
