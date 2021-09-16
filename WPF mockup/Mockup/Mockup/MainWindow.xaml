@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mockup"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280">
+        Title="MainWindow" Height="720" Width="1280" BorderBrush="#FF0E0E0E" Padding="10,0,40,0">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="26*"/>
@@ -84,10 +84,10 @@
                             <RowDefinition Height="59*"/>
                         </Grid.RowDefinitions>
                         <Border BorderThickness="1" Background="#FF7BEA88" BorderBrush="#FF7BEA88">
-                            <Label x:Name="label" Content="DAB"/>
+                            <Label x:Name="label" Content="DAB 8:00-12:00"/>
                         </Border>
                         <Border BorderThickness="1" BorderBrush="#FFF8FF55" Grid.Row="1" Background="#FFF8FF55"/>
-                        <Label x:Name="label_homework" Content="Homework" Grid.Row="1"></Label>
+                        <Label x:Name="label_homework" Content="Homework: 2 hours" Grid.Row="1"></Label>
                     </Grid>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" Margin="-1">
@@ -232,6 +232,7 @@
 
             </Grid>
         </Border>
+        <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="6" Grid.ColumnSpan="6"/>
 
 
     </Grid>
