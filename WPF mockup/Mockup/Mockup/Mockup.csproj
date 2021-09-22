@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\PlanAU.png" />
     <None Remove="PlanAU.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="PlanAU.png" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\PlanAU.png" />
   </ItemGroup>
 
 </Project>

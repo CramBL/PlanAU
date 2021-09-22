@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mockup"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" BorderBrush="#FF0E0E0E" Padding="10,0,40,0">
+        Title="MainWindow" Height="720" Width="1280" BorderBrush="#FF0E0E0E" Padding="10,0,40,0"
+        DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MainWindowViewModel}">
     <Grid>
+        <!--#region Grid Column and Row Definitions-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="26*"/>
             <ColumnDefinition Width="121*"/>
@@ -23,11 +25,10 @@
             <RowDefinition Height="165*"/>
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
+        <!--#endregion-->
 
-        <Image Source="/PlanAU.png" Grid.RowSpan="2"></Image>
 
-        <Separator Grid.Row="1" Grid.ColumnSpan="6" VerticalAlignment="Bottom" Margin="0,0,0,2" Height="1"></Separator>
-
+        <!--#region User Menu-->
         <Menu Grid.Row="0" Grid.Column="4" >
             <MenuItem Header="👩🏻Bob Bobson" FontSize="15" Height="39" Width="135">
                 <MenuItem Header="_Settings" />
@@ -35,14 +36,12 @@
                 <MenuItem Header="_Logout" />
             </MenuItem>
         </Menu>
+        <!--#endregion-->
 
-        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,5,0">
-            <Button Content="&lt;- Back" Width="70"></Button>
-            <Button Width="70">Next -></Button>
-        </StackPanel>
 
+        <!--#region Select Course Buttons-->
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="5,5,5,0" Grid.ColumnSpan="2">
-            <Button Width="60">All</Button>
+            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="All">All</Button> 
             <Button Width="60">Project</Button>
             <Button Width="60">NGK</Button>
             <Button Width="60">SWT</Button>
@@ -50,8 +49,9 @@
             <Button Width="60">DAB</Button>
             <Button Width="60">GUI</Button>
         </StackPanel>
+        <!--#endregion-->
 
-
+        <!--#region Calendar Mockup-->
         <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="1" Margin="5,5,5,5" Grid.ColumnSpan="2">
             <Grid x:Name="Grid_1">
 
@@ -165,7 +165,16 @@
                 <Label x:Name="labelSunday" Content="Sunday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="6"/>
             </Grid>
         </Border>
+        <!--#endregion-->
 
+        <!--#region Calendar: Back and Next Buttons-->
+        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,5,0">
+            <Button Content="&lt;- Back" Width="70"></Button>
+            <Button Width="70">Next -></Button>
+        </StackPanel>
+        <!--#endregion-->
+
+        <!--#region Preparation Mockup-->
         <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="3" Margin="5,5,5,5" Grid.ColumnSpan="2" >
             <Grid>
                 <Grid.RowDefinitions>
@@ -183,6 +192,9 @@
                 </StackPanel>
             </Grid>
         </Border>
+        <!--#endregion-->
+        
+        <!--#region Deadline Mockup-->
         <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="3" Margin="5,5,5,5" Grid.ColumnSpan="2"  >
             <Grid>
                 <Grid.RowDefinitions>
@@ -200,6 +212,9 @@
                 </StackPanel>
             </Grid>
         </Border>
+        <!--#endregion-->
+        
+        <!--#region ToDo Mockup-->
         <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="1" Margin="5,5,5,5" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
@@ -232,8 +247,16 @@
 
             </Grid>
         </Border>
-        <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="6" Grid.ColumnSpan="6"/>
+        <!--#endregion-->
 
+
+        <!--#region Appearance Foreground-->
+        <Image Source="/Images/PlanAU.png" Grid.RowSpan="2"></Image>
+
+        <Separator Grid.Row="1" Grid.ColumnSpan="6" VerticalAlignment="Bottom" Margin="0,0,0,2" Height="1"></Separator>
+
+        <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="6" Grid.ColumnSpan="6"/>
+        <!--#endregion-->
 
     </Grid>
 </Window>
