@@ -19,13 +19,10 @@ namespace ProofOfConcept.Models
                 _lectures = value;
             }
         }
-        public Course(string name)
+        public Course(string name, List<ILecture> lectures)
         {
             Name = name;
-        }
-
-        public Course()
-        {
+            Lectures = lectures;
         }
     }
 
