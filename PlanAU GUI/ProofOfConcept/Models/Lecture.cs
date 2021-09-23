@@ -14,9 +14,11 @@ namespace ProofOfConcept.Models
         public DateTime Date { get => _date; set => _date = new DateTime(2021, 09, 24); }
         public string PreperationDescription { get; set; } //set is no implemented
         
-        public Lecture()
+        public Lecture(string number, string prepDiscription)
         {
+            Number = number;
             Date = new DateTime(2021, 09, 23);
+            PreperationDescription = prepDiscription;
         }
     }
 

@@ -10,6 +10,14 @@ namespace ProofOfConcept.ViewModels
 {
     class MainWindowViewModel : BindableBase
     {
+        ICourse PRJ;
+        ICourse GUI;
+        ICourse DAB;
+        ICourse SWT;
+        ICourse SWD;
+        ICourse NGK;
+        private List<ILecture> lectures;
+
         #region Properties
         private ObservableCollection<Models.ICourse> _selectedCourses;
         public ObservableCollection<Models.ICourse> SelectedCourses
@@ -22,13 +30,30 @@ namespace ProofOfConcept.ViewModels
         #region Method
         public MainWindowViewModel()
         {
+            setFakeCourses();
+
             SelectedCourses = new ObservableCollection<ICourse>();
-            SelectedCourses.Add(new Course("PRJ"));
-            SelectedCourses.Add(new Course("GUI"));
-            SelectedCourses.Add(new Course("DAB"));
-            SelectedCourses.Add(new Course("SWT"));
-            SelectedCourses.Add(new Course("SWD"));
-            SelectedCourses.Add(new Course("NGK"));
+            SelectedCourses.Add(PRJ);
+            SelectedCourses.Add(GUI);
+            SelectedCourses.Add(DAB);
+            SelectedCourses.Add(SWT);
+            SelectedCourses.Add(SWD);
+            SelectedCourses.Add(NGK);
+        }
+
+        private void setFakeCourses()
+        {
+            lectures = new();
+            lectures.Add(new Lecture("0", "Læs s. 45-55 i bogen"));
+            lectures.Add(new Lecture("1.1", "Se to videoer"));
+            lectures.Add(new Lecture("1.2", "Læs de to links"));
+
+            PRJ = new Course("PRJ", lectures);
+            GUI = new Course("GUI", lectures);
+            DAB = new Course("DAB", lectures);
+            SWT = new Course("SWT", lectures);
+            SWD = new Course("SWD", lectures);
+            NGK = new Course("NGK", lectures);
         }
         #endregion
 
@@ -40,7 +65,7 @@ namespace ProofOfConcept.ViewModels
         void ExecuteSelectOneCourse(string selectedCourse)
         {
             SelectedCourses.Clear();
-            SelectedCourses.Add(new Course(selectedCourse));
+            SelectedCourses.Add(new Course(selectedCourse, lectures));
         }
 
         private DelegateCommand _selectAllCourses;
@@ -50,12 +75,12 @@ namespace ProofOfConcept.ViewModels
         void ExecuteSelectAllCourses()
         {
             SelectedCourses.Clear();
-            SelectedCourses.Add(new Course("PRJ"));
-            SelectedCourses.Add(new Course("GUI"));
-            SelectedCourses.Add(new Course("DAB"));
-            SelectedCourses.Add(new Course("SWT"));
-            SelectedCourses.Add(new Course("SWD"));
-            SelectedCourses.Add(new Course("NGK"));
+            SelectedCourses.Add(PRJ);
+            SelectedCourses.Add(GUI);
+            SelectedCourses.Add(DAB);
+            SelectedCourses.Add(SWT);
+            SelectedCourses.Add(SWD);
+            SelectedCourses.Add(NGK);
         }
         #endregion
     }
