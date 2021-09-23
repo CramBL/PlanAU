@@ -22,6 +22,7 @@ namespace ProofOfConcept.ViewModels
         #region Method
         public MainWindowViewModel()
         {
+            SelectedCourses = new ObservableCollection<ICourse>();
             SelectedCourses.Add(new Course("PRJ"));
             SelectedCourses.Add(new Course("GUI"));
             SelectedCourses.Add(new Course("DAB"));
@@ -33,7 +34,7 @@ namespace ProofOfConcept.ViewModels
 
         #region Commands
         private DelegateCommand<string> _selectOneCourse;
-        public DelegateCommand<string> Select_One_Course =>
+        public DelegateCommand<string> SelectOneCourse =>
             _selectOneCourse ?? (_selectOneCourse = new DelegateCommand<string>(ExecuteSelectOneCourse));
 
         void ExecuteSelectOneCourse(string selectedCourse)
