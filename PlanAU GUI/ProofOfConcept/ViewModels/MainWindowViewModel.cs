@@ -27,6 +27,13 @@ namespace ProofOfConcept.ViewModels
         }
         #endregion
 
+        private ObservableCollection<string> _preparationItems;
+        public ObservableCollection<string> PreparationItems
+        {
+            get { return _preparationItems; }
+            set { SetProperty(ref _preparationItems, value); }
+        }
+
         #region Method
         public MainWindowViewModel()
         {
@@ -39,7 +46,22 @@ namespace ProofOfConcept.ViewModels
             SelectedCourses.Add(SWT);
             SelectedCourses.Add(SWD);
             SelectedCourses.Add(NGK);
+
+            PreparationItems = new ObservableCollection<string>();
+            makePreparationItemStrings();
         }
+
+        private void makePreparationItemStrings()
+        {
+            foreach (var varcourse in SelectedCourses)
+            {
+                foreach (var varlecture in varcourse.Lectures)
+                {
+                    PreparationItems.Add(varcourse.Name + "  " + varlecture.Number + "  " + varlecture.PreparationDescription + "  " + varlecture.Date);
+                }
+            }
+        }
+
 
         private void setFakeCourses()
         {
@@ -64,8 +86,10 @@ namespace ProofOfConcept.ViewModels
 
         void ExecuteSelectOneCourse(string selectedCourse)
         {
+            PreparationItems.Clear();
             SelectedCourses.Clear();
             SelectedCourses.Add(new Course(selectedCourse, lectures));
+            makePreparationItemStrings();
         }
 
         private DelegateCommand _selectAllCourses;
@@ -74,6 +98,7 @@ namespace ProofOfConcept.ViewModels
 
         void ExecuteSelectAllCourses()
         {
+            PreparationItems.Clear();
             SelectedCourses.Clear();
             SelectedCourses.Add(PRJ);
             SelectedCourses.Add(GUI);
@@ -81,6 +106,7 @@ namespace ProofOfConcept.ViewModels
             SelectedCourses.Add(SWT);
             SelectedCourses.Add(SWD);
             SelectedCourses.Add(NGK);
+            makePreparationItemStrings();
         }
         #endregion
     }

@@ -183,8 +183,7 @@
                     <TextBlock FontSize="18" HorizontalAlignment="Center" FontWeight="Bold" >Preparation</TextBlock>
                 </Border>
                 <ListBox Grid.Row="1" Grid.Column="0"
-                         ItemsSource="{Binding Path=SelectedCourses}"
-                         DisplayMemberPath="Name"
+                         ItemsSource="{Binding Path=PreparationItems}"
                          IsSynchronizedWithCurrentItem="True"
                          /> 
             </Grid>
