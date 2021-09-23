@@ -27,7 +27,6 @@
         </Grid.RowDefinitions>
         <!--#endregion-->
 
-
         <!--#region User Menu-->
         <Menu Grid.Row="0" Grid.Column="4" >
             <MenuItem Header="👩🏻Bob Bobson" FontSize="15" Height="39" Width="135">
@@ -38,16 +37,15 @@
         </Menu>
         <!--#endregion-->
 
-
         <!--#region Select Course Buttons-->
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="5,5,5,0" Grid.ColumnSpan="2">
             <Button Width="60" Command="{Binding Select_Course}" CommandParameter="All">All</Button>
-            <Button Width="60">Project</Button>
-            <Button Width="60">NGK</Button>
-            <Button Width="60">SWT</Button>
-            <Button Width="60">SWD</Button>
-            <Button Width="60">DAB</Button>
-            <Button Width="60">GUI</Button>
+            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="PRJ">PRJ</Button>
+            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="NGK">NGK</Button>
+            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="SWT">SWT</Button>
+            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="SWD">SWD</Button>
+            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="DAB">DAB</Button>
+            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="GUI">GUI</Button>
         </StackPanel>
         <!--#endregion-->
 
@@ -249,7 +247,6 @@
         </Border>
         <!--#endregion-->
 
-
         <!--#region Appearance Foreground-->
         <Image Source="/Images/PlanAU.png" Grid.RowSpan="2"></Image>
 
@@ -257,6 +254,5 @@
 
         <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="6" Grid.ColumnSpan="6"/>
         <!--#endregion-->
-
     </Grid>
 </Window>
