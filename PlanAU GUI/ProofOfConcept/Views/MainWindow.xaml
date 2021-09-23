@@ -39,13 +39,13 @@
 
         <!--#region Select Course Buttons-->
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="5,5,5,0" Grid.ColumnSpan="2">
-            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="All">All</Button>
-            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="PRJ">PRJ</Button>
-            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="NGK">NGK</Button>
-            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="SWT">SWT</Button>
-            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="SWD">SWD</Button>
-            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="DAB">DAB</Button>
-            <Button Width="60" Command="{Binding Select_Course}" CommandParameter="GUI">GUI</Button>
+            <Button Width="60" Command="{Binding SelectAllCourses}" CommandParameter="All">All</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="PRJ">PRJ</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="NGK">NGK</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="SWT">SWT</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="SWD">SWD</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="DAB">DAB</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="GUI">GUI</Button>
         </StackPanel>
         <!--#endregion-->
 
