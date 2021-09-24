@@ -51,18 +51,6 @@ namespace ProofOfConcept.ViewModels
             makePreparationItemStrings();
         }
 
-        private void makePreparationItemStrings()
-        {
-            foreach (var varcourse in SelectedCourses)
-            {
-                foreach (var varlecture in varcourse.Lectures)
-                {
-                    PreparationItems.Add(varcourse.Name + "  " + varlecture.Number + "  " + varlecture.PreparationDescription + "  " + varlecture.Date.ToShortDateString());
-                }
-            }
-        }
-
-
         private void setFakeCourses()
         {
             lectures = new();
@@ -76,6 +64,17 @@ namespace ProofOfConcept.ViewModels
             SWT = new Course("SWT", lectures);
             SWD = new Course("SWD", lectures);
             NGK = new Course("NGK", lectures);
+        }
+
+        private void makePreparationItemStrings()
+        {
+            foreach (var varcourse in SelectedCourses)
+            {
+                foreach (var varlecture in varcourse.Lectures)
+                {
+                    PreparationItems.Add(varcourse.Name + "  " + varlecture.Number + "  " + varlecture.PreparationDescription + "  " + varlecture.Date.ToShortDateString());
+                }
+            }
         }
         #endregion
 
