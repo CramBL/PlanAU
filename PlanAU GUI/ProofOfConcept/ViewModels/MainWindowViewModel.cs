@@ -57,7 +57,7 @@ namespace ProofOfConcept.ViewModels
             {
                 foreach (var varlecture in varcourse.Lectures)
                 {
-                    PreparationItems.Add(varcourse.Name + "  " + varlecture.Number + "  " + varlecture.PreparationDescription + "  " + varlecture.Date);
+                    PreparationItems.Add(varcourse.Name + "  " + varlecture.Number + "  " + varlecture.PreparationDescription + "  " + varlecture.Date.ToShortDateString());
                 }
             }
         }
