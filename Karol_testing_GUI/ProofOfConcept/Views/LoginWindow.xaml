@@ -51,16 +51,21 @@
                  Margin="85,45,0,0" Grid.Row="2" Text="{Binding UsernameBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="25"/>
+       
+        <TextBox Name="passwordBox" Text="{Binding PasswordBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" 
+                                        Margin="85,95,0,0" Grid.Row="2"  
+                                        FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
+                                        VerticalAlignment="Top" Width="140" Height="25" />
 
-        <components:BindablePasswordBox Password="{Binding PasswordBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" 
+        <!--<components:BindablePasswordBox x:Name="passwordBox" Password="{Binding PasswordBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" 
                  Margin="85,95,0,0" Grid.Row="2"  
                  FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
-                 VerticalAlignment="Top" Width="140" Height="25" />
+                 VerticalAlignment="Top" Width="140" Height="25" />this is way to make a bindablepasswordBox-->
 
         <Button Name="loginButton" Content="Login"  
                 Margin="80,20,97,0" Grid.Row="3" Grid.Column="1"
                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
-                VerticalAlignment="Top" Height="25" Width="70"  Command="{Binding LoginCommand}" />
+                VerticalAlignment="Top" Height="25" Width="70" Click="LoginButton_OnClickButton_OnClick" Command="{Binding LoginCommand}" />
 
         <Button Name="registerButton" Content="Register"  
                 Margin="140,20,0,0" Grid.Row="3" Grid.Column="1"
