@@ -55,7 +55,9 @@ namespace ProofOfConcept.Views
 
         private void LoginButton_OnClickButton_OnClick(object sender, RoutedEventArgs e)
         {
+            // here we give a connection to our Databse, it is important to have the same as you have on your pc
             SqlConnection sqlcon = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PlanAU;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"); //if it is red need to be installed in nugets sqlclient
+           
             string query = "SELECT* from STUDENTS WHERE AU_ID = '" + userBox.Text.Trim()+ "'and PASSWORD = '"+ passwordBox.Text.Trim()+"'";
             SqlDataAdapter sda = new SqlDataAdapter(query, sqlcon);
             DataTable dtbl = new DataTable();
