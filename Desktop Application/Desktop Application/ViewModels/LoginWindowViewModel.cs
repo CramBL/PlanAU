@@ -3,7 +3,9 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Net.Security;
 using System.Text;
+using Desktop_Application.Models;
 
 namespace Desktop_Application.ViewModels
 {
@@ -26,13 +28,22 @@ namespace Desktop_Application.ViewModels
         }
 
 
+
         private DelegateCommand<string> _loginCommand;
         public DelegateCommand<string> LoginCommand =>
             _loginCommand ?? (_loginCommand = new DelegateCommand<string>(ExecuteLoginCommand));
 
         void ExecuteLoginCommand(string userName)
         {
+            fakeDAL fakeDal1 = new fakeDAL();
 
+            if (fakeDal1.authentication() == true) 
+            {
+                MainWindow mainWindowInstance = new MainWindow();
+                mainWindowInstance.Show();
+                App.Current.MainWindow.Close();
+            }
+            
         }
 
         private DelegateCommand<string> _registerCommand;
