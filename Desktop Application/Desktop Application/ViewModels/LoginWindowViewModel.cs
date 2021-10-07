@@ -47,6 +47,15 @@ namespace Desktop_Application.ViewModels
 
         }
 
+        private DelegateCommand _closeWindow;
+        public DelegateCommand CloseWindow =>
+            _closeWindow ?? (_closeWindow = new DelegateCommand(ExecuteCloseWindow));
+
+        void ExecuteCloseWindow()
+        {
+            App.Current.MainWindow.Close();
+        }
+
         #endregion
 
     }
