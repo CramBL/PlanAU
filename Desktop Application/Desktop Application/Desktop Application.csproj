@@ -14,7 +14,4 @@
   <ItemGroup>
     <Resource Include="Images\PlanAU.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
 </Project>

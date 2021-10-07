@@ -60,7 +60,7 @@ namespace Desktop_Application.ViewModels
 
         private void setFakeCourses()
         {
-            lectures = new();
+            lectures = new List<ILecture>();
             lectures.Add(new Lecture("0", "Læs s. 45-55 i bogen"));
             lectures.Add(new Lecture("1.1", "Se to videoer"));
             lectures.Add(new Lecture("1.2", "Læs de to links"));
