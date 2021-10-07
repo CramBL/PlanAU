@@ -6,9 +6,17 @@ namespace Desktop_Application.Models
 {
     class fakeDAL
     {
-        public bool authentication()
+        public bool authentication(string user, string password)
         {
-            return true;
+            string Password = "123";
+            string User = "User";
+
+            if (User == user && Password == password)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

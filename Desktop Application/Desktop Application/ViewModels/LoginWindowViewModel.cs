@@ -35,9 +35,9 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteLoginCommand(string userName)
         {
-            fakeDAL fakeDal1 = new fakeDAL();
+            fakeDAL fakeDAL1 = new fakeDAL();
 
-            if (fakeDal1.authentication() == true) 
+            if (fakeDAL1.authentication(UserNameBox, PasswordBox)) 
             {
                 MainWindow mainWindowInstance = new MainWindow();
                 mainWindowInstance.Show();
