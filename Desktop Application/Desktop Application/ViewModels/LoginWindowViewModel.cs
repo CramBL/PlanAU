@@ -9,8 +9,8 @@ namespace Desktop_Application.ViewModels
 {
     class LoginWindowViewModel : BindableBase
     {
-        #region Command
 
+        #region Properties
         private string _userNameBox;
         public string UserNameBox
         {
@@ -24,7 +24,17 @@ namespace Desktop_Application.ViewModels
             get { return _passwordBox; }
             set { SetProperty(ref _passwordBox, value); }
         }
+        #endregion
 
+        #region Command
+        private DelegateCommand _moveWindow;
+        public DelegateCommand MoveWindow =>
+            _moveWindow ?? (_moveWindow = new DelegateCommand(ExecuteMoveWindow));
+
+        void ExecuteMoveWindow()
+        {
+            App.Current.MainWindow.DragMove();
+        }
 
         private DelegateCommand<string> _loginCommand;
         public DelegateCommand<string> LoginCommand =>
