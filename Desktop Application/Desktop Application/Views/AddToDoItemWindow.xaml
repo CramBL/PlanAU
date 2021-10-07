@@ -37,7 +37,7 @@
         <TextBox Grid.Row="2" Grid.Column="2" Margin="5" Text="{Binding Path=ToDoItem.ToDoDescription}" />
         <TextBox Grid.Row="3" Grid.Column="2" Margin="5" Text="{Binding Path=ToDoItem.Date}"/>
 
-        <Button Grid.Row="4" Grid.Column="2" Margin="5">OK</Button>
-        <Button Grid.Row="4" Grid.Column="3" Margin="5">Cancel</Button>
+        <Button Grid.Row="4" Grid.Column="2" Margin="5" Command="{Binding OKButton}" >OK</Button>
+        <Button Grid.Row="4" Grid.Column="3" Margin="5" Command="{Binding CancelButton}" >Cancel</Button>
     </Grid>
 </UserControl>
