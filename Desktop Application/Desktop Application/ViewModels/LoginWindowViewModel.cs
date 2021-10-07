@@ -53,7 +53,8 @@ namespace Desktop_Application.ViewModels
                 mainWindowInstance.Show();
                 App.Current.MainWindow.Close();
             }
-            System.Windows.MessageBox.Show("Wrong Password or UserID, try again");
+            else
+                System.Windows.MessageBox.Show("Wrong Password or UserID, try again");
 
 
         }
