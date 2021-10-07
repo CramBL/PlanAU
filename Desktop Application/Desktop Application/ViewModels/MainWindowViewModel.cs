@@ -1,15 +1,22 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
-using ProofOfConcept.Models;
+using Desktop_Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace ProofOfConcept.ViewModels
+namespace Desktop_Application.ViewModels
 {
-    class MainWindowViewModel : BindableBase
+    public class MainWindowViewModel : BindableBase
     {
+        private string _title = "Prism Application";
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
+
         ICourse PRJ;
         ICourse GUI;
         ICourse DAB;
@@ -25,7 +32,6 @@ namespace ProofOfConcept.ViewModels
             get => _selectedCourses;
             set { SetProperty(ref _selectedCourses, value); }
         }
-        #endregion
 
         private ObservableCollection<string> _preparationItems;
         public ObservableCollection<string> PreparationItems
@@ -33,6 +39,7 @@ namespace ProofOfConcept.ViewModels
             get { return _preparationItems; }
             set { SetProperty(ref _preparationItems, value); }
         }
+        #endregion
 
         #region Method
         public MainWindowViewModel()
@@ -53,7 +60,7 @@ namespace ProofOfConcept.ViewModels
 
         private void setFakeCourses()
         {
-            lectures = new();
+            lectures = new List<ILecture>();
             lectures.Add(new Lecture("0", "Læs s. 45-55 i bogen"));
             lectures.Add(new Lecture("1.1", "Se to videoer"));
             lectures.Add(new Lecture("1.2", "Læs de to links"));

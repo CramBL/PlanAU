@@ -1,0 +1,256 @@
+﻿<Window x:Class="Desktop_Application.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        Title="{Binding Title}" Height="720" Width="1280" BorderBrush="#FF0E0E0E" Padding="10,0,40,0" >
+    <Grid>
+
+        <!--#region Grid Column and Row Definitions-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="26*"/>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="32*"/>
+            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="370*"/>
+            <RowDefinition Height="165*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+        
+        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+
+        <!--#region User Menu-->
+        <Menu Grid.Row="0" Grid.Column="4" >
+            <MenuItem Header="👩🏻Bob Bobson" FontSize="15" Height="39" Width="135">
+                <MenuItem Header="_Settings" />
+                <Separator></Separator>
+                <MenuItem Header="_Logout" />
+            </MenuItem>
+        </Menu>
+        <!--#endregion-->
+
+        <!--#region Select Course Buttons-->
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="5,5,5,0" Grid.ColumnSpan="2">
+            <Button Width="60" Command="{Binding SelectAllCourses}" CommandParameter="All">All</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="PRJ">PRJ</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="NGK">NGK</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="SWT">SWT</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="SWD">SWD</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="DAB">DAB</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="GUI">GUI</Button>
+        </StackPanel>
+        <!--#endregion-->
+
+        <!--#region Calendar Mockup-->
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="1" Margin="5,5,5,5" Grid.ColumnSpan="2">
+            <Grid x:Name="Grid_1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="23*"/>
+                    <RowDefinition Height="156*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="2" Grid.Column="0" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="186*"/>
+                            <RowDefinition Height="67*"/>
+                            <RowDefinition Height="59*"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="1" Background="#FF7BEA88" BorderBrush="#FF7BEA88">
+                            <Label x:Name="label" Content="DAB 8:00-12:00"/>
+                        </Border>
+                        <Border BorderThickness="1" BorderBrush="#FFF8FF55" Grid.Row="1" Background="#FFF8FF55"/>
+                        <Label x:Name="label_homework" Content="Homework: 2 hours" Grid.Row="1"></Label>
+                    </Grid>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="2" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="3" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="4" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="4" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="5" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="6" BorderThickness="1" Margin="-1">
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+
+
+
+                <Label x:Name="labelMonday" Content="Monday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C"/>
+                <Label x:Name="labelTuesday" Content="Tuesday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="1"/>
+                <Label x:Name="labelWedensday" Content="Wedensday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="2"/>
+                <Label x:Name="labelThursday" Content="Thursday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="3"/>
+                <Label x:Name="labelFriday" Content="Friday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="4"/>
+                <Label x:Name="labelSaturday" Content="Saturday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="5"/>
+                <Label x:Name="labelSunday" Content="Sunday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="6"/>
+            </Grid>
+        </Border>
+        <!--#endregion-->
+
+        <!--#region Calendar: Back and Next Buttons-->
+        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,5,0">
+            <Button Content="&lt;- Back" Width="70"></Button>
+            <Button Width="70">Next -></Button>
+        </StackPanel>
+        <!--#endregion-->
+
+        <!--#region Preparation Mockup-->
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="3" Margin="5,5,5,5" Grid.ColumnSpan="2" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="349*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="-1,-1,-1,0">
+                    <TextBlock FontSize="18" HorizontalAlignment="Center" FontWeight="Bold" >Preparation</TextBlock>
+                </Border>
+                <ListBox Grid.Row="1" Grid.Column="0"
+                         ItemsSource="{Binding Path=PreparationItems}"
+                         IsSynchronizedWithCurrentItem="True"
+                         />
+            </Grid>
+        </Border>
+        <!--#endregion-->
+
+        <!--#region Deadline Mockup-->
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="3" Margin="5,5,5,5" Grid.ColumnSpan="2"  >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="43*"/>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="-1,-1,-1,0" >
+                    <TextBlock FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" >Deadlines</TextBlock>
+                </Border>
+                <StackPanel Grid.Row="1" Margin="5,5,0,5">
+                    <TextBlock>DAB exc 2</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0,5,5,5">
+                    <TextBlock> Monday 23/07</TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <!--#endregion-->
+
+        <!--#region ToDo Mockup-->
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="1" Margin="5,5,5,5" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="124*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="-1,-1,-1,0" >
+                    <TextBlock FontSize="18" FontWeight="Bold" Grid.ColumnSpan="4" HorizontalAlignment="Center">ToDo</TextBlock>
+
+                </Border>
+
+                <Button Grid.Row="0" Grid.RowSpan="2" >Add ToDo Item</Button>
+
+                <StackPanel Grid.Column="1" Margin="5,5,0,0" Grid.Row="1">
+
+                    <CheckBox>Create Mockup for Project 23/07</CheckBox>
+                    <CheckBox>Plan Group Meeting 26/07</CheckBox>
+                    <CheckBox>Buy cheese 01/08</CheckBox>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Grid.Row="1" Margin="0,5,0,0">
+                    <CheckBox>Feed the cat 24/07</CheckBox>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+        <!--#endregion-->
+
+        <!--#region Appearance Foreground-->
+        <Image Source="/Images/PlanAU.png" Grid.RowSpan="2"></Image> 
+
+        <Separator Grid.Row="1" Grid.ColumnSpan="6" VerticalAlignment="Bottom" Margin="0,0,0,2" Height="1"></Separator>
+
+        <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="6" Grid.ColumnSpan="6"/>
+        <!--#endregion-->
+
+    </Grid>
+</Window>
