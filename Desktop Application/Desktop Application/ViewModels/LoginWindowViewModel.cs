@@ -1,31 +1,28 @@
-﻿using Prism.Commands;
+﻿using Desktop_Application.Views;
+using Prism.Commands;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Desktop_Application.ViewModels
 {
-    class LoginWindowViewModel
+    class LoginWindowViewModel : BindableBase
     {
         #region Command
 
-        private DelegateCommand<string> _usernameBox;
-        public DelegateCommand<string> UsernameBox =>
-            _usernameBox ?? (_usernameBox = new DelegateCommand<string>(ExecuteUserNameBox));
-
-        void ExecuteUserNameBox(string userName)
+        private string _userNameBox;
+        public string UserNameBox
         {
-
+            get { return _userNameBox; }
+            set { SetProperty(ref _userNameBox, value); }
         }
 
-        private DelegateCommand<string> _passwordBox;
-        public DelegateCommand<string> PasswordBox =>
-            _passwordBox ?? (_passwordBox = new DelegateCommand<string>(ExecutePasswordBox));
-
-        void ExecutePasswordBox(string userName)
+        private string _passwordBox;
+        public string PasswordBox
         {
-
-
+            get { return _passwordBox; }
+            set { SetProperty(ref _passwordBox, value); }
         }
 
 
@@ -53,6 +50,17 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteCloseWindow()
         {
+            App.Current.MainWindow.Close();
+        }
+
+        private DelegateCommand _bypass;
+        public DelegateCommand Bypass =>
+            _bypass ?? (_bypass = new DelegateCommand(ExecuteBypass));
+
+        void ExecuteBypass()
+        {
+            MainWindow mainWindowInstance = new MainWindow();
+            mainWindowInstance.Show();
             App.Current.MainWindow.Close();
         }
 

@@ -57,7 +57,8 @@
                RenderTransformOrigin="0.568,0.44"/>
 
         <TextBox Name="userBox" Grid.Column="1" HorizontalAlignment="Left" 
-                 Margin="85,45,0,0" Grid.Row="2" Text="{Binding UsernameBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 Margin="85,45,0,0" Grid.Row="2" 
+                 Text="{Binding Path=UserNameBox}"
                  FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="25"/>
 
@@ -84,7 +85,8 @@
         <Button Name="testButton" Content="Bypass"  
                 Margin="40,100,0,0" Grid.Row="3" Grid.Column="1"
                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
-                VerticalAlignment="Top" Height="25"  Width="80" />
+                VerticalAlignment="Top" Height="25"  Width="80" 
+                Command="{Binding Bypass}"/>
 
         <!--#endregion-->
 
