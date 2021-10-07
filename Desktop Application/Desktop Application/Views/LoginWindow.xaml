@@ -64,7 +64,7 @@
         <Button Name="loginButton" Content="Login"  
                 Margin="80,20,97,0" Grid.Row="3" Grid.Column="1"
                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
-                VerticalAlignment="Top" Height="25" Width="70" Click="LoginButton_OnClickButton_OnClick" Command="{Binding LoginCommand}" />
+                VerticalAlignment="Top" Height="25" Width="70" Command="{Binding LoginCommand}" />
 
         <Button Name="registerButton" Content="Register"  
                 Margin="140,20,0,0" Grid.Row="3" Grid.Column="1"
@@ -74,7 +74,7 @@
         <Button Name="testButton" Content="Bypass"  
                 Margin="40,100,0,0" Grid.Row="3" Grid.Column="1"
                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
-                VerticalAlignment="Top" Height="25"  Width="80" Click="TestButton_OnClick" />
+                VerticalAlignment="Top" Height="25"  Width="80" />
 
         <!--#endregion-->
 
