@@ -1,15 +1,13 @@
-﻿<Window x:Class="ProofOfConcept.Views.LoginWindow"
+﻿<Window x:Class="Desktop_Application.Views.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProofOfConcept.Views"
-        xmlns:components="clr-namespace:ProofOfConcept.Components"
+        xmlns:local="clr-namespace:Desktop_Application.Views"
         mc:Ignorable="d"
         Title="LoginWindow" Height="450" Width="380" 
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize" 
-       DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=LoginWindowViewModel}"
         MouseDown="LoginWindow_OnMouseDown">
     <Grid>
 
@@ -52,7 +50,7 @@
                  Margin="85,45,0,0" Grid.Row="2" Text="{Binding UsernameBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="25"/>
-       
+
         <TextBox Name="passwordBox" Text="{Binding PasswordBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" 
                                         Margin="85,95,0,0" Grid.Row="2"  
                                         FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
@@ -82,7 +80,7 @@
 
         <!--#region Appearance Foreground-->
         <Image Source="../Images/PlanAU.png" Grid.RowSpan="2" Grid.Column="1"></Image>
-        
+
         <!--#endregion-->
     </Grid>
 </Window>
