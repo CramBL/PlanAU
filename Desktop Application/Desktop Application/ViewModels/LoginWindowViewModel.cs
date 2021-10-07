@@ -64,7 +64,7 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteRegisterCommand(string userName)
         {
-
+            System.Windows.MessageBox.Show("Register is not available / not implemented ");
         }
 
         private DelegateCommand _closeWindow;
