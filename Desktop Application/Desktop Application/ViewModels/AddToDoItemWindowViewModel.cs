@@ -8,6 +8,11 @@ namespace Desktop_Application.ViewModels
 {
     class AddToDoItemWindowViewModel : BindableBase
     {
+        public AddToDoItemWindowViewModel()
+        {
+
+        }
+
         private ToDoItem _toDoItem;
         public ToDoItem TodDoItem
         {

@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Prism.Services.Dialogs;
+using System.Windows;
 
 namespace Desktop_Application.ViewModels
 {
@@ -26,6 +28,8 @@ namespace Desktop_Application.ViewModels
         private List<ILecture> lectures;
 
         #region Properties
+        private IDialogService _dialogService;
+
         private ObservableCollection<Models.ICourse> _selectedCourses;
         public ObservableCollection<Models.ICourse> SelectedCourses
         {
@@ -42,8 +46,10 @@ namespace Desktop_Application.ViewModels
         #endregion
 
         #region Method
-        public MainWindowViewModel()
+        public MainWindowViewModel(IDialogService dialogService)
         {
+            _dialogService = dialogService;
+
             setFakeCourses();
 
             SelectedCourses = new ObservableCollection<ICourse>();
@@ -113,6 +119,30 @@ namespace Desktop_Application.ViewModels
             SelectedCourses.Add(SWD);
             SelectedCourses.Add(NGK);
             makePreparationItemStrings();
+        }
+
+        private DelegateCommand _openAddToDoItemDialog;
+        public DelegateCommand OpenAddToDoItemDialog =>
+            _openAddToDoItemDialog ?? (_openAddToDoItemDialog = new DelegateCommand(ExecuteOpenAddToDoItemDialog));
+
+        void ExecuteOpenAddToDoItemDialog()
+        {
+            var tempToDoItem = new ToDoItem("","","");
+            ((App)Application.Current).ToDoItem = tempToDoItem;
+            _dialogService.ShowDialog("ToDoItemWindow", null, r =>
+            {
+                if (r.Result == ButtonResult.None)
+                    Title = "Result is None";
+                else if (r.Result == ButtonResult.OK)
+                {
+                    Title = "Result is OK";
+                    ((App)Application.Current).ToDoItem;
+                }
+                else if (r.Result == ButtonResult.Cancel)
+                    Title = "Result is Cancel";
+                else
+                    Title = "I Don't know what you did!?";
+            });
         }
         #endregion
     }
