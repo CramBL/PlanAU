@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Prism.Services.Dialogs;
 using Prism.Commands;
+using System.Windows;
 
 namespace Desktop_Application.ViewModels
 {
@@ -16,7 +17,7 @@ namespace Desktop_Application.ViewModels
         }
 
         private ToDoItem _toDoItem;
-        public ToDoItem TodDoItem
+        public ToDoItem ToDoItem
         {
             get { return _toDoItem; }
             set { SetProperty(ref _toDoItem, value); }
@@ -24,17 +25,17 @@ namespace Desktop_Application.ViewModels
 
         public bool CanCloseDialog()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void OnDialogClosed()
         {
-            throw new NotImplementedException();
         }
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
-            throw new NotImplementedException();
+            ToDoItem = ((App)Application.Current).ToDoItem;
+
         }
 
         public string Title { get; }
@@ -49,16 +50,25 @@ namespace Desktop_Application.ViewModels
         void ExecuteCancelButton()
         {
             //closing window
+            ButtonResult result = ButtonResult.Cancel;
+            RaiseRequestClose(new DialogResult(result));
         }
 
-        private DelegateCommand _okCommand;
-        public DelegateCommand OKCommand =>
-            _okCommand ?? (_okCommand = new DelegateCommand(ExecuteOKCommand));
+        private DelegateCommand _okButton;
+        public DelegateCommand OKButton =>
+            _okButton ?? (_okButton = new DelegateCommand(ExecuteOKButton));
 
-        void ExecuteOKCommand()
+        void ExecuteOKButton()
         {
             //adding new ToDo iteam
-
+            ButtonResult result = ButtonResult.OK;
+            // Use the ToDoItem object to transfer data to the MainWindow
+            ((App)Application.Current).ToDoItem = ToDoItem;
+            RaiseRequestClose(new DialogResult(result));
+        }
+        public virtual void RaiseRequestClose(IDialogResult dialogResult)
+        {
+            RequestClose?.Invoke(dialogResult);
         }
 
 

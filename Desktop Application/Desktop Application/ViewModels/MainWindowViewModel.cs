@@ -43,11 +43,26 @@ namespace Desktop_Application.ViewModels
             get { return _preparationItems; }
             set { SetProperty(ref _preparationItems, value); }
         }
+
+        private ToDoItem _toDoItem;
+        public ToDoItem ToDoItem
+        {
+            get { return _toDoItem; }
+            set { SetProperty(ref _toDoItem, value); }
+        }
+
+        private Student _student;
+        public Student Student
+        {
+            get { return _student; }
+            set { SetProperty(ref _student, value); }
+        }
         #endregion
 
         #region Method
         public MainWindowViewModel(IDialogService dialogService)
         {
+            Student = new Student("Bob Bobson", "au123456");
             _dialogService = dialogService;
 
             setFakeCourses();
@@ -92,6 +107,16 @@ namespace Desktop_Application.ViewModels
         #endregion
 
         #region Commands
+        private DelegateCommand<ToDoItem> _removeToDoItem;
+        public DelegateCommand<ToDoItem> RemoveToDoItem =>
+            _removeToDoItem ?? (_removeToDoItem = new DelegateCommand<ToDoItem>(ExecuteRemoveToDoItem));
+
+        void ExecuteRemoveToDoItem(ToDoItem currentToDoItem)
+        {
+            Student.ToDoList.Remove(currentToDoItem);
+            Student.DoneToDos.Add(new ToDoItem(currentToDoItem.ToDoTitle, currentToDoItem.ToDoDescription, currentToDoItem.Date, currentToDoItem.Done));
+        }
+
         private DelegateCommand<string> _selectOneCourse;
         public DelegateCommand<string> SelectOneCourse =>
             _selectOneCourse ?? (_selectOneCourse = new DelegateCommand<string>(ExecuteSelectOneCourse));
@@ -125,18 +150,21 @@ namespace Desktop_Application.ViewModels
         public DelegateCommand OpenAddToDoItemDialog =>
             _openAddToDoItemDialog ?? (_openAddToDoItemDialog = new DelegateCommand(ExecuteOpenAddToDoItemDialog));
 
+        
+
         void ExecuteOpenAddToDoItemDialog()
         {
             var tempToDoItem = new ToDoItem("","","");
             ((App)Application.Current).ToDoItem = tempToDoItem;
-            _dialogService.ShowDialog("ToDoItemWindow", null, r =>
+            _dialogService.ShowDialog("AddToDoItemWindow", null, r =>
             {
                 if (r.Result == ButtonResult.None)
                     Title = "Result is None";
                 else if (r.Result == ButtonResult.OK)
                 {
                     Title = "Result is OK";
-                    ((App)Application.Current).ToDoItem;
+                    ToDoItem = ((App)Application.Current).ToDoItem;
+                    Student.ToDoList.Add(ToDoItem);
                 }
                 else if (r.Result == ButtonResult.Cancel)
                     Title = "Result is Cancel";

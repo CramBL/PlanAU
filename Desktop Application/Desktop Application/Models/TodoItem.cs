@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Desktop_Application.Models
 {
-    class ToDoItem
+    public class ToDoItem
     {
         public ToDoItem(string title, string description, string date)
         {
@@ -12,6 +12,13 @@ namespace Desktop_Application.Models
             ToDoDescription = description;
             Date = date;
             Done = false;
+        }
+        public ToDoItem(string title, string description, string date, bool done)
+        {
+            ToDoTitle = title;
+            ToDoDescription = description;
+            Date = date;
+            Done = done;
         }
 
         #region Fields
