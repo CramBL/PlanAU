@@ -13,11 +13,11 @@ namespace Desktop_Application
     public partial class App
     {
         public ToDoItem ToDoItem { get; internal set; }
-        public Student Student { get; internal set; }
+        public Student Student { get; set; }
 
         protected override Window CreateShell()
         {
-            return Container.Resolve<LoginWindow>();
+            return Container.Resolve<LoginView>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
