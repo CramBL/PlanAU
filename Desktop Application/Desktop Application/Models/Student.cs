@@ -12,6 +12,7 @@ namespace Desktop_Application.Models
         public Student(string auid, string password)
         {
             AU_ID = auid;
+            Password = password;
             ToDoItems = new ObservableCollection<ToDoItem>();
             DoneToDoItems = new ObservableCollection<ToDoItem>();
         }
@@ -47,12 +48,14 @@ namespace Desktop_Application.Models
         }
 
         private ObservableCollection<ToDoItem> _toDoItems;
+        [JsonIgnore]
         public ObservableCollection<ToDoItem> ToDoItems
         {
             get { return _toDoItems; }
             set { SetProperty(ref _toDoItems, value); }
         }
         private ObservableCollection<ToDoItem> _doneToDoItems;
+        [JsonIgnore]
         public ObservableCollection<ToDoItem> DoneToDoItems
         {
             get { return _doneToDoItems; }

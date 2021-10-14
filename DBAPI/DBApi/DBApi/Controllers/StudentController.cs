@@ -35,7 +35,7 @@ namespace DBApi.Controllers
             return CreatedAtAction(nameof(GetStudent), new { id = student.AU_ID }, student);
         }
 
-        [HttpPost("/autherize")]
+        [HttpPost("/authorize")]
         public async Task<ActionResult<Boolean>> AutherizeStudent(Student student)
         {
             Student s = await studentContext.STUDENTS.FindAsync(student.AU_ID);

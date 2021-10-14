@@ -46,9 +46,7 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteLoginCommand(string userName)
         {
-            
-
-            if (DAL_Student.LoginAttemptAuthorize(UserNameBox, PasswordBox).Result) 
+            if (DAL_Student.LoginAttemptAuthorize(UserNameBox, PasswordBox).Result)
             {
                 ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
                 HomeView homeViewInstance = new HomeView();
@@ -57,8 +55,6 @@ namespace Desktop_Application.ViewModels
             }
             else
                 System.Windows.MessageBox.Show("Wrong Password or UserID, try again");
-
-
         }
 
         private DelegateCommand<string> _registerCommand;

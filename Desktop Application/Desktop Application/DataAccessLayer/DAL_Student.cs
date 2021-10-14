@@ -16,11 +16,12 @@ namespace Desktop_Application.DataAccessLayer
         public static async Task<bool> LoginAttemptAuthorize(string au_id, string password)
         {
             Student s = new Student(au_id, password);
-            
-            var postContent = 
-                new StringContent(System.Text.Json.JsonSerializer.Serialize<Student>(s), 
-                        Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("https://localhost:44323/Student/", postContent);
+            s.Email = "";
+
+            var json = System.Text.Json.JsonSerializer.Serialize<Student>(s);
+            System.Windows.MessageBox.Show(json);
+            var postContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("https://localhost:44323/authorize", postContent);
 
             return response.Content.Equals("true");
         }
@@ -39,12 +40,12 @@ namespace Desktop_Application.DataAccessLayer
         //    return student;
         //}
 
-        //public static async Task<string> PostStudent(Student _student)
-        //{
-        //    string student = System.Text.Json.JsonSerializer.Serialize<Student>(_student);
-        //    var postContent = new StringContent(student, Encoding.UTF8, "application/json");
-        //    var response = await client.PostAsync("https://localhost:44323/Student/", postContent);
-        //    return response.StatusCode.ToString();
-        //}
+        public static async Task<string> PostStudent(Student _student)
+        {
+            string student = System.Text.Json.JsonSerializer.Serialize<Student>(_student);
+            var postContent = new StringContent(student, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("https://localhost:44323/Student/", postContent);
+            return response.StatusCode.ToString();
+        }
     }
 }

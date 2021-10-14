@@ -22,7 +22,7 @@ namespace PRJ4_DAL
             Console.WriteLine(test2.Au_id);
 
             Student postStudent = new Student();
-            postStudent.Au_id = "AU000666";
+            postStudent.Au_id = "AU004666";
             postStudent.Email = "dal@gmail.com";
             postStudent.Password = "Fisk";
 
