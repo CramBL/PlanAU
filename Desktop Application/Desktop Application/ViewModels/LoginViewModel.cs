@@ -85,6 +85,8 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteBypass()
         {
+            ((App)App.Current).Student = new Student("AU999999", "");
+
             HomeView HomeViewInstance = new HomeView();
             HomeViewInstance.Show();
             App.Current.MainWindow.Close();

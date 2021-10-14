@@ -246,11 +246,11 @@
                     <CheckBox>Feed the cat 24/07</CheckBox>
                 </StackPanel>-->
                 <ListBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3"
-                         ItemsSource="{Binding Student.DoneToDos}"
+                         ItemsSource="{Binding Student.DoneToDoItems}"
                          IsSynchronizedWithCurrentItem="True"
                          DisplayMemberPath="ToDoTitle"
                          />
-                <ListView Name="LvwToDoList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Student.ToDoList}">
+                <ListView Name="LvwToDoList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Student.ToDoItems}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Done" Width="50">
