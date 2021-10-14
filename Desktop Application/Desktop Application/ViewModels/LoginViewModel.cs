@@ -9,7 +9,7 @@ using Desktop_Application.Models;
 
 namespace Desktop_Application.ViewModels
 {
-    class LoginWindowViewModel : BindableBase
+    class LoginViewModel : BindableBase
     {
 
         #region Properties
@@ -49,8 +49,8 @@ namespace Desktop_Application.ViewModels
 
             if (fakeDAL1.authentication(UserNameBox, PasswordBox)) 
             {
-                MainWindow mainWindowInstance = new MainWindow();
-                mainWindowInstance.Show();
+                HomeView homeViewInstance = new HomeView();
+                homeViewInstance.Show();
                 App.Current.MainWindow.Close();
             }
             else
@@ -83,8 +83,8 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteBypass()
         {
-            MainWindow mainWindowInstance = new MainWindow();
-            mainWindowInstance.Show();
+            HomeView HomeViewInstance = new HomeView();
+            HomeViewInstance.Show();
             App.Current.MainWindow.Close();
         }
 
