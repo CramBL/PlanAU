@@ -38,7 +38,7 @@ namespace Desktop_Application.ViewModels
 
         }
 
-        public string Title { get; }
+        public string Title { get; } = "Add a ToDo Item";
         public event Action<IDialogResult> RequestClose;
 
 
