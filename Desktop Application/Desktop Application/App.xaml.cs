@@ -17,7 +17,7 @@ namespace Desktop_Application
 
         protected override Window CreateShell()
         {
-            return Container.Resolve<LoginWindow>();
+            return Container.Resolve<LoginView>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

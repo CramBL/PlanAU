@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Desktop_Application.ViewModels
 {
-    public class MainWindowViewModel : BindableBase
+    public class HomeViewModel : BindableBase
     {
         private string _title = "Prism Application";
         public string Title
@@ -60,7 +60,7 @@ namespace Desktop_Application.ViewModels
         #endregion
 
         #region Method
-        public MainWindowViewModel(IDialogService dialogService)
+        public HomeViewModel(IDialogService dialogService)
         {
             Student = new Student("Bob Bobson", "au123456");
             _dialogService = dialogService;
