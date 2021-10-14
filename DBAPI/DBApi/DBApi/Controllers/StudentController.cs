@@ -38,11 +38,11 @@ namespace DBApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetStudent(string id)
         {
-            var todoItem = await studentContext.STUDENTS.FindAsync(id);
+            var student = await studentContext.STUDENTS.FindAsync(id);
 
-            if (todoItem == null) { return NotFound(); }
+            if (student == null) { return NotFound(); }
 
-            return todoItem;
+            return student;
         }
     }
 }
