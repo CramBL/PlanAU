@@ -30,7 +30,7 @@
 
         <!--#region User Menu-->
         <Menu Grid.Row="0" Grid.Column="4" >
-            <MenuItem Header="{Binding Path= Student.Name}" FontSize="15" Height="39" Width="135">
+            <MenuItem Header="{Binding Path= Student.AU_ID}" FontSize="15" Height="39" Width="135">
                 <MenuItem Header="_Settings" />
                 <Separator></Separator>
                 <MenuItem Header="_Logout" />
@@ -242,11 +242,11 @@
                     <CheckBox>Feed the cat 24/07</CheckBox>
                 </StackPanel>-->
                 <ListBox Grid.Row="1" Grid.Column="3"
-                         ItemsSource="{Binding Student.DoneToDos}"
+                         ItemsSource="{Binding Student.DoneToDoItems}"
                          IsSynchronizedWithCurrentItem="True"
                          DisplayMemberPath="ToDoTitle"
                          />
-                <ListView Name="LvwToDoList" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Student.ToDoList}">
+                <ListView Name="LvwToDoList" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Student.ToDoItems}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Done">

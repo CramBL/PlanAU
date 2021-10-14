@@ -62,7 +62,7 @@ namespace Desktop_Application.ViewModels
         #region Method
         public HomeViewModel(IDialogService dialogService)
         {
-            Student = new Student("Bob Bobson", "au123456");
+            Student = ((App) App.Current).Student;
             _dialogService = dialogService;
 
             setFakeCourses();
@@ -113,8 +113,8 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteRemoveToDoItem(ToDoItem currentToDoItem)
         {
-            Student.ToDoList.Remove(currentToDoItem);
-            Student.DoneToDos.Add(new ToDoItem(currentToDoItem.ToDoTitle, currentToDoItem.ToDoDescription, currentToDoItem.Date, currentToDoItem.Done));
+            Student.ToDoItems.Remove(currentToDoItem);
+            Student.DoneToDoItems.Add(new ToDoItem(currentToDoItem.ToDoTitle, currentToDoItem.ToDoDescription, currentToDoItem.Date, currentToDoItem.Done));
         }
 
         private DelegateCommand<string> _selectOneCourse;
@@ -164,7 +164,7 @@ namespace Desktop_Application.ViewModels
                 {
                     Title = "Result is OK";
                     ToDoItem = ((App)Application.Current).ToDoItem;
-                    Student.ToDoList.Add(ToDoItem);
+                    Student.ToDoItems.Add(ToDoItem);
                 }
                 else if (r.Result == ButtonResult.Cancel)
                     Title = "Result is Cancel";

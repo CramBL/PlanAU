@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Net.Security;
 using System.Text;
 using Desktop_Application.Models;
+using Desktop_Application.DataAccessLayer;
 
 namespace Desktop_Application.ViewModels
 {
@@ -45,10 +46,11 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteLoginCommand(string userName)
         {
-            fakeDAL fakeDAL1 = new fakeDAL();
+            
 
-            if (fakeDAL1.authentication(UserNameBox, PasswordBox)) 
+            if (DAL_Student.LoginAttemptAuthorize(UserNameBox, PasswordBox).Result) 
             {
+                ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
                 HomeView homeViewInstance = new HomeView();
                 homeViewInstance.Show();
                 App.Current.MainWindow.Close();
