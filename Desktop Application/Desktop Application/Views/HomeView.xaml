@@ -4,7 +4,7 @@
         xmlns:prism="http://prismlibrary.com/" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="720" Width="1280" BorderBrush="#FF0E0E0E" Padding="10,0,40,0" WindowStartupLocation="CenterScreen" >
+        Title="{Binding Title}" Height="600" Width="1080" BorderBrush="#FF0E0E0E" Padding="10,0,40,0" WindowStartupLocation="CenterScreen" >
     <Grid>
 
         <!--#region Grid Column and Row Definitions-->
