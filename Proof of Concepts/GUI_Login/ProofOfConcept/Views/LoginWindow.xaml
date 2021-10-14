@@ -25,6 +25,7 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
+        <!--#endregion-->
 
         <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="4" Grid.ColumnSpan="3" 
                 CornerRadius="20" Background="White">

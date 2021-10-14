@@ -4,9 +4,8 @@ import urllib
 
 app = Flask(__name__)
 
-params = urllib.parse.quote_plusData("DRIVER={}; SERVER={}")
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql:///'
+dbname = "(localdb)\MSSQLLocalDB\PRJ4TestDB"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql:///' + dbname
 db = SQLAlchemy(app)
 
 class Students(db.Model):

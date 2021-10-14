@@ -1,15 +1,24 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
-using ProofOfConcept.Models;
+using Desktop_Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Prism.Services.Dialogs;
+using System.Windows;
 
-namespace ProofOfConcept.ViewModels
+namespace Desktop_Application.ViewModels
 {
-    class MainWindowViewModel : BindableBase
+    public class HomeViewModel : BindableBase
     {
+        private string _title = "Prism Application";
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
+
         ICourse PRJ;
         ICourse GUI;
         ICourse DAB;
@@ -19,13 +28,14 @@ namespace ProofOfConcept.ViewModels
         private List<ILecture> lectures;
 
         #region Properties
+        private IDialogService _dialogService;
+
         private ObservableCollection<Models.ICourse> _selectedCourses;
         public ObservableCollection<Models.ICourse> SelectedCourses
         {
             get => _selectedCourses;
             set { SetProperty(ref _selectedCourses, value); }
         }
-        #endregion
 
         private ObservableCollection<string> _preparationItems;
         public ObservableCollection<string> PreparationItems
@@ -34,9 +44,27 @@ namespace ProofOfConcept.ViewModels
             set { SetProperty(ref _preparationItems, value); }
         }
 
-        #region Method
-        public MainWindowViewModel()
+        private ToDoItem _toDoItem;
+        public ToDoItem ToDoItem
         {
+            get { return _toDoItem; }
+            set { SetProperty(ref _toDoItem, value); }
+        }
+
+        private Student _student;
+        public Student Student
+        {
+            get { return _student; }
+            set { SetProperty(ref _student, value); }
+        }
+        #endregion
+
+        #region Method
+        public HomeViewModel(IDialogService dialogService)
+        {
+            Student = new Student("Bob Bobson", "au123456");
+            _dialogService = dialogService;
+
             setFakeCourses();
 
             SelectedCourses = new ObservableCollection<ICourse>();
@@ -53,7 +81,7 @@ namespace ProofOfConcept.ViewModels
 
         private void setFakeCourses()
         {
-            lectures = new();
+            lectures = new List<ILecture>();
             lectures.Add(new Lecture("0", "Læs s. 45-55 i bogen"));
             lectures.Add(new Lecture("1.1", "Se to videoer"));
             lectures.Add(new Lecture("1.2", "Læs de to links"));
@@ -79,6 +107,16 @@ namespace ProofOfConcept.ViewModels
         #endregion
 
         #region Commands
+        private DelegateCommand<ToDoItem> _removeToDoItem;
+        public DelegateCommand<ToDoItem> RemoveToDoItem =>
+            _removeToDoItem ?? (_removeToDoItem = new DelegateCommand<ToDoItem>(ExecuteRemoveToDoItem));
+
+        void ExecuteRemoveToDoItem(ToDoItem currentToDoItem)
+        {
+            Student.ToDoList.Remove(currentToDoItem);
+            Student.DoneToDos.Add(new ToDoItem(currentToDoItem.ToDoTitle, currentToDoItem.ToDoDescription, currentToDoItem.Date, currentToDoItem.Done));
+        }
+
         private DelegateCommand<string> _selectOneCourse;
         public DelegateCommand<string> SelectOneCourse =>
             _selectOneCourse ?? (_selectOneCourse = new DelegateCommand<string>(ExecuteSelectOneCourse));
@@ -106,6 +144,33 @@ namespace ProofOfConcept.ViewModels
             SelectedCourses.Add(SWD);
             SelectedCourses.Add(NGK);
             makePreparationItemStrings();
+        }
+
+        private DelegateCommand _openAddToDoItemDialog;
+        public DelegateCommand OpenAddToDoItemDialog =>
+            _openAddToDoItemDialog ?? (_openAddToDoItemDialog = new DelegateCommand(ExecuteOpenAddToDoItemDialog));
+
+        
+
+        void ExecuteOpenAddToDoItemDialog()
+        {
+            var tempToDoItem = new ToDoItem("","","");
+            ((App)Application.Current).ToDoItem = tempToDoItem;
+            _dialogService.ShowDialog("AddToDoItemWindow", null, r =>
+            {
+                if (r.Result == ButtonResult.None)
+                    Title = "Result is None";
+                else if (r.Result == ButtonResult.OK)
+                {
+                    Title = "Result is OK";
+                    ToDoItem = ((App)Application.Current).ToDoItem;
+                    Student.ToDoList.Add(ToDoItem);
+                }
+                else if (r.Result == ButtonResult.Cancel)
+                    Title = "Result is Cancel";
+                else
+                    Title = "I Don't know what you did!?";
+            });
         }
         #endregion
     }
