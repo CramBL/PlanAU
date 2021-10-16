@@ -45,10 +45,10 @@ namespace Desktop_Application.ViewModels
         public DelegateCommand<string> LoginCommand =>
             _loginCommand ?? (_loginCommand = new DelegateCommand<string>(ExecuteLoginCommand));
 
-        void ExecuteLoginCommand(string userName)
+        async void ExecuteLoginCommand(string userName)
         {
             Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(UserNameBox, PasswordBox);
-            if (authorizeTask.Result)
+            if (await authorizeTask)
             {
                 ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
                 HomeView homeViewInstance = new HomeView();
