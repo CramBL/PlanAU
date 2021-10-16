@@ -7,6 +7,7 @@ using System.Net.Security;
 using System.Text;
 using Desktop_Application.Models;
 using Desktop_Application.DataAccessLayer;
+using System.Threading.Tasks;
 
 namespace Desktop_Application.ViewModels
 {
@@ -46,7 +47,8 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteLoginCommand(string userName)
         {
-            if (DAL_Student.LoginAttemptAuthorize(UserNameBox, PasswordBox).Result)
+            Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(UserNameBox, PasswordBox);
+            if (authorizeTask.Result)
             {
                 ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
                 HomeView homeViewInstance = new HomeView();

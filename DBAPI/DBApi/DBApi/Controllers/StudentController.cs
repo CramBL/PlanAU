@@ -41,9 +41,12 @@ namespace DBApi.Controllers
             Student s = await studentContext.STUDENTS.FindAsync(student.AU_ID);
             if (s != null)
             {
-                return student.PASSWORD == s.PASSWORD;
+                if (s.PASSWORD == student.PASSWORD)
+                    return student.PASSWORD == s.PASSWORD;
+                else
+                    return Unauthorized();
             }
-            return false;
+            return NotFound();
         }
 
         [HttpGet("{id}")]

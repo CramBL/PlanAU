@@ -23,7 +23,10 @@ namespace Desktop_Application.DataAccessLayer
             var postContent = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync("https://localhost:44323/authorize", postContent);
 
-            return response.Content.Equals("true");
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                return true;
+            else
+                return false;
         }
 
         //public static async Task<List<Student>> GetStudents()
