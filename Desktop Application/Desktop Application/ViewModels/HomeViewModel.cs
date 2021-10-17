@@ -19,12 +19,12 @@ namespace Desktop_Application.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        ICourse PRJ;
-        ICourse GUI;
-        ICourse DAB;
-        ICourse SWT;
-        ICourse SWD;
-        ICourse NGK;
+        private ICourse PRJ;
+        private ICourse GUI;
+        private ICourse DAB;
+        private ICourse SWT;
+        private ICourse SWD;
+        private ICourse NGK;
         private List<ILecture> lectures;
 
         #region Properties
@@ -34,28 +34,28 @@ namespace Desktop_Application.ViewModels
         public ObservableCollection<Models.ICourse> SelectedCourses
         {
             get => _selectedCourses;
-            set { SetProperty(ref _selectedCourses, value); }
+            set => SetProperty(ref _selectedCourses, value);
         }
 
         private ObservableCollection<string> _preparationItems;
         public ObservableCollection<string> PreparationItems
         {
-            get { return _preparationItems; }
-            set { SetProperty(ref _preparationItems, value); }
+            get => _preparationItems;
+            set => SetProperty(ref _preparationItems, value);
         }
 
         private ToDoItem _toDoItem;
         public ToDoItem ToDoItem
         {
-            get { return _toDoItem; }
-            set { SetProperty(ref _toDoItem, value); }
+            get => _toDoItem;
+            set => SetProperty(ref _toDoItem, value);
         }
 
         private Student _student;
         public Student Student
         {
-            get { return _student; }
-            set { SetProperty(ref _student, value); }
+            get => _student;
+            set => SetProperty(ref _student, value);
         }
         #endregion
 
@@ -76,15 +76,17 @@ namespace Desktop_Application.ViewModels
             SelectedCourses.Add(NGK);
 
             PreparationItems = new ObservableCollection<string>();
-            makePreparationItemStrings();
+            MakePreparationItemStrings();
         }
 
         private void setFakeCourses()
         {
-            lectures = new List<ILecture>();
-            lectures.Add(new Lecture("0", "Læs s. 45-55 i bogen"));
-            lectures.Add(new Lecture("1.1", "Se to videoer"));
-            lectures.Add(new Lecture("1.2", "Læs de to links"));
+            lectures = new List<ILecture>
+            {
+                new Lecture("0", "Læs s. 45-55 i bogen"),
+                new Lecture("1.1", "Se to videoer"),
+                new Lecture("1.2", "Læs de to links")
+            };
 
             PRJ = new Course("PRJ", lectures);
             GUI = new Course("GUI", lectures);
@@ -94,13 +96,13 @@ namespace Desktop_Application.ViewModels
             NGK = new Course("NGK", lectures);
         }
 
-        private void makePreparationItemStrings()
+        private void MakePreparationItemStrings()
         {
-            foreach (var varcourse in SelectedCourses)
+            foreach (var course in SelectedCourses)
             {
-                foreach (var varlecture in varcourse.Lectures)
+                foreach (var lecture in course.Lectures)
                 {
-                    PreparationItems.Add(varcourse.Name + "  " + varlecture.Number + "  " + varlecture.PreparationDescription + "  " + varlecture.Date.ToShortDateString());
+                    PreparationItems.Add(course.Name + "  " + lecture.Number + "  " + lecture.PreparationDescription + "  " + lecture.Date.ToShortDateString());
                 }
             }
         }
@@ -109,9 +111,9 @@ namespace Desktop_Application.ViewModels
         #region Commands
         private DelegateCommand<ToDoItem> _removeToDoItem;
         public DelegateCommand<ToDoItem> RemoveToDoItem =>
-            _removeToDoItem ?? (_removeToDoItem = new DelegateCommand<ToDoItem>(ExecuteRemoveToDoItem));
+            _removeToDoItem ??= new DelegateCommand<ToDoItem>(ExecuteRemoveToDoItem);
 
-        void ExecuteRemoveToDoItem(ToDoItem currentToDoItem)
+        private void ExecuteRemoveToDoItem(ToDoItem currentToDoItem)
         {
             Student.ToDoItems.Remove(currentToDoItem);
             Student.DoneToDoItems.Add(new ToDoItem(currentToDoItem.ToDoTitle, currentToDoItem.ToDoDescription, currentToDoItem.Date, currentToDoItem.Done));
@@ -121,19 +123,19 @@ namespace Desktop_Application.ViewModels
         public DelegateCommand<string> SelectOneCourse =>
             _selectOneCourse ?? (_selectOneCourse = new DelegateCommand<string>(ExecuteSelectOneCourse));
 
-        void ExecuteSelectOneCourse(string selectedCourse)
+        private void ExecuteSelectOneCourse(string selectedCourse)
         {
             PreparationItems.Clear();
             SelectedCourses.Clear();
             SelectedCourses.Add(new Course(selectedCourse, lectures));
-            makePreparationItemStrings();
+            MakePreparationItemStrings();
         }
 
         private DelegateCommand _selectAllCourses;
         public DelegateCommand SelectAllCourses =>
-            _selectAllCourses ?? (_selectAllCourses = new DelegateCommand(ExecuteSelectAllCourses));
+            _selectAllCourses ??= new DelegateCommand(ExecuteSelectAllCourses);
 
-        void ExecuteSelectAllCourses()
+        private void ExecuteSelectAllCourses()
         {
             PreparationItems.Clear();
             SelectedCourses.Clear();
@@ -143,16 +145,15 @@ namespace Desktop_Application.ViewModels
             SelectedCourses.Add(SWT);
             SelectedCourses.Add(SWD);
             SelectedCourses.Add(NGK);
-            makePreparationItemStrings();
+            MakePreparationItemStrings();
         }
 
         private DelegateCommand _openAddToDoItemDialog;
         public DelegateCommand OpenAddToDoItemDialog =>
-            _openAddToDoItemDialog ?? (_openAddToDoItemDialog = new DelegateCommand(ExecuteOpenAddToDoItemDialog));
+            _openAddToDoItemDialog ??= new DelegateCommand(ExecuteOpenAddToDoItemDialog);
 
-        
 
-        void ExecuteOpenAddToDoItemDialog()
+        private void ExecuteOpenAddToDoItemDialog()
         {
             
             

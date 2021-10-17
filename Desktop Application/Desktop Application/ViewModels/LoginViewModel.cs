@@ -33,7 +33,7 @@ namespace Desktop_Application.ViewModels
         #region Command
         private DelegateCommand _moveWindow;
         public DelegateCommand MoveWindow =>
-            _moveWindow ?? (_moveWindow = new DelegateCommand(ExecuteMoveWindow));
+            _moveWindow ??= new DelegateCommand(ExecuteMoveWindow);
 
         void ExecuteMoveWindow()
         {
@@ -43,7 +43,7 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand<string> _loginCommand;
         public DelegateCommand<string> LoginCommand =>
-            _loginCommand ?? (_loginCommand = new DelegateCommand<string>(ExecuteLoginCommand));
+            _loginCommand ??= new DelegateCommand<string>(ExecuteLoginCommand);
 
         async void ExecuteLoginCommand(string userName)
         {
@@ -61,7 +61,7 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand<string> _registerCommand;
         public DelegateCommand<string> RegisterCommand =>
-            _registerCommand ?? (_registerCommand = new DelegateCommand<string>(ExecuteRegisterCommand));
+            _registerCommand ??= new DelegateCommand<string>(ExecuteRegisterCommand);
 
         void ExecuteRegisterCommand(string userName)
         {
@@ -70,7 +70,7 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand _closeWindow;
         public DelegateCommand CloseWindow =>
-            _closeWindow ?? (_closeWindow = new DelegateCommand(ExecuteCloseWindow));
+            _closeWindow ??= new DelegateCommand(ExecuteCloseWindow);
 
         void ExecuteCloseWindow()
         {
@@ -79,7 +79,7 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand _bypass;
         public DelegateCommand Bypass =>
-            _bypass ?? (_bypass = new DelegateCommand(ExecuteBypass));
+            _bypass ??= new DelegateCommand(ExecuteBypass);
 
         void ExecuteBypass()
         {
