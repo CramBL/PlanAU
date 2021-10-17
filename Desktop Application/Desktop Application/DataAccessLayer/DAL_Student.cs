@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -11,17 +13,17 @@ namespace Desktop_Application.DataAccessLayer
 {
     public class DAL_Student
     {
-        private static readonly HttpClient client = new HttpClient();
+        private static readonly HttpClient Client = new HttpClient();
 
-        public static async Task<bool> LoginAttemptAuthorize(string au_id, string password)
+        private static readonly string RequestUri = "https://localhost:44323/authorize";
+        private static readonly string MediaType = "application/json";
+
+        public static async Task<bool> LoginAttemptAuthorize(Student student)
         {
-            Student s = new Student(au_id, password);
-            s.Email = "";
 
-            var json = System.Text.Json.JsonSerializer.Serialize<Student>(s);
-            System.Windows.MessageBox.Show(json);
-            var postContent = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("https://localhost:44323/authorize", postContent);
+            var postContent = GetSerializedEncodedStudent(student);
+
+            var response = await PostContentToPlanAUapi<HttpContent>(postContent);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 return true;
@@ -43,12 +45,24 @@ namespace Desktop_Application.DataAccessLayer
         //    return student;
         //}
 
-        public static async Task<string> PostStudent(Student _student)
+        public static async Task<string> PostStudent(Student student)
         {
-            string student = System.Text.Json.JsonSerializer.Serialize<Student>(_student);
-            var postContent = new StringContent(student, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("https://localhost:44323/Student/", postContent);
-            return response.StatusCode.ToString();
+            var postContent = GetSerializedEncodedStudent(student);
+            
+            var resp = await PostContentToPlanAUapi<HttpContent>(postContent);
+
+            return resp.StatusCode.ToString();
+        }
+
+        private static HttpContent GetSerializedEncodedStudent(Student s)
+        {
+            var json = System.Text.Json.JsonSerializer.Serialize<Student>(s);
+            return new StringContent(json, Encoding.UTF8, MediaType) as HttpContent;
+        }
+
+        private static async Task<HttpResponseMessage> PostContentToPlanAUapi<T>(HttpContent content)
+        {
+            return await Client.PostAsync(RequestUri, content);
         }
     }
 }

@@ -47,10 +47,13 @@ namespace Desktop_Application.ViewModels
 
         async void ExecuteLoginCommand(string userName)
         {
-            Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(UserNameBox, PasswordBox);
+            ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
+
+            Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(((App)App.Current).Student);
+
+
             if (await authorizeTask)
             {
-                ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
                 HomeView homeViewInstance = new HomeView();
                 homeViewInstance.Show();
                 App.Current.MainWindow.Close();
