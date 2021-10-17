@@ -51,7 +51,6 @@ namespace Desktop_Application.ViewModels
 
             Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(((App)App.Current).Student);
 
-
             if (await authorizeTask)
             {
                 HomeView homeViewInstance = new HomeView();

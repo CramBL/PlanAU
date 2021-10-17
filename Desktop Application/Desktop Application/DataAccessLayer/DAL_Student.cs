@@ -15,7 +15,9 @@ namespace Desktop_Application.DataAccessLayer
     {
         private static readonly HttpClient Client = new HttpClient();
 
-        private static readonly string RequestUri = "https://localhost:44323/authorize";
+        private static readonly string localHost = "https://localhost:44323";
+        private static readonly string AuthorizeUri = localHost + "/authorize";
+        private static readonly string StudentUri = localHost + "/Student";
         private static readonly string MediaType = "application/json";
 
         public static async Task<bool> LoginAttemptAuthorize(Student student)
@@ -23,7 +25,7 @@ namespace Desktop_Application.DataAccessLayer
 
             var postContent = GetSerializedEncodedStudent(student);
 
-            var response = await PostContentToPlanAUapi<HttpContent>(postContent);
+            var response = await PostContentToPlanAUapi<HttpContent>(AuthorizeUri, postContent);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 return true;
@@ -49,7 +51,7 @@ namespace Desktop_Application.DataAccessLayer
         {
             var postContent = GetSerializedEncodedStudent(student);
             
-            var resp = await PostContentToPlanAUapi<HttpContent>(postContent);
+            var resp = await PostContentToPlanAUapi<HttpContent>(StudentUri, postContent);
 
             return resp.StatusCode.ToString();
         }
@@ -60,9 +62,9 @@ namespace Desktop_Application.DataAccessLayer
             return new StringContent(json, Encoding.UTF8, MediaType) as HttpContent;
         }
 
-        private static async Task<HttpResponseMessage> PostContentToPlanAUapi<T>(HttpContent content)
+        private static async Task<HttpResponseMessage> PostContentToPlanAUapi<T>(string endpoint, HttpContent content)
         {
-            return await Client.PostAsync(RequestUri, content);
+            return await Client.PostAsync(endpoint, content);
         }
     }
 }
