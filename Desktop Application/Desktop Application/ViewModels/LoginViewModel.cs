@@ -7,6 +7,7 @@ using System.Net.Security;
 using System.Text;
 using Desktop_Application.Models;
 using Desktop_Application.DataAccessLayer;
+using System.Threading.Tasks;
 
 namespace Desktop_Application.ViewModels
 {
@@ -32,7 +33,7 @@ namespace Desktop_Application.ViewModels
         #region Command
         private DelegateCommand _moveWindow;
         public DelegateCommand MoveWindow =>
-            _moveWindow ?? (_moveWindow = new DelegateCommand(ExecuteMoveWindow));
+            _moveWindow ??= new DelegateCommand(ExecuteMoveWindow);
 
         void ExecuteMoveWindow()
         {
@@ -42,13 +43,16 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand<string> _loginCommand;
         public DelegateCommand<string> LoginCommand =>
-            _loginCommand ?? (_loginCommand = new DelegateCommand<string>(ExecuteLoginCommand));
+            _loginCommand ??= new DelegateCommand<string>(ExecuteLoginCommand);
 
-        void ExecuteLoginCommand(string userName)
+        async void ExecuteLoginCommand(string userName)
         {
-            if (DAL_Student.LoginAttemptAuthorize(UserNameBox, PasswordBox).Result)
+            ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
+
+            Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(((App)App.Current).Student);
+
+            if (await authorizeTask)
             {
-                ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
                 HomeView homeViewInstance = new HomeView();
                 homeViewInstance.Show();
                 App.Current.MainWindow.Close();
@@ -59,7 +63,7 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand<string> _registerCommand;
         public DelegateCommand<string> RegisterCommand =>
-            _registerCommand ?? (_registerCommand = new DelegateCommand<string>(ExecuteRegisterCommand));
+            _registerCommand ??= new DelegateCommand<string>(ExecuteRegisterCommand);
 
         void ExecuteRegisterCommand(string userName)
         {
@@ -68,7 +72,7 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand _closeWindow;
         public DelegateCommand CloseWindow =>
-            _closeWindow ?? (_closeWindow = new DelegateCommand(ExecuteCloseWindow));
+            _closeWindow ??= new DelegateCommand(ExecuteCloseWindow);
 
         void ExecuteCloseWindow()
         {
@@ -77,7 +81,7 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand _bypass;
         public DelegateCommand Bypass =>
-            _bypass ?? (_bypass = new DelegateCommand(ExecuteBypass));
+            _bypass ??= new DelegateCommand(ExecuteBypass);
 
         void ExecuteBypass()
         {

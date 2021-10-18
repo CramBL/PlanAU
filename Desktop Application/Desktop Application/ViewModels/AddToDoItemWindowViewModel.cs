@@ -19,8 +19,8 @@ namespace Desktop_Application.ViewModels
         private ToDoItem _toDoItem;
         public ToDoItem ToDoItem
         {
-            get { return _toDoItem; }
-            set { SetProperty(ref _toDoItem, value); }
+            get => _toDoItem;
+            set => SetProperty(ref _toDoItem, value);
         }
 
         public bool CanCloseDialog()
@@ -38,14 +38,14 @@ namespace Desktop_Application.ViewModels
 
         }
 
-        public string Title { get; }
+        public string Title { get; } = "Add a ToDo Item";
         public event Action<IDialogResult> RequestClose;
 
 
 
         private DelegateCommand _cancelButton;
         public DelegateCommand CancelButton =>
-            _cancelButton ?? (_cancelButton = new DelegateCommand(ExecuteCancelButton));
+            _cancelButton ??= new DelegateCommand(ExecuteCancelButton);
 
         void ExecuteCancelButton()
         {
@@ -56,11 +56,11 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand _okButton;
         public DelegateCommand OKButton =>
-            _okButton ?? (_okButton = new DelegateCommand(ExecuteOKButton));
+            _okButton ??= new DelegateCommand(ExecuteOKButton);
 
         void ExecuteOKButton()
         {
-            //adding new ToDo iteam
+            //adding new ToDo item
             ButtonResult result = ButtonResult.OK;
             // Use the ToDoItem object to transfer data to the MainWindow
             ((App)Application.Current).ToDoItem = ToDoItem;

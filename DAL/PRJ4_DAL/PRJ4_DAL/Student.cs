@@ -9,6 +9,14 @@ namespace PRJ4_DAL
 {
     public class Student
     {
+        public Student(string auid, string password)
+        {
+            Au_id = auid;
+            Password = password;
+        }
+
+        public Student () { }
+
         [JsonPropertyName("aU_ID")]
         public string Au_id { get; set; }
         [JsonPropertyName("password")]

@@ -12,6 +12,21 @@ namespace PRJ4_DAL
     {
         private static readonly HttpClient client = new HttpClient();
 
+        public static async Task<bool> LoginAttemptAuthorize(string au_id, string password)
+        {
+            Student s = new Student(au_id, password);
+            s.Email = "";
+
+            var json = System.Text.Json.JsonSerializer.Serialize<Student>(s);
+            var postContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("https://localhost:44323/authorize", postContent);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                return true;
+            else
+                return false;
+        }
+
         public static async Task<List<Student>> GetStudents()
         {
             var response = client.GetStreamAsync("https://localhost:44323/Student/");
