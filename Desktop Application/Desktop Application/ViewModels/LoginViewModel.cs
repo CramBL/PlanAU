@@ -36,7 +36,7 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteMoveWindow()
         {
-            App.Current.MainWindow.DragMove();
+            App.Current.MainWindow.DragMove(); //throws exception when closing loginView
         }
 
 

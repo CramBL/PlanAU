@@ -5,6 +5,7 @@
              xmlns:prism="http://prismlibrary.com/" 
              >
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="BackgroundBrush" Color="White" />
+        <SolidColorBrush x:Key="MenuBrush" Color="LightGray"/>
     </Application.Resources>
 </prism:PrismApplication>

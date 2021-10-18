@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using System.Text;
 using Prism.Services.Dialogs;
 using System.Windows;
+using Desktop_Application.Views;
+using System.Windows.Media;
 
 namespace Desktop_Application.ViewModels
 {
@@ -37,11 +39,11 @@ namespace Desktop_Application.ViewModels
             set { SetProperty(ref _selectedCourses, value); }
         }
 
-        private ObservableCollection<string> _preparationItems;
-        public ObservableCollection<string> PreparationItems
+        private ObservableCollection<ILecture> _unpackedLectures;
+        public ObservableCollection<ILecture> UnpackedLectures
         {
-            get { return _preparationItems; }
-            set { SetProperty(ref _preparationItems, value); }
+            get { return _unpackedLectures; }
+            set { SetProperty(ref _unpackedLectures, value); }
         }
 
         private ToDoItem _toDoItem;
@@ -75,8 +77,9 @@ namespace Desktop_Application.ViewModels
             SelectedCourses.Add(SWD);
             SelectedCourses.Add(NGK);
 
-            PreparationItems = new ObservableCollection<string>();
-            makePreparationItemStrings();
+            UnpackedLectures = new ObservableCollection<ILecture>();
+            unpackLecturesForPrep();
+
         }
 
         private void setFakeCourses()
@@ -92,21 +95,54 @@ namespace Desktop_Application.ViewModels
             SWT = new Course("SWT", lectures);
             SWD = new Course("SWD", lectures);
             NGK = new Course("NGK", lectures);
+
         }
 
-        private void makePreparationItemStrings()
+        private void unpackLecturesForPrep()
         {
+            UnpackedLectures.Clear();
             foreach (var varcourse in SelectedCourses)
             {
                 foreach (var varlecture in varcourse.Lectures)
                 {
-                    PreparationItems.Add(varcourse.Name + "  " + varlecture.Number + "  " + varlecture.PreparationDescription + "  " + varlecture.Date.ToShortDateString());
+                    varlecture.CourseName = varcourse.Name;
+                    varlecture.DateString = varlecture.Date.ToShortDateString();
+                    UnpackedLectures.Add(varlecture);
                 }
             }
         }
         #endregion
 
         #region Commands
+        private DelegateCommand _toggleDarkmode;
+        public DelegateCommand ToggleDarkmode =>
+            _toggleDarkmode ?? (_toggleDarkmode = new DelegateCommand(ExecuteToggleDarkmode));
+
+        void ExecuteToggleDarkmode()
+        {
+            if (Application.Current.Resources["BackgroundBrush"] == Brushes.White)
+            {
+                Application.Current.Resources["BackgroundBrush"] = Brushes.DarkGray;
+            }
+            else
+            {
+                Application.Current.Resources["BackgroundBrush"] = Brushes.White;
+            }
+            Application.Current.Resources["BackgroundBrush"] = Brushes.DarkGray;
+            //does not work
+        }
+
+        private DelegateCommand _logout;
+        public DelegateCommand Logout =>
+            _logout ?? (_logout = new DelegateCommand(ExecuteLogout));
+
+        void ExecuteLogout()
+        {
+            LoginView LoginViewInstance = new LoginView();
+            LoginViewInstance.Show();
+            App.Current.Windows[0].Close();
+        }
+
         private DelegateCommand<ToDoItem> _removeToDoItem;
         public DelegateCommand<ToDoItem> RemoveToDoItem =>
             _removeToDoItem ?? (_removeToDoItem = new DelegateCommand<ToDoItem>(ExecuteRemoveToDoItem));
@@ -123,10 +159,11 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteSelectOneCourse(string selectedCourse)
         {
-            PreparationItems.Clear();
             SelectedCourses.Clear();
             SelectedCourses.Add(new Course(selectedCourse, lectures));
-            makePreparationItemStrings();
+            //PreparationItems.Clear();
+            //makePreparationItemStrings();
+            unpackLecturesForPrep();
         }
 
         private DelegateCommand _selectAllCourses;
@@ -135,7 +172,6 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteSelectAllCourses()
         {
-            PreparationItems.Clear();
             SelectedCourses.Clear();
             SelectedCourses.Add(PRJ);
             SelectedCourses.Add(GUI);
@@ -143,7 +179,9 @@ namespace Desktop_Application.ViewModels
             SelectedCourses.Add(SWT);
             SelectedCourses.Add(SWD);
             SelectedCourses.Add(NGK);
-            makePreparationItemStrings();
+            //PreparationItems.Clear();
+            //makePreparationItemStrings();
+            unpackLecturesForPrep();
         }
 
         private DelegateCommand _openAddToDoItemDialog;
