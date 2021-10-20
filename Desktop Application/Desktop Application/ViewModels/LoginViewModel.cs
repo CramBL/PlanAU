@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Desktop_Application.ViewModels
 {
-    class LoginViewModel : BindableBase
+    public class LoginViewModel : BindableBase
     {
 
         #region Properties
@@ -41,11 +41,11 @@ namespace Desktop_Application.ViewModels
         }
 
 
-        private DelegateCommand<string> _loginCommand;
-        public DelegateCommand<string> LoginCommand =>
-            _loginCommand ??= new DelegateCommand<string>(ExecuteLoginCommand);
+        private DelegateCommand _loginCommand;
+        public DelegateCommand LoginCommand =>
+            _loginCommand ??= new DelegateCommand(ExecuteLoginCommand);
 
-        async void ExecuteLoginCommand(string userName)
+        async void ExecuteLoginCommand()
         {
             ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
 
