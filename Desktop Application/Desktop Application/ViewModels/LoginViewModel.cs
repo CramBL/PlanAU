@@ -8,6 +8,7 @@ using System.Text;
 using Desktop_Application.Models;
 using Desktop_Application.DataAccessLayer;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Desktop_Application.ViewModels
 {
@@ -28,6 +29,8 @@ namespace Desktop_Application.ViewModels
             get { return _passwordBox; }
             set { SetProperty(ref _passwordBox, value); }
         }
+
+     
         #endregion
 
         #region Command
@@ -47,7 +50,16 @@ namespace Desktop_Application.ViewModels
 
         async void ExecuteLoginCommand()
         {
-            ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
+            
+            string ParsedUserName = ParseUsernameInput();
+
+            if (ParsedUserName == "")
+            {
+                System.Windows.MessageBox.Show("Invalid Username - Try again!");
+                return;
+            }
+
+            ((App)App.Current).Student = new Student(ParsedUserName, PasswordBox);
 
             Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(((App)App.Current).Student);
 
@@ -92,6 +104,19 @@ namespace Desktop_Application.ViewModels
             App.Current.MainWindow.Close();
         }
 
+        #endregion
+
+        #region helpMethods
+        private string ParseUsernameInput()
+        {
+            string userName = UserNameBox;
+
+            Match match = Regex.Match(userName, "^AU[0-9]{6}", RegexOptions.IgnoreCase);
+            if (match.Success)
+                return match.Value;
+            else
+                return "";
+        }
         #endregion
 
     }
