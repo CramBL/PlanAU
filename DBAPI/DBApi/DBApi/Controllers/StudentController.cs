@@ -35,14 +35,28 @@ namespace DBApi.Controllers
             return CreatedAtAction(nameof(GetStudent), new { id = student.AU_ID }, student);
         }
 
+        [HttpPost("/authorize")]
+        public async Task<ActionResult<Boolean>> AutherizeStudent(Student student)
+        {
+            Student s = await studentContext.STUDENTS.FindAsync(student.AU_ID);
+            if (s != null)
+            {
+                if (s.PASSWORD == student.PASSWORD)
+                    return student.PASSWORD == s.PASSWORD;
+                else
+                    return Unauthorized();
+            }
+            return NotFound();
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetStudent(string id)
         {
-            var todoItem = await studentContext.STUDENTS.FindAsync(id);
+            var student = await studentContext.STUDENTS.FindAsync(id);
 
-            if (todoItem == null) { return NotFound(); }
+            if (student == null) { return NotFound(); }
 
-            return todoItem;
+            return student;
         }
     }
 }

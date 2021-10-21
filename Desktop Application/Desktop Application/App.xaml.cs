@@ -13,7 +13,7 @@ namespace Desktop_Application
     public partial class App
     {
         public ToDoItem ToDoItem { get; internal set; }
-        public Student Student { get; internal set; }
+        public Student Student { get; set; }
 
         protected override Window CreateShell()
         {

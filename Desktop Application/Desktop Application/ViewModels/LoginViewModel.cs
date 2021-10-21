@@ -6,10 +6,13 @@ using System.Collections.Generic;
 using System.Net.Security;
 using System.Text;
 using Desktop_Application.Models;
+using Desktop_Application.DataAccessLayer;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Desktop_Application.ViewModels
 {
-    class LoginViewModel : BindableBase
+    public class LoginViewModel : BindableBase
     {
 
         #region Properties
@@ -26,28 +29,41 @@ namespace Desktop_Application.ViewModels
             get { return _passwordBox; }
             set { SetProperty(ref _passwordBox, value); }
         }
+
+     
         #endregion
 
         #region Command
         private DelegateCommand _moveWindow;
         public DelegateCommand MoveWindow =>
-            _moveWindow ?? (_moveWindow = new DelegateCommand(ExecuteMoveWindow));
+            _moveWindow ??= new DelegateCommand(ExecuteMoveWindow);
 
         void ExecuteMoveWindow()
         {
-            App.Current.MainWindow.DragMove();
+            App.Current.MainWindow.DragMove(); //throws exception when closing loginView
         }
 
 
-        private DelegateCommand<string> _loginCommand;
-        public DelegateCommand<string> LoginCommand =>
-            _loginCommand ?? (_loginCommand = new DelegateCommand<string>(ExecuteLoginCommand));
+        private DelegateCommand _loginCommand;
+        public DelegateCommand LoginCommand =>
+            _loginCommand ??= new DelegateCommand(ExecuteLoginCommand);
 
-        void ExecuteLoginCommand(string userName)
+        async void ExecuteLoginCommand()
         {
-            fakeDAL fakeDAL1 = new fakeDAL();
+            
+            string ParsedUserName = ParseUsernameInput();
 
-            if (fakeDAL1.authentication(UserNameBox, PasswordBox)) 
+            if (ParsedUserName == "")
+            {
+                System.Windows.MessageBox.Show("Invalid Username - Try again!");
+                return;
+            }
+
+            ((App)App.Current).Student = new Student(ParsedUserName, PasswordBox);
+
+            Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(((App)App.Current).Student);
+
+            if (await authorizeTask)
             {
                 HomeView homeViewInstance = new HomeView();
                 homeViewInstance.Show();
@@ -55,13 +71,11 @@ namespace Desktop_Application.ViewModels
             }
             else
                 System.Windows.MessageBox.Show("Wrong Password or UserID, try again");
-
-
         }
 
         private DelegateCommand<string> _registerCommand;
         public DelegateCommand<string> RegisterCommand =>
-            _registerCommand ?? (_registerCommand = new DelegateCommand<string>(ExecuteRegisterCommand));
+            _registerCommand ??= new DelegateCommand<string>(ExecuteRegisterCommand);
 
         void ExecuteRegisterCommand(string userName)
         {
@@ -70,7 +84,7 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand _closeWindow;
         public DelegateCommand CloseWindow =>
-            _closeWindow ?? (_closeWindow = new DelegateCommand(ExecuteCloseWindow));
+            _closeWindow ??= new DelegateCommand(ExecuteCloseWindow);
 
         void ExecuteCloseWindow()
         {
@@ -79,15 +93,30 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand _bypass;
         public DelegateCommand Bypass =>
-            _bypass ?? (_bypass = new DelegateCommand(ExecuteBypass));
+            _bypass ??= new DelegateCommand(ExecuteBypass);
 
         void ExecuteBypass()
         {
+            ((App)App.Current).Student = new Student("AU999999", "");
+
             HomeView HomeViewInstance = new HomeView();
             HomeViewInstance.Show();
             App.Current.MainWindow.Close();
         }
 
+        #endregion
+
+        #region helpMethods
+        private string ParseUsernameInput()
+        {
+            string userName = UserNameBox;
+
+            Match match = Regex.Match(userName, "^AU[0-9]{6}", RegexOptions.IgnoreCase);
+            if (match.Success)
+                return match.Value;
+            else
+                return "";
+        }
         #endregion
 
     }

@@ -4,17 +4,19 @@
         xmlns:prism="http://prismlibrary.com/" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="600" Width="1080" BorderBrush="#FF0E0E0E" Padding="10,0,40,0" WindowStartupLocation="CenterScreen" >
+        Title="{Binding Title}" Height="720" Width="1280" BorderBrush="#FF0E0E0E" 
+        Background="{StaticResource BackgroundBrush}"
+        Padding="10,0,40,0" WindowStartupLocation="CenterScreen" >
     <Grid>
 
         <!--#region Grid Column and Row Definitions-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="26*"/>
-            <ColumnDefinition Width="121*"/>
-            <ColumnDefinition Width="43*"/>
-            <ColumnDefinition Width="32*"/>
-            <ColumnDefinition Width="27*"/>
-            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="123*"/>
+            <ColumnDefinition Width="791*"/>
+            <ColumnDefinition Width="205*"/>
+            <ColumnDefinition Width="119*"/>
+            <ColumnDefinition Width="21*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="39*"/>
@@ -22,24 +24,26 @@
             <RowDefinition Height="55*"/>
             <RowDefinition Height="370*"/>
             <RowDefinition Height="165*"/>
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
         <!--#endregion-->
-        
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+
+        <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.ColumnSpan="3" Margin="0,0,650,0" />
 
         <!--#region User Menu-->
-        <Menu Grid.Row="0" Grid.Column="4" >
-            <MenuItem Header="{Binding Path= Student.Name}" FontSize="15" Height="39" Width="135">
-                <MenuItem Header="_Settings" />
+        <Menu Grid.Row="0" Grid.Column="4" Background="{StaticResource MenuBrush}" >
+            <MenuItem Header="{Binding Path= Student.AU_ID}" FontSize="15" Width="114" Height="39">
+                <MenuItem Header="_Settings">
+                    <MenuItem Header="Toggle Darkmode" Command="{Binding ToggleDarkmode}" />
+                </MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="_Logout" />
+                <MenuItem Header="_Logout" Command="{Binding Logout}" />
             </MenuItem>
         </Menu>
         <!--#endregion-->
 
         <!--#region Select Course Buttons-->
-        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="5,5,5,0" Grid.ColumnSpan="2">
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="5,5,5,0" Grid.ColumnSpan="2" >
             <Button Width="60" Command="{Binding SelectAllCourses}" CommandParameter="All">All</Button>
             <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="PRJ">PRJ</Button>
             <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="NGK">NGK</Button>
@@ -167,13 +171,13 @@
         <!--#endregion-->
 
         <!--#region Calendar: Back and Next Buttons-->
-        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,5,0">
+        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,5,0" Width="140" >
             <Button Content="&lt;- Back" Width="70"></Button>
             <Button Width="70">Next -></Button>
         </StackPanel>
         <!--#endregion-->
 
-        <!--#region Preparation Mockup-->
+        <!--#region Preparation-->
         <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="3" Margin="5,5,5,5" Grid.ColumnSpan="2" >
             <Grid>
                 <Grid.RowDefinitions>
@@ -183,10 +187,16 @@
                 <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="-1,-1,-1,0">
                     <TextBlock FontSize="18" HorizontalAlignment="Center" FontWeight="Bold" >Preparation</TextBlock>
                 </Border>
-                <ListBox Grid.Row="1" Grid.Column="0"
-                         ItemsSource="{Binding Path=PreparationItems}"
-                         IsSynchronizedWithCurrentItem="True"
-                         />
+                <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding UnpackedLectures}" Background="{StaticResource BackgroundBrush}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=CourseName}" Header="Course" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Number}" Header="Lec Nr."/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=PreparationDescription}" Header="Description" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=DateString}" Header="Date"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
         </Border>
         <!--#endregion-->
@@ -229,7 +239,7 @@
 
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3" Grid.ColumnSpan="3" Margin="-1,-1,-1,0" >
-                    <TextBlock FontSize="18" FontWeight="Bold" Grid.ColumnSpan="4" HorizontalAlignment="Center">DONE</TextBlock>
+                    <TextBlock FontSize="18" FontWeight="Bold" Grid.ColumnSpan="4" HorizontalAlignment="Center">Done</TextBlock>
 
                 </Border>
 
@@ -246,11 +256,12 @@
                     <CheckBox>Feed the cat 24/07</CheckBox>
                 </StackPanel>-->
                 <ListBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3"
-                         ItemsSource="{Binding Student.DoneToDos}"
+                         ItemsSource="{Binding Student.DoneToDoItems}"
                          IsSynchronizedWithCurrentItem="True"
                          DisplayMemberPath="ToDoTitle"
+                         Background="{StaticResource BackgroundBrush}"
                          />
-                <ListView Name="LvwToDoList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Student.ToDoList}">
+                <ListView Name="LvwToDoList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Student.ToDoItems}" Background="{StaticResource BackgroundBrush}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Done" Width="50">
@@ -258,7 +269,7 @@
                                     <DataTemplate>
                                         <CheckBox>
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="Checked"> 
+                                                <i:EventTrigger EventName="Checked">
                                                     <prism:InvokeCommandAction Command="{Binding DataContext.RemoveToDoItem, RelativeSource={RelativeSource AncestorType=ListView, AncestorLevel=1}}" 
                                                                                CommandParameter="{Binding .}"/>
                                                 </i:EventTrigger>
@@ -268,8 +279,8 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding="{Binding ToDoTitle}" Header="Title" Width="120"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Date}" Header="Last date" Width="70"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding ToDoDescription}" Header="Description" Width="240" ></GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Date}" Header="Last date" Width="75"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding ToDoDescription}" Header="Description" Width="235" ></GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -279,7 +290,7 @@
         <!--#endregion-->
 
         <!--#region Appearance Foreground-->
-        <Image Source="/Images/PlanAU.png" Grid.RowSpan="2"></Image> 
+        <Image Source="/Images/PlanAU.png" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="0,0,0,57"/>
 
         <Separator Grid.Row="1" Grid.ColumnSpan="6" VerticalAlignment="Bottom" Margin="0,0,0,2" Height="1"></Separator>
 

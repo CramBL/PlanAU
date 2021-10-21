@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using System.Text;
 using Prism.Services.Dialogs;
 using System.Windows;
+using Desktop_Application.Views;
+using System.Windows.Media;
 
 namespace Desktop_Application.ViewModels
 {
@@ -19,12 +21,12 @@ namespace Desktop_Application.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        ICourse PRJ;
-        ICourse GUI;
-        ICourse DAB;
-        ICourse SWT;
-        ICourse SWD;
-        ICourse NGK;
+        private ICourse PRJ;
+        private ICourse GUI;
+        private ICourse DAB;
+        private ICourse SWT;
+        private ICourse SWD;
+        private ICourse NGK;
         private List<ILecture> lectures;
 
         #region Properties
@@ -34,35 +36,35 @@ namespace Desktop_Application.ViewModels
         public ObservableCollection<Models.ICourse> SelectedCourses
         {
             get => _selectedCourses;
-            set { SetProperty(ref _selectedCourses, value); }
+            set => SetProperty(ref _selectedCourses, value);
         }
 
-        private ObservableCollection<string> _preparationItems;
-        public ObservableCollection<string> PreparationItems
+        private ObservableCollection<ILecture> _unpackedLectures;
+        public ObservableCollection<ILecture> UnpackedLectures
         {
-            get { return _preparationItems; }
-            set { SetProperty(ref _preparationItems, value); }
+            get { return _unpackedLectures; }
+            set { SetProperty(ref _unpackedLectures, value); }
         }
 
         private ToDoItem _toDoItem;
         public ToDoItem ToDoItem
         {
-            get { return _toDoItem; }
-            set { SetProperty(ref _toDoItem, value); }
+            get => _toDoItem;
+            set => SetProperty(ref _toDoItem, value);
         }
 
         private Student _student;
         public Student Student
         {
-            get { return _student; }
-            set { SetProperty(ref _student, value); }
+            get => _student;
+            set => SetProperty(ref _student, value);
         }
         #endregion
 
         #region Method
         public HomeViewModel(IDialogService dialogService)
         {
-            Student = new Student("Bob Bobson", "au123456");
+            Student = ((App) App.Current).Student;
             _dialogService = dialogService;
 
             setFakeCourses();
@@ -75,16 +77,19 @@ namespace Desktop_Application.ViewModels
             SelectedCourses.Add(SWD);
             SelectedCourses.Add(NGK);
 
-            PreparationItems = new ObservableCollection<string>();
-            makePreparationItemStrings();
+            UnpackedLectures = new ObservableCollection<ILecture>();
+            unpackLecturesForPrep();
+
         }
 
         private void setFakeCourses()
         {
-            lectures = new List<ILecture>();
-            lectures.Add(new Lecture("0", "Læs s. 45-55 i bogen"));
-            lectures.Add(new Lecture("1.1", "Se to videoer"));
-            lectures.Add(new Lecture("1.2", "Læs de to links"));
+            lectures = new List<ILecture>
+            {
+                new Lecture("0", "Læs s. 45-55 i bogen"),
+                new Lecture("1.1", "Se to videoer"),
+                new Lecture("1.2", "Læs de to links")
+            };
 
             PRJ = new Course("PRJ", lectures);
             GUI = new Course("GUI", lectures);
@@ -92,50 +97,83 @@ namespace Desktop_Application.ViewModels
             SWT = new Course("SWT", lectures);
             SWD = new Course("SWD", lectures);
             NGK = new Course("NGK", lectures);
+
         }
 
-        private void makePreparationItemStrings()
+        private void unpackLecturesForPrep()
         {
-            foreach (var varcourse in SelectedCourses)
+            UnpackedLectures.Clear();
+            foreach (var course in SelectedCourses)
             {
-                foreach (var varlecture in varcourse.Lectures)
+                foreach (var lecture in course.Lectures)
                 {
-                    PreparationItems.Add(varcourse.Name + "  " + varlecture.Number + "  " + varlecture.PreparationDescription + "  " + varlecture.Date.ToShortDateString());
+                    lecture.CourseName = course.Name;
+                    lecture.DateString = lecture.Date.ToShortDateString();
+                    UnpackedLectures.Add(lecture);
                 }
             }
         }
         #endregion
 
         #region Commands
+        private DelegateCommand _toggleDarkmode;
+        public DelegateCommand ToggleDarkmode =>
+            _toggleDarkmode ?? (_toggleDarkmode = new DelegateCommand(ExecuteToggleDarkmode));
+
+        void ExecuteToggleDarkmode()
+        {
+            if (Application.Current.Resources["BackgroundBrush"] == Brushes.White)
+            {
+                Application.Current.Resources["BackgroundBrush"] = Brushes.DarkGray;
+            }
+            else
+            {
+                Application.Current.Resources["BackgroundBrush"] = Brushes.White;
+            }
+            Application.Current.Resources["BackgroundBrush"] = Brushes.DarkGray;
+            //does not work
+        }
+
+        private DelegateCommand _logout;
+        public DelegateCommand Logout =>
+            _logout ?? (_logout = new DelegateCommand(ExecuteLogout));
+
+        void ExecuteLogout()
+        {
+            LoginView LoginViewInstance = new LoginView();
+            LoginViewInstance.Show();
+            App.Current.Windows[0].Close();
+        }
+
         private DelegateCommand<ToDoItem> _removeToDoItem;
         public DelegateCommand<ToDoItem> RemoveToDoItem =>
-            _removeToDoItem ?? (_removeToDoItem = new DelegateCommand<ToDoItem>(ExecuteRemoveToDoItem));
+            _removeToDoItem ??= new DelegateCommand<ToDoItem>(ExecuteRemoveToDoItem);
 
-        void ExecuteRemoveToDoItem(ToDoItem currentToDoItem)
+        private void ExecuteRemoveToDoItem(ToDoItem currentToDoItem)
         {
-            Student.ToDoList.Remove(currentToDoItem);
-            Student.DoneToDos.Add(new ToDoItem(currentToDoItem.ToDoTitle, currentToDoItem.ToDoDescription, currentToDoItem.Date, currentToDoItem.Done));
+            Student.ToDoItems.Remove(currentToDoItem);
+            Student.DoneToDoItems.Add(new ToDoItem(currentToDoItem.ToDoTitle, currentToDoItem.ToDoDescription, currentToDoItem.Date, currentToDoItem.Done));
         }
 
         private DelegateCommand<string> _selectOneCourse;
         public DelegateCommand<string> SelectOneCourse =>
             _selectOneCourse ?? (_selectOneCourse = new DelegateCommand<string>(ExecuteSelectOneCourse));
 
-        void ExecuteSelectOneCourse(string selectedCourse)
+        private void ExecuteSelectOneCourse(string selectedCourse)
         {
-            PreparationItems.Clear();
             SelectedCourses.Clear();
             SelectedCourses.Add(new Course(selectedCourse, lectures));
-            makePreparationItemStrings();
+            //PreparationItems.Clear();
+            //makePreparationItemStrings();
+            unpackLecturesForPrep();
         }
 
         private DelegateCommand _selectAllCourses;
         public DelegateCommand SelectAllCourses =>
-            _selectAllCourses ?? (_selectAllCourses = new DelegateCommand(ExecuteSelectAllCourses));
+            _selectAllCourses ??= new DelegateCommand(ExecuteSelectAllCourses);
 
-        void ExecuteSelectAllCourses()
+        private void ExecuteSelectAllCourses()
         {
-            PreparationItems.Clear();
             SelectedCourses.Clear();
             SelectedCourses.Add(PRJ);
             SelectedCourses.Add(GUI);
@@ -143,18 +181,21 @@ namespace Desktop_Application.ViewModels
             SelectedCourses.Add(SWT);
             SelectedCourses.Add(SWD);
             SelectedCourses.Add(NGK);
-            makePreparationItemStrings();
+            //PreparationItems.Clear();
+            //makePreparationItemStrings();
+            unpackLecturesForPrep();
         }
 
         private DelegateCommand _openAddToDoItemDialog;
         public DelegateCommand OpenAddToDoItemDialog =>
-            _openAddToDoItemDialog ?? (_openAddToDoItemDialog = new DelegateCommand(ExecuteOpenAddToDoItemDialog));
+            _openAddToDoItemDialog ??= new DelegateCommand(ExecuteOpenAddToDoItemDialog);
 
-        
 
-        void ExecuteOpenAddToDoItemDialog()
+        private void ExecuteOpenAddToDoItemDialog()
         {
-            var tempToDoItem = new ToDoItem("","","");
+            
+            
+            var tempToDoItem = new ToDoItem("", "", DateTime.Now.ToString("MM-dd-yyyy"));
             ((App)Application.Current).ToDoItem = tempToDoItem;
             _dialogService.ShowDialog("AddToDoItemWindow", null, r =>
             {
@@ -164,7 +205,7 @@ namespace Desktop_Application.ViewModels
                 {
                     Title = "Result is OK";
                     ToDoItem = ((App)Application.Current).ToDoItem;
-                    Student.ToDoList.Add(ToDoItem);
+                    Student.ToDoItems.Add(ToDoItem);
                 }
                 else if (r.Result == ButtonResult.Cancel)
                     Title = "Result is Cancel";
