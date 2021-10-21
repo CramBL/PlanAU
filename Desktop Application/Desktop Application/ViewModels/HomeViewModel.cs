@@ -103,13 +103,13 @@ namespace Desktop_Application.ViewModels
         private void unpackLecturesForPrep()
         {
             UnpackedLectures.Clear();
-            foreach (var varcourse in SelectedCourses)
+            foreach (var course in SelectedCourses)
             {
                 foreach (var varlecture in varcourse.Lectures)
                 {
-                    varlecture.CourseName = varcourse.Name;
-                    varlecture.DateString = varlecture.Date.ToShortDateString();
-                    UnpackedLectures.Add(varlecture);
+                    lecture.CourseName = course.Name;
+                    lecture.DateString = lecture.Date.ToShortDateString();
+                    UnpackedLectures.Add(lecture);
                 }
             }
         }
