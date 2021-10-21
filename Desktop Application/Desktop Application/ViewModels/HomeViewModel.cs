@@ -105,7 +105,7 @@ namespace Desktop_Application.ViewModels
             UnpackedLectures.Clear();
             foreach (var varcourse in SelectedCourses)
             {
-                foreach (var lecture in course.Lectures)
+                foreach (var varlecture in varcourse.Lectures)
                 {
                     varlecture.CourseName = varcourse.Name;
                     varlecture.DateString = varlecture.Date.ToShortDateString();
