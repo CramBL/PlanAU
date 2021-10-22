@@ -59,6 +59,11 @@ namespace Desktop_Application.ViewModels
                 return;
             }
 
+            //TODO: Flyt alt der kan testes ud af denne funktion (når MongoDB er oppe og køre så det kan verificeres at det stadig fungerer)
+            //1. Fjern brugen af App.Current - i stedet giv HomeView et Student object i constructor
+            //2. Flyt verificering af password til en anden funktion
+            //Der skal så kun være kald til disse funktioner og simple Show(), Close() og lignende i denne funktion
+
             ((App)App.Current).Student = new Student(ParsedUserName, PasswordBox);
 
             Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(((App)App.Current).Student);
