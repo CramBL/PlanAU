@@ -59,7 +59,6 @@ namespace Test
         {
             ObservableCollection<ToDoItem> tasks = new ObservableCollection<ToDoItem>();
             tasks.Add(new ToDoItem("Unit test", "lave unit test", "23-10-2021"));
-            ToDoItem replicaObject = new ToDoItem("Unit test", "lave unit test", "23-10-2021");
             s1.ToDoItems = tasks;
 
             ToDoItem[] aCopy = new ToDoItem[s1.ToDoItems.Count];
@@ -76,16 +75,15 @@ namespace Test
         {
             ObservableCollection<ToDoItem> tasks = new ObservableCollection<ToDoItem>();
             tasks.Add(new ToDoItem("Unit test", "lave unit test", "23-10-2021",true));
-            ToDoItem replicaObject = new ToDoItem("Unit test", "lave unit test", "23-10-2021");
-            s1.ToDoItems = tasks;
+            s1.DoneToDoItems = tasks;
 
-            ToDoItem[] aCopy = new ToDoItem[s1.ToDoItems.Count];
-            s1.ToDoItems.CopyTo(aCopy, 0);
+            ToDoItem[] aCopy = new ToDoItem[s1.DoneToDoItems.Count];
+            s1.DoneToDoItems.CopyTo(aCopy, 0);
             Assert.AreEqual("Unit test", aCopy[0].ToDoTitle);
             Assert.AreEqual("lave unit test", aCopy[0].ToDoDescription);
             Assert.AreEqual(true, aCopy[0].Done);
             Assert.AreEqual("23-10-2021", aCopy[0].Date);
-            Assert.AreEqual("1", s1.ToDoItems.Count.ToString());
+            Assert.AreEqual("1", s1.DoneToDoItems.Count.ToString());
         }
 
 
