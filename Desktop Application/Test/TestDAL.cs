@@ -3,6 +3,7 @@ using Desktop_Application.DataAccessLayer;
 using Desktop_Application.Models;
 using System;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace Test
 {
@@ -50,6 +51,28 @@ namespace Test
             Assert.AreEqual(expectedResult, uut);
         }
 
-
+        [Test]
+        public void TestPostStudent()
+        {
+            Student S1 = new Student("AU900898", "goodpassword");
+            S1.Email = "hansolo@luke.com";
+            var uut = DAL_Student.PostStudent(S1).Result;
+            if(uut == "InternalServerError")
+            {
+                var LoginResult = DAL_Student.LoginAttemptAuthorize(S1).Result;
+                if(LoginResult == true)
+                {
+                    throw new Exception("data already posted to server");
+                }
+                else
+                {
+                    Assert.That(false);
+                }
+            }
+            else
+            {
+                Assert.AreEqual("Created", uut);
+            }
+        }
     }
 }
