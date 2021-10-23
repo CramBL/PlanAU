@@ -20,11 +20,6 @@ namespace Desktop_Application.Models
             Date = date;
             Done = done;
         }
-
-        public ToDoItem()
-        {
-        }
-
         #region Fields
         private string _toDoTitle;
         public string ToDoTitle { get; set; }

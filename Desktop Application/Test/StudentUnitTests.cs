@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Desktop_Application.Models;
+using System.Collections.ObjectModel;
 
 namespace Test
 {
@@ -51,6 +52,40 @@ namespace Test
         {
             s1.Password = "8543";
             Assert.AreEqual("8543", s1.Password);
+        }
+
+        [Test]
+        public void InsertTodoItemWith3parameterconstructor()
+        {
+            ObservableCollection<ToDoItem> tasks = new ObservableCollection<ToDoItem>();
+            tasks.Add(new ToDoItem("Unit test", "lave unit test", "23-10-2021"));
+            ToDoItem replicaObject = new ToDoItem("Unit test", "lave unit test", "23-10-2021");
+            s1.ToDoItems = tasks;
+
+            ToDoItem[] aCopy = new ToDoItem[s1.ToDoItems.Count];
+            s1.ToDoItems.CopyTo(aCopy, 0);
+            Assert.AreEqual("Unit test",aCopy[0].ToDoTitle);
+            Assert.AreEqual("lave unit test", aCopy[0].ToDoDescription);
+            Assert.AreEqual(false, aCopy[0].Done);
+            Assert.AreEqual("23-10-2021", aCopy[0].Date);
+            Assert.AreEqual("1",s1.ToDoItems.Count.ToString());
+        }
+
+        [Test]
+        public void InsertTodoItemWith4parameterconstructor()
+        {
+            ObservableCollection<ToDoItem> tasks = new ObservableCollection<ToDoItem>();
+            tasks.Add(new ToDoItem("Unit test", "lave unit test", "23-10-2021",true));
+            ToDoItem replicaObject = new ToDoItem("Unit test", "lave unit test", "23-10-2021");
+            s1.ToDoItems = tasks;
+
+            ToDoItem[] aCopy = new ToDoItem[s1.ToDoItems.Count];
+            s1.ToDoItems.CopyTo(aCopy, 0);
+            Assert.AreEqual("Unit test", aCopy[0].ToDoTitle);
+            Assert.AreEqual("lave unit test", aCopy[0].ToDoDescription);
+            Assert.AreEqual(true, aCopy[0].Done);
+            Assert.AreEqual("23-10-2021", aCopy[0].Date);
+            Assert.AreEqual("1", s1.ToDoItems.Count.ToString());
         }
 
 
