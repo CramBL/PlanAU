@@ -15,7 +15,7 @@ namespace Test
         }
 
         [Test]
-        public void TestLoginAttemptAuthorizeValidAuIdAndPassword()
+        public void LoginAttemptAuthorizeValidAuIdAndPassword()
         {
             Student S1 = new Student("AU123456", "1234Password");
             var uut = DAL_Student.LoginAttemptAuthorize(S1).Result;
@@ -25,7 +25,7 @@ namespace Test
 
 
         [Test]
-        public void TestLoginAttemptAuthorizeInvalidAuId()
+        public void LoginAttemptAuthorizeInvalidAuId()
         {
             Student S1 = new Student("AU000000", "1234Password");
             var uut = DAL_Student.LoginAttemptAuthorize(S1).Result;
@@ -34,7 +34,7 @@ namespace Test
         }
 
         [Test]
-        public void TestLoginAttemptAuthorizeInvalidPassword()
+        public void LoginAttemptAuthorizeInvalidPassword()
         {
             Student S1 = new Student("AU123456", "wrongpassword");
             var uut = DAL_Student.LoginAttemptAuthorize(S1).Result;
@@ -43,7 +43,7 @@ namespace Test
         }
 
         [Test]
-        public void TestLoginAttemptAuthorizeInvalidPasswordAndAuId()
+        public void LoginAttemptAuthorizeInvalidPasswordAndAuId()
         {
             Student S1 = new Student("AU000000", "wrongpassword");
             var uut = DAL_Student.LoginAttemptAuthorize(S1).Result;
@@ -52,7 +52,7 @@ namespace Test
         }
 
         [Test]
-        public void TestPostStudent()
+        public void PostStudent()
         {
             Student S1 = new Student("AU900898", "goodpassword");
             S1.Email = "hansolo@luke.com";
