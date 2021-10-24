@@ -122,7 +122,8 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteToggleDarkmode()
         {
-            if (Application.Current.Resources["BackgroundBrush"] == Brushes.White)
+           
+            if (Application.Current.Resources["BackgroundBrush"] != Brushes.DarkGray)
             {
                 Application.Current.Resources["BackgroundBrush"] = Brushes.DarkGray;
             }
@@ -130,8 +131,6 @@ namespace Desktop_Application.ViewModels
             {
                 Application.Current.Resources["BackgroundBrush"] = Brushes.White;
             }
-            Application.Current.Resources["BackgroundBrush"] = Brushes.DarkGray;
-            //does not work
         }
 
         private DelegateCommand _logout;

@@ -7,6 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Images\close.png" />
+    <None Remove="Images\mail.png" />
     <None Remove="Images\password.png" />
     <None Remove="Images\PlanAU.png" />
     <None Remove="Images\user.png" />
@@ -16,6 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\close.png" />
+    <Resource Include="Images\mail.png" />
     <Resource Include="Images\password.png" />
     <Resource Include="Images\PlanAU.png" />
     <Resource Include="Images\user.png" />

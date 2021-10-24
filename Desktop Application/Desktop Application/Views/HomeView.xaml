@@ -5,7 +5,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="720" Width="1280" BorderBrush="#FF0E0E0E" 
-        Background="{StaticResource BackgroundBrush}"
+        Background="{DynamicResource BackgroundBrush}"
         Padding="10,0,40,0" WindowStartupLocation="CenterScreen" >
     <Grid>
 
@@ -31,7 +31,7 @@
         <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.ColumnSpan="3" Margin="0,0,650,0" />
 
         <!--#region User Menu-->
-        <Menu Grid.Row="0" Grid.Column="4" Background="{StaticResource MenuBrush}" >
+        <Menu Grid.Row="0" Grid.Column="4" Background="{DynamicResource MenuBrush}" >
             <MenuItem Header="{Binding Path= Student.AU_ID}" FontSize="15" Width="114" Height="39">
                 <MenuItem Header="_Settings">
                     <MenuItem Header="Toggle Darkmode" Command="{Binding ToggleDarkmode}" />
@@ -187,7 +187,7 @@
                 <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="-1,-1,-1,0">
                     <TextBlock FontSize="18" HorizontalAlignment="Center" FontWeight="Bold" >Preparation</TextBlock>
                 </Border>
-                <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding UnpackedLectures}" Background="{StaticResource BackgroundBrush}">
+                <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding UnpackedLectures}" Background="{DynamicResource BackgroundBrush}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=CourseName}" Header="Course" />
@@ -259,9 +259,9 @@
                          ItemsSource="{Binding Student.DoneToDoItems}"
                          IsSynchronizedWithCurrentItem="True"
                          DisplayMemberPath="ToDoTitle"
-                         Background="{StaticResource BackgroundBrush}"
+                         Background="{DynamicResource BackgroundBrush}"
                          />
-                <ListView Name="LvwToDoList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Student.ToDoItems}" Background="{StaticResource BackgroundBrush}">
+                <ListView Name="LvwToDoList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Student.ToDoItems}" Background="{DynamicResource BackgroundBrush}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Done" Width="50">
