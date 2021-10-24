@@ -21,8 +21,9 @@ namespace Test
             Lecture lecture = new Lecture("1","lave unit test");
             Assert.AreEqual("1", lecture.Number);
             Assert.AreEqual("lave unit test", lecture.PreparationDescription);
+            
         }
-
+        // mangler test til date
 
 
     }
