@@ -42,12 +42,12 @@
 
         <Image Source="../Images/close.png" Grid.Column="2" HorizontalAlignment="Left" Height="43" 
                Margin="10,5" Grid.Row="0" VerticalAlignment="Top" Width="32" 
-               RenderTransformOrigin="0.568,0.44" MouseDown="UIElement_OnMouseDown" >
-            <!--<i:Interaction.Triggers>
+               RenderTransformOrigin="0.568,0.44" >
+            <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDown">
                     <prism:InvokeCommandAction Command="{Binding CloseWindow}"/>
                 </i:EventTrigger>
-            </i:Interaction.Triggers>-->
+            </i:Interaction.Triggers>
         </Image>
 
         <!--#region reginster section-->
@@ -98,7 +98,7 @@
         <Button Name="createButton" Content="Create"  
                 Margin="140,90,0,0" Grid.Row="3" Grid.Column="1"
                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
-                VerticalAlignment="Top" Height="25"  Width="70"  Command="{Binding CreateNewCommand}" Click="RegisterButton_OnClick" />
+                VerticalAlignment="Top" Height="25"  Width="70"  Command="{Binding CreateNewCommand}" />
 
         <CheckBox Content="I agree to the PlanAU subscriber agreement" Grid.Column="1" HorizontalAlignment="Left" Margin="2,64,0,0" Grid.Row="3" VerticalAlignment="Top"/>
 

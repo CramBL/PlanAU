@@ -96,7 +96,9 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteCloseWindow()
         {
-            App.Current.MainWindow.Close();
+            //App.Current.MainWindow.Close();
+            App.Current.Shutdown();
+
         }
 
         private DelegateCommand _bypass;

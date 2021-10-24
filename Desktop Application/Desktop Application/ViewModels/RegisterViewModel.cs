@@ -46,7 +46,7 @@ namespace Desktop_Application.ViewModels
 
         #region Command
 
-        
+
         //private DelegateCommand _moveWindow;
         //public DelegateCommand MoveWindow =>
         //    _moveWindow ??= new DelegateCommand(ExecuteMoveWindow);
@@ -57,30 +57,30 @@ namespace Desktop_Application.ViewModels
         //}
 
 
-        //private DelegateCommand _createCommand;
-        //public DelegateCommand CreateCommand =>
-        //    _createCommand ??= new DelegateCommand(ExecuteCreateCommand);
+        private DelegateCommand _createNewCommand;
+        public DelegateCommand CreateNewCommand =>
+            _createNewCommand ??= new DelegateCommand(ExecuteCreateNewCommand);
 
-        //    public void ExecuteCreateCommand()
-        //{
+        public void ExecuteCreateNewCommand()
+        {
 
-        //    ((App)App.Current).Student = new Student("AU999999", "");
+            ((App)App.Current).Student = new Student("AU999999", "");
+            HomeView HomeViewInstance = new HomeView();
+            //App.Current.MainWindow.Close();  //problem with closing a RegisterView
+            
+            HomeViewInstance.Show();
+            
+        }
 
-        //    HomeView HomeViewInstance = new HomeView();
-        //    HomeViewInstance.Show();
-        //    App.Current.MainWindow.Close();
-        //}
+        private DelegateCommand _closeWindow;
+        public DelegateCommand CloseWindow =>
+            _closeWindow ??= new DelegateCommand(ExecuteCloseWindow);
 
-        //private DelegateCommand _closeWindow;
-        //public DelegateCommand CloseWindow =>
-        //    _closeWindow ??= new DelegateCommand(ExecuteCloseWindow);
+        void ExecuteCloseWindow()
+        {
+            App.Current.Shutdown();
 
-        //void ExecuteCloseWindow()
-        //{
-        //    LoginView LoginViewInstance = new LoginView();
-        //    App.Current.MainWindow.Close();
-        //    LoginViewInstance.Show();
-        //}
+        }
         #endregion
 
     }

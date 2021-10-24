@@ -27,26 +27,10 @@ namespace Desktop_Application.Views
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
+
                 DragMove();
             }
         }
 
-        private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            LoginView LoginViewInstance = new LoginView();
-            this.Close();
-            //App.Current.MainWindow.Close();
-            LoginViewInstance.Show();
-        }
-
-        private void RegisterButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            
-            HomeView HomeViewInstance = new HomeView();
-            this.Close();
-            HomeViewInstance.Show();
-
-
-        }
     }
 }
