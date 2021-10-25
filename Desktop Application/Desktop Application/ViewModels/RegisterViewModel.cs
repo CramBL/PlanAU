@@ -67,7 +67,7 @@ namespace Desktop_Application.ViewModels
             ((App)App.Current).Student = new Student("AU999999", "");
             HomeView HomeViewInstance = new HomeView();
             //App.Current.MainWindow.Close();  //problem with closing a RegisterView
-            
+            App.Current.Windows[0].Close();
             HomeViewInstance.Show();
             
         }
