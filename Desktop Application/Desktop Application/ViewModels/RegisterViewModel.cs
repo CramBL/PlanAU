@@ -24,7 +24,6 @@ namespace Desktop_Application.ViewModels
             get { return _newUserNameBox; }
             set { SetProperty(ref _newUserNameBox, value); }
         }
-
         private string _newPasswordBox;
 
         public string NewPasswordBox
@@ -46,7 +45,10 @@ namespace Desktop_Application.ViewModels
 
         #region Command
 
-
+        //er det her kode nødvendigt? (stem selv)
+        //Ja counter: 0
+        //Nej counter: 1
+        //
         //private DelegateCommand _moveWindow;
         //public DelegateCommand MoveWindow =>
         //    _moveWindow ??= new DelegateCommand(ExecuteMoveWindow);
@@ -63,13 +65,22 @@ namespace Desktop_Application.ViewModels
 
         public void ExecuteCreateNewCommand()
         {
+            //valider at indtastede username er på rigtig form:
 
-            ((App)App.Current).Student = new Student("AU999999", "");
-            HomeView HomeViewInstance = new HomeView();
-            //App.Current.MainWindow.Close();  //problem with closing a RegisterView
-            App.Current.Windows[0].Close();
-            HomeViewInstance.Show();
-            
+            if (new InputValidator().ValidUsernameSyntax(NewUserNameBox))
+            {
+                ((App)App.Current).Student = new Student("AU999999", "");
+                HomeView HomeViewInstance = new HomeView();
+                //App.Current.MainWindow.Close();  //problem with closing a RegisterView
+                App.Current.Windows[0].Close();
+                HomeViewInstance.Show();
+
+            }
+            else
+                System.Windows.MessageBox.Show("Invalid Username - Try again!");
+
+
+
         }
 
         private DelegateCommand _closeWindow;
