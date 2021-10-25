@@ -11,14 +11,13 @@
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize" 
         prism:ViewModelLocator.AutoWireViewModel="True"
-        WindowStartupLocation="CenterScreen"
-        MouseDown="RegisterWindow_OnMouseDown"
-        >
-    <!--<i:Interaction.Triggers>
+        WindowStartupLocation="CenterScreen">
+        
+    <i:Interaction.Triggers>
         <i:EventTrigger EventName="MouseDown">
             <prism:InvokeCommandAction Command="{Binding MoveWindow}"/>
         </i:EventTrigger>
-    </i:Interaction.Triggers>-->
+    </i:Interaction.Triggers>
     <Grid>
 
         <!--#region Grid Column and Row Definitions-->
@@ -100,7 +99,7 @@
                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
                 VerticalAlignment="Top" Height="25"  Width="70"  Command="{Binding CreateNewCommand}" />
 
-        <CheckBox Content="I agree to the PlanAU subscriber agreement" Grid.Column="1" HorizontalAlignment="Left" Margin="2,64,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <CheckBox Content="I agree to the PlanAU subscriber agreement" Grid.Column="1" HorizontalAlignment="Left" Margin="2,64,0,0" Grid.Row="3" VerticalAlignment="Top" IsChecked="False"/>
 
 
 

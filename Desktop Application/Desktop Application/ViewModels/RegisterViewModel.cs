@@ -45,19 +45,14 @@ namespace Desktop_Application.ViewModels
 
         #region Command
 
-        //er det her kode nødvendigt? (stem selv)
-        //Ja counter: 0
-        //Nej counter: 1
-        //
-        //private DelegateCommand _moveWindow;
-        //public DelegateCommand MoveWindow =>
-        //    _moveWindow ??= new DelegateCommand(ExecuteMoveWindow);
+        private DelegateCommand _moveWindow;
+        public DelegateCommand MoveWindow =>
+            _moveWindow ??= new DelegateCommand(ExecuteMoveWindow);
 
-        //void ExecuteMoveWindow()
-        //{
-        //    App.Current.MainWindow.DragMove();
-        //}
-
+        void ExecuteMoveWindow()
+        {
+            App.Current.Windows[0].DragMove();
+        }
 
         private DelegateCommand _createNewCommand;
         public DelegateCommand CreateNewCommand =>
@@ -71,16 +66,12 @@ namespace Desktop_Application.ViewModels
             {
                 ((App)App.Current).Student = new Student("AU999999", "");
                 HomeView HomeViewInstance = new HomeView();
-                //App.Current.MainWindow.Close();  //problem with closing a RegisterView
                 App.Current.Windows[0].Close();
                 HomeViewInstance.Show();
 
             }
             else
                 System.Windows.MessageBox.Show("Invalid Username - Try again!");
-
-
-
         }
 
         private DelegateCommand _closeWindow;

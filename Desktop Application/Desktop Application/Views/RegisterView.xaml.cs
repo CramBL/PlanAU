@@ -21,16 +21,5 @@ namespace Desktop_Application.Views
         {
             InitializeComponent();
         }
-
-        //Jeg har problemer med de funtioner, de virker ikke, hvis jeg laver dem til Commands
-        private void RegisterWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-
-                DragMove();
-            }
-        }
-
     }
 }
