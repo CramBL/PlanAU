@@ -34,7 +34,7 @@ namespace Test
             Assert.AreEqual("Unit test", task_1.ToDoTitle);
             Assert.AreEqual("lave unit test", task_1.ToDoDescription);
             Assert.AreEqual("23/10-2021", task_1.Date);
-            Assert.AreEqual(false, task_1.Done);
+            Assert.AreEqual(true, task_1.Done);
         }
   
     }

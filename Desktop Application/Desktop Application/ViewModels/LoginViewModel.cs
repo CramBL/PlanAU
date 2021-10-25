@@ -40,7 +40,7 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteMoveWindow()
         {
-            App.Current.MainWindow.DragMove(); //throws exception when closing loginView
+            App.Current.MainWindow.DragMove();
         }
 
 
@@ -51,7 +51,7 @@ namespace Desktop_Application.ViewModels
         async void ExecuteLoginCommand()
         {
             
-            string ParsedUserName = ParseUsernameInput();
+            string ParsedUserName = new InputValidator().ParseUsernameInput(UserNameBox);
 
             if (ParsedUserName == "")
             {
@@ -116,18 +116,7 @@ namespace Desktop_Application.ViewModels
 
         #endregion
 
-        #region helpMethods
-        private string ParseUsernameInput()
-        {
-            string userName = UserNameBox;
-
-            Match match = Regex.Match(userName, "^AU[0-9]{6}", RegexOptions.IgnoreCase);
-            if (match.Success)
-                return match.Value;
-            else
-                return "";
-        }
-        #endregion
+        
 
     }
 }
