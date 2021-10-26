@@ -6,9 +6,6 @@
     <AssemblyName>Desktop_Application</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Models\fakeDAL.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="Images\close.png" />
     <None Remove="Images\mail.png" />
     <None Remove="Images\password.png" />
