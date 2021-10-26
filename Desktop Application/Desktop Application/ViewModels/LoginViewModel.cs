@@ -40,7 +40,7 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteMoveWindow()
         {
-            App.Current.MainWindow.DragMove(); //throws exception when closing loginView
+            App.Current.MainWindow.DragMove();
         }
 
 
@@ -50,32 +50,30 @@ namespace Desktop_Application.ViewModels
 
         async void ExecuteLoginCommand()
         {
-            
-            string ParsedUserName = ParseUsernameInput();
-
-            if (ParsedUserName == "")
-            {
-                System.Windows.MessageBox.Show("Invalid Username - Try again!");
-                return;
-            }
-
-            //TODO: Flyt alt der kan testes ud af denne funktion (når MongoDB er oppe og køre så det kan verificeres at det stadig fungerer)
+             //TODO: Flyt alt der kan testes ud af denne funktion (når MongoDB er oppe og køre så det kan verificeres at det stadig fungerer)
             //1. Fjern brugen af App.Current - i stedet giv HomeView et Student object i constructor
             //2. Flyt verificering af password til en anden funktion
             //Der skal så kun være kald til disse funktioner og simple Show(), Close() og lignende i denne funktion
 
-            ((App)App.Current).Student = new Student(ParsedUserName, PasswordBox);
 
-            Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(((App)App.Current).Student);
-
-            if (await authorizeTask)
+            if (new InputValidator().ValidUsernameSyntax(UserNameBox))
             {
-                HomeView homeViewInstance = new HomeView();
-                homeViewInstance.Show();
-                App.Current.MainWindow.Close();
+
+                ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
+
+                Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(((App)App.Current).Student);
+
+                if (await authorizeTask)
+                {
+                    HomeView homeViewInstance = new HomeView();
+                    homeViewInstance.Show();
+                    App.Current.MainWindow.Close();
+                }
+                else
+                    System.Windows.MessageBox.Show("Wrong Password or UserID, try again");
             }
             else
-                System.Windows.MessageBox.Show("Wrong Password or UserID, try again");
+                System.Windows.MessageBox.Show("Invalid Username - Try again!");
         }
 
         private DelegateCommand<string> _registerCommand;
@@ -116,18 +114,7 @@ namespace Desktop_Application.ViewModels
 
         #endregion
 
-        #region helpMethods
-        private string ParseUsernameInput()
-        {
-            string userName = UserNameBox;
-
-            Match match = Regex.Match(userName, "^AU[0-9]{6}", RegexOptions.IgnoreCase);
-            if (match.Success)
-                return match.Value;
-            else
-                return "";
-        }
-        #endregion
+        
 
     }
 }
