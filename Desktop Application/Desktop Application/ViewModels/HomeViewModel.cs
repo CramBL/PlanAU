@@ -64,6 +64,7 @@ namespace Desktop_Application.ViewModels
         #region Method
         public HomeViewModel(IDialogService dialogService)
         {
+            Application.Current.Resources["BackgroundBrush"] = Brushes.White;
             Student = ((App) App.Current).Student;
             _dialogService = dialogService;
 
@@ -122,15 +123,29 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteToggleDarkmode()
         {
-           
-            if (Application.Current.Resources["BackgroundBrush"] != Brushes.DarkGray)
+            SolidColorBrush darkBrush = System.Windows.SystemColors.WindowBrush;
+            darkBrush = new SolidColorBrush(
+                    (Color)ColorConverter.ConvertFromString("#343434"));
+
+            if (Application.Current.Resources["BackgroundBrush"] != Brushes.White)
             {
-                Application.Current.Resources["BackgroundBrush"] = Brushes.DarkGray;
+                Application.Current.Resources["BackgroundBrush"] = Brushes.White;
+                Application.Current.Resources["MenuBrush"] = Brushes.LightGray;
+                Application.Current.Resources["TextBrush"] = Brushes.Black;
+                Application.Current.Resources["BorderBrush"] = Brushes.Black;
             }
             else
             {
-                Application.Current.Resources["BackgroundBrush"] = Brushes.White;
+                Application.Current.Resources["BackgroundBrush"] = darkBrush;
+                Application.Current.Resources["MenuBrush"] = new SolidColorBrush(
+                    (Color)ColorConverter.ConvertFromString("#404040"));
+                Application.Current.Resources["TextBrush"] = Brushes.White;
+                Application.Current.Resources["BorderBrush"] = new SolidColorBrush(
+                    (Color)ColorConverter.ConvertFromString("#FF00BE9C"));
             }
+
+
+
         }
 
         private DelegateCommand _logout;

@@ -32,30 +32,30 @@
 
         <!--#region User Menu-->
         <Menu Grid.Row="0" Grid.Column="4" Background="{DynamicResource MenuBrush}" >
-            <MenuItem Header="{Binding Path= Student.AU_ID}" FontSize="15" Width="114" Height="39">
-                <MenuItem Header="_Settings">
-                    <MenuItem Header="Toggle Darkmode" Command="{Binding ToggleDarkmode}" />
+            <MenuItem Foreground="{DynamicResource TextBrush}" Header="{Binding Path= Student.AU_ID}" FontSize="15" Width="114" Height="39">
+                <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="_Settings">
+                    <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="Toggle Darkmode" Command="{Binding ToggleDarkmode}" />
                 </MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="_Logout" Command="{Binding Logout}" />
+                <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="_Logout" Command="{Binding Logout}" />
             </MenuItem>
         </Menu>
         <!--#endregion-->
 
         <!--#region Select Course Buttons-->
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="5,5,5,0" Grid.ColumnSpan="2" >
-            <Button Width="60" Command="{Binding SelectAllCourses}" CommandParameter="All">All</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="PRJ">PRJ</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="NGK">NGK</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="SWT">SWT</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="SWD">SWD</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="DAB">DAB</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="GUI">GUI</Button>
+            <Button Width="60" Command="{Binding SelectAllCourses}" CommandParameter="All" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">All</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="PRJ" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">PRJ</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="NGK" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">NGK</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="SWT" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">SWT</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="SWD" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">SWD</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="DAB" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">DAB</Button>
+            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="GUI" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">GUI</Button>
         </StackPanel>
         <!--#endregion-->
 
         <!--#region Calendar Mockup-->
-        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="1" Margin="5,5,5,5" Grid.ColumnSpan="2">
+        <Border BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Grid.Row="3" Grid.Column="1" Margin="5,5,5,5" Grid.ColumnSpan="2">
             <Grid x:Name="Grid_1">
 
                 <Grid.ColumnDefinitions>
@@ -172,22 +172,22 @@
 
         <!--#region Calendar: Back and Next Buttons-->
         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,5,0" Width="140" >
-            <Button Content="&lt;- Back" Width="70"></Button>
-            <Button Width="70">Next -></Button>
+            <Button Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="&lt;- Back" Width="70"></Button>
+            <Button Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Width="70">Next -></Button>
         </StackPanel>
         <!--#endregion-->
 
         <!--#region Preparation-->
-        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="3" Margin="5,5,5,5" Grid.ColumnSpan="2" >
+        <Border BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Grid.Row="3" Grid.Column="3" Margin="5,5,5,5" Grid.ColumnSpan="2" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="349*"/>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="-1,-1,-1,0">
-                    <TextBlock FontSize="18" HorizontalAlignment="Center" FontWeight="Bold" >Preparation</TextBlock>
+                <Border Grid.Row="0" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="-1,-1,-1,0">
+                    <TextBlock FontSize="18" HorizontalAlignment="Center" FontWeight="Bold" Foreground="{DynamicResource TextBrush}" >Preparation</TextBlock>
                 </Border>
-                <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding UnpackedLectures}" Background="{DynamicResource BackgroundBrush}">
+                <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding UnpackedLectures}" Background="{DynamicResource BackgroundBrush}" Foreground="{DynamicResource TextBrush}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=CourseName}" Header="Course" />
@@ -202,13 +202,13 @@
         <!--#endregion-->
 
         <!--#region Deadline Mockup-->
-        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="3" Margin="5,5,5,5" Grid.ColumnSpan="2"  >
+        <Border BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Grid.Row="4" Grid.Column="3" Margin="5,5,5,5" Grid.ColumnSpan="2"  >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="43*"/>
                 </Grid.RowDefinitions>
-                <Border BorderBrush="Black" BorderThickness="1" Margin="-1,-1,-1,0" >
+                <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="-1,-1,-1,0" >
                     <TextBlock FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" >Deadlines</TextBlock>
                 </Border>
                 <StackPanel Grid.Row="1" Margin="5,5,0,5">
@@ -222,7 +222,7 @@
         <!--#endregion-->
 
         <!--#region ToDo-->
-        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.Column="1" Margin="5,5,5,5" Grid.ColumnSpan="2">
+        <Border BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Grid.Row="4" Grid.Column="1" Margin="5,5,5,5" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
@@ -234,16 +234,16 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="-1,-1,-1,0" >
-                    <TextBlock FontSize="18" FontWeight="Bold" Grid.ColumnSpan="4" HorizontalAlignment="Center">ToDo</TextBlock>
+                <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="-1,-1,-1,0" >
+                    <TextBlock Foreground="{DynamicResource TextBrush}" FontSize="18" FontWeight="Bold" Grid.ColumnSpan="4" HorizontalAlignment="Center">ToDo</TextBlock>
 
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3" Grid.ColumnSpan="3" Margin="-1,-1,-1,0" >
-                    <TextBlock FontSize="18" FontWeight="Bold" Grid.ColumnSpan="4" HorizontalAlignment="Center">Done</TextBlock>
+                <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Grid.Column="3" Grid.ColumnSpan="3" Margin="-1,-1,-1,0" >
+                    <TextBlock FontSize="18" FontWeight="Bold" Grid.ColumnSpan="4" HorizontalAlignment="Center" Foreground="{DynamicResource TextBrush}" >Done</TextBlock>
 
                 </Border>
 
-                <Button Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Height="25" Width="100" HorizontalAlignment="Center" Background="#FF7BEA88" VerticalAlignment="Top" Command="{Binding OpenAddToDoItemDialog}" >Add ToDo Item</Button>
+                <Button Foreground="{DynamicResource TextBrush}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Height="25" Width="100" HorizontalAlignment="Center" Background="#FF7BEA88" VerticalAlignment="Top" Command="{Binding OpenAddToDoItemDialog}" >Add ToDo Item</Button>
 
                 <!--<StackPanel Grid.Column="1" Margin="5,5,0,0" Grid.Row="1">
 
@@ -260,6 +260,7 @@
                          IsSynchronizedWithCurrentItem="True"
                          DisplayMemberPath="ToDoTitle"
                          Background="{DynamicResource BackgroundBrush}"
+                         Foreground="{DynamicResource TextBrush}"
                          />
                 <ListView Name="LvwToDoList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Student.ToDoItems}" Background="{DynamicResource BackgroundBrush}">
                     <ListView.View>
