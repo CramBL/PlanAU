@@ -43,15 +43,40 @@
         <!--#endregion-->
 
         <!--#region Select Course Buttons-->
-        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="5,5,5,0" Grid.ColumnSpan="2" >
-            <Button Width="60" Command="{Binding SelectAllCourses}" CommandParameter="All" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">All</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="PRJ" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">PRJ</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="NGK" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">NGK</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="SWT" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">SWT</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="SWD" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">SWD</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="DAB" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">DAB</Button>
-            <Button Width="60" Command="{Binding SelectOneCourse}" CommandParameter="GUI" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">GUI</Button>
-        </StackPanel>
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  Command="{Binding SelectAllCourses}" CommandParameter="All" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">All</Button>
+                <Button Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  Command="{Binding SelectOneCourse}" CommandParameter="PRJ" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">PRJ</Button>
+                <Button Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"  Command="{Binding SelectOneCourse}" CommandParameter="NGK" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">NGK</Button>
+                <Button Grid.Column="3" Grid.Row="0" Grid.RowSpan="2"  Command="{Binding SelectOneCourse}" CommandParameter="SWT" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">SWT</Button>
+                <Button Grid.Column="4" Grid.Row="0" Grid.RowSpan="2"  Command="{Binding SelectOneCourse}" CommandParameter="SWD" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">SWD</Button>
+                <Button Grid.Column="5" Grid.Row="0" Grid.RowSpan="2" Command="{Binding SelectOneCourse}" CommandParameter="DAB" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">DAB</Button>
+                <Button Grid.Column="6" Grid.Row="0" Grid.RowSpan="2"  Command="{Binding SelectOneCourse}" CommandParameter="GUI" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">GUI</Button>
+                <!--#region Calendar: Back and Next Buttons-->
+                <Button Grid.Column="10" Grid.Row="1" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="&lt;- Back" ></Button>
+                <Button Grid.Column="11" Grid.Row="1" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" >Next -></Button>
+                <!--#endregion-->
+            </Grid>
+        </Border>
+            
         <!--#endregion-->
 
         <!--#region Calendar Mockup-->
@@ -168,13 +193,6 @@
                 <Label x:Name="labelSunday" Content="Sunday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="6"/>
             </Grid>
         </Border>
-        <!--#endregion-->
-
-        <!--#region Calendar: Back and Next Buttons-->
-        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,5,0" Width="140" >
-            <Button Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="&lt;- Back" Width="70"></Button>
-            <Button Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Width="70">Next -></Button>
-        </StackPanel>
         <!--#endregion-->
 
         <!--#region Preparation-->
