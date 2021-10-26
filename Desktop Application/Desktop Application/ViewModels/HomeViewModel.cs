@@ -68,7 +68,7 @@ namespace Desktop_Application.ViewModels
             Student = ((App) App.Current).Student;
             _dialogService = dialogService;
 
-            setFakeCourses();
+            SetFakeCourses();
 
             SelectedCourses = new ObservableCollection<ICourse>();
             SelectedCourses.Add(PRJ);
@@ -79,11 +79,11 @@ namespace Desktop_Application.ViewModels
             SelectedCourses.Add(NGK);
 
             UnpackedLectures = new ObservableCollection<ILecture>();
-            unpackLecturesForPrep();
+            UnpackLecturesForPrep();
 
         }
 
-        private void setFakeCourses()
+        private void SetFakeCourses()
         {
             lectures = new List<ILecture>
             {
@@ -101,7 +101,7 @@ namespace Desktop_Application.ViewModels
 
         }
 
-        private void unpackLecturesForPrep()
+        private void UnpackLecturesForPrep()
         {
             UnpackedLectures.Clear();
             foreach (var course in SelectedCourses)
@@ -119,7 +119,7 @@ namespace Desktop_Application.ViewModels
         #region Commands
         private DelegateCommand _toggleDarkmode;
         public DelegateCommand ToggleDarkmode =>
-            _toggleDarkmode ?? (_toggleDarkmode = new DelegateCommand(ExecuteToggleDarkmode));
+            _toggleDarkmode ??= new DelegateCommand(ExecuteToggleDarkmode);
 
         void ExecuteToggleDarkmode()
         {
@@ -150,7 +150,7 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand _logout;
         public DelegateCommand Logout =>
-            _logout ?? (_logout = new DelegateCommand(ExecuteLogout));
+            _logout ??= new DelegateCommand(ExecuteLogout);
 
         void ExecuteLogout()
         {
@@ -171,7 +171,7 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand<string> _selectOneCourse;
         public DelegateCommand<string> SelectOneCourse =>
-            _selectOneCourse ?? (_selectOneCourse = new DelegateCommand<string>(ExecuteSelectOneCourse));
+            _selectOneCourse ??= new DelegateCommand<string>(ExecuteSelectOneCourse);
 
         private void ExecuteSelectOneCourse(string selectedCourse)
         {
@@ -179,7 +179,7 @@ namespace Desktop_Application.ViewModels
             SelectedCourses.Add(new Course(selectedCourse, lectures));
             //PreparationItems.Clear();
             //makePreparationItemStrings();
-            unpackLecturesForPrep();
+            UnpackLecturesForPrep();
         }
 
         private DelegateCommand _selectAllCourses;
@@ -197,7 +197,7 @@ namespace Desktop_Application.ViewModels
             SelectedCourses.Add(NGK);
             //PreparationItems.Clear();
             //makePreparationItemStrings();
-            unpackLecturesForPrep();
+            UnpackLecturesForPrep();
         }
 
         private DelegateCommand _openAddToDoItemDialog;
