@@ -7,5 +7,7 @@
     <Application.Resources>
         <SolidColorBrush x:Key="BackgroundBrush" Color="White" />
         <SolidColorBrush x:Key="MenuBrush" Color="LightGray"/>
+        <SolidColorBrush x:Key="TextBrush" Color="Black" />
+        <SolidColorBrush x:Key="BorderBrush" Color="Black" />
     </Application.Resources>
 </prism:PrismApplication>
