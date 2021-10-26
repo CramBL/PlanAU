@@ -30,7 +30,7 @@ namespace Desktop_Application.Models
         public bool IsValid(string testPassword, string origDelimHash)
         {
             //extract original values from delimited hash text
-            var origHashedParts = origDelimHash.Split('|');
+            var origHashedParts = origDelimHash?.Split('|');
             var origSalt = Convert.FromBase64String(origHashedParts[0]);
             var origHash = origHashedParts[1];
 
