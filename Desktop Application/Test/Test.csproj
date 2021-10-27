@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Desktop Application\Desktop Application.csproj" />
+    <ProjectReference Include="..\Desktop_Application\Desktop_Application.csproj" />
   </ItemGroup>
 
 </Project>
