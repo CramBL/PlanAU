@@ -9,54 +9,49 @@ namespace Test
 {
     class StudentUnitTests
     {
-        Student s1 = new Student();
+
         [SetUp]
         public void Setup()
         {
-            s1.Password = "hornslet";
-            s1.AU_ID = "au700400";
+
         }
 
-        [Test]
-        public void StudentHasCorrectData()
-        {
-            Assert.AreEqual("au700400",s1.AU_ID);
-            Assert.AreEqual("hornslet", s1.Password);
-        }
+         [TestCase("au656565","marsbarlover")]
+         public void Student_useConstructor_objectcreated(string auid, string password)
+         {
+            Student s1 = new Student(auid, password);
+            Assert.AreEqual(auid,s1.AU_ID);
+            Assert.AreEqual(password, s1.Password);
+         }
 
-        [Test]
-        public void StudentAddMail()
+         [TestCase("au656565", "marsbarlover")]
+        public void Student_AddMail_mailStringAdded(string auid, string password)
         {
+            Student s1 = new Student(auid, password);
+            Assert.AreEqual(auid, s1.AU_ID);
+            Assert.AreEqual(password, s1.Password);
             s1.Email = "mail@mail.com";
             Assert.AreEqual("mail@mail.com", s1.Email);
         }
 
-        [Test]
-        public void StudentChangeMail()
+        [TestCase("au656565", "marsbarlover")]
+        public void Student_ChangeMail_mailChanged(string auid, string password)
         {
+            Student s1 = new Student(auid, password);
+            Assert.AreEqual(auid, s1.AU_ID);
+            Assert.AreEqual(password, s1.Password);
             s1.Email = "mail@mail.com";
             s1.Email = "new@mail.com";
 
             Assert.AreEqual("new@mail.com", s1.Email);
         }
 
-        [Test]
-        public void StudentChangeAuID()
+        
+        [TestCase("au656565", "marsbarlover")]
+        public void Todoitems_addtodoitems_itemIsAdded(string auid, string password)
         {
-            s1.AU_ID = "au600600";
-            Assert.AreEqual("au600600", s1.AU_ID);
-        }
-
-        [Test]
-        public void StudentChangePassword()
-        {
-            s1.Password = "8543";
-            Assert.AreEqual("8543", s1.Password);
-        }
-
-        [Test]
-        public void InsertTodoItemWith3parameterconstructor()
-        {
+            Student s1 = new Student(auid, password);
+            Assert.AreEqual(auid, s1.AU_ID);
             ObservableCollection<ToDoItem> tasks = new ObservableCollection<ToDoItem>();
             tasks.Add(new ToDoItem("Unit test", "lave unit test", "23-10-2021"));
             s1.ToDoItems = tasks;
@@ -70,9 +65,11 @@ namespace Test
             Assert.AreEqual("1",s1.ToDoItems.Count.ToString());
         }
 
-        [Test]
-        public void InsertTodoItemWith4parameterconstructor()
+        [TestCase("au656565", "marsbarlover")]
+        public void TodoItems_addedToDoItems4Parameter_itemsadded(string auid, string password)
         {
+            Student s1 = new Student(auid, password);
+            Assert.AreEqual(auid, s1.AU_ID);
             ObservableCollection<ToDoItem> tasks = new ObservableCollection<ToDoItem>();
             tasks.Add(new ToDoItem("Unit test", "lave unit test", "23-10-2021",true));
             s1.DoneToDoItems = tasks;
