@@ -1,12 +1,17 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 
 namespace DBApi.Models {
 	public class Student
 	{
-		[Key]
-		public string AU_ID { get; set; }
-		public string PASSWORD { get; set; }
-		public string EMAIL { get; set; }
+		[BsonId]
+		[BsonRepresentation(BsonType.ObjectId)]
+		public string Id { get; set; }
+		public string auId { get; set; }
+		public string password { get; set; }
+		public string email { get; set; }
+
+		public List<ToDo> toDos { get; set; }
 	}
 }
