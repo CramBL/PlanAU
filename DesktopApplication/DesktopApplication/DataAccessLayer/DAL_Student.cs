@@ -13,14 +13,23 @@ namespace Desktop_Application.DataAccessLayer
 {
     public class DAL_Student
     {
-        private static readonly HttpClient Client = new HttpClient();
+        private readonly HttpClient Client;
 
-        private static readonly string localHost = "https://localhost:44323";
-        private static readonly string AuthorizeUri = localHost + "/authorize";
-        private static readonly string StudentUri = localHost + "/Student";
-        private static readonly string MediaType = "application/json";
+        private readonly string localHost;
+        private readonly string AuthorizeUri;
+        private readonly string StudentUri;
+        private readonly string MediaType;
 
-        public static async Task<Student> LoginAttemptAuthorize(Student student)
+        public DAL_Student()
+        {
+            Client = new HttpClient();
+            localHost = "https://localhost:44323";
+            AuthorizeUri = localHost + "/authorize";
+            StudentUri = localHost + "/Student";
+            MediaType = "application/json";
+        }
+
+        public async Task<Student> LoginAttemptAuthorize(Student student)
         {
 
             var postContent = GetSerializedEncodedStudent(student);
@@ -47,7 +56,7 @@ namespace Desktop_Application.DataAccessLayer
         //    return student;
         //}
 
-        public static async Task<string> PostStudent(Student student)
+        public async Task<string> PostStudent(Student student)
         {
             var postContent = GetSerializedEncodedStudent(student);
             
@@ -56,18 +65,18 @@ namespace Desktop_Application.DataAccessLayer
             return resp.StatusCode.ToString();
         }
 
-        private static Student GetDeserializedEncodedStudent(string json)
+        private Student GetDeserializedEncodedStudent(string json)
         {
             return System.Text.Json.JsonSerializer.Deserialize<Student>(json);
         }
 
-        private static HttpContent GetSerializedEncodedStudent(Student s)
+        private HttpContent GetSerializedEncodedStudent(Student s)
         {
             var json = System.Text.Json.JsonSerializer.Serialize<Student>(s);
             return new StringContent(json, Encoding.UTF8, MediaType) as HttpContent;
         }
 
-        private static async Task<HttpResponseMessage> PostContentToPlanAUapi<T>(string endpoint, HttpContent content)
+        private async Task<HttpResponseMessage> PostContentToPlanAUapi<T>(string endpoint, HttpContent content)
         {
             return await Client.PostAsync(endpoint, content);
         }

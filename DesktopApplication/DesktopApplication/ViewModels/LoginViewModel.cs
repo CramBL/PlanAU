@@ -59,10 +59,10 @@ namespace Desktop_Application.ViewModels
 
             if (new InputValidator().ValidUsernameSyntax(UserNameBox))
             {
-
+                DAL_Student dal_student = new DAL_Student();
                 Student student = new Student(UserNameBox, PasswordBox);
 
-                Task<Student> authorizeTask = DAL_Student.LoginAttemptAuthorize(student);
+                Task<Student> authorizeTask = dal_student.LoginAttemptAuthorize(student);
                 student = await authorizeTask;
 
                 if (student != null)
