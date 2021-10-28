@@ -4,9 +4,13 @@
         xmlns:prism="http://prismlibrary.com/" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="640" Width="1080" BorderBrush="#FF0E0E0E" 
+        Title="{Binding Title}" Height="640" Width="1080" 
         Background="{DynamicResource BackgroundBrush}"
-        Padding="10,0,40,0" WindowStartupLocation="CenterScreen" >
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="CanResizeWithGrip"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        >
     <Grid>
 
         <!--#region Grid Column and Row Definitions-->
@@ -31,7 +35,7 @@
         <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.ColumnSpan="3" Margin="0,0,650,0" />
 
         <!--#region User Menu-->
-        <Menu Grid.Row="0" Grid.Column="4" Background="{DynamicResource MenuBrush}" >
+        <Menu Grid.Row="0" Grid.Column="3" Margin="70 0 0 0 " Background="{DynamicResource MenuBrush}" >
             <MenuItem Foreground="{DynamicResource TextBrush}" Header="{Binding Path= Student.AU_ID}" FontSize="15" Width="114" Height="39">
                 <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="_Settings">
                     <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="Toggle Darkmode" Command="{Binding ToggleDarkmode}" />
@@ -40,6 +44,27 @@
                 <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="_Logout" Command="{Binding Logout}" />
             </MenuItem>
         </Menu>
+
+        <Image Source="../Images/close.png" Grid.Column="4" HorizontalAlignment="Right" Height="25" 
+               Margin="10,5" Grid.Row="0" VerticalAlignment="Top" Width="32" 
+               RenderTransformOrigin="0.568,0.44" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <prism:InvokeCommandAction Command="{Binding CloseWindow}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Image>
+
+        <Image Source="../Images/minimalize.png" Grid.Column="4" HorizontalAlignment="Right" Height="25" 
+               Margin="38,5" Grid.Row="0" VerticalAlignment="Top" Width="32" 
+               RenderTransformOrigin="0.568,0.44" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <prism:InvokeCommandAction Command="{Binding MinimalizeWindow}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Image>
+
         <!--#endregion-->
 
         <!--#region Select Course Buttons-->

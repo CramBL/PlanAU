@@ -227,6 +227,30 @@ namespace Desktop_Application.ViewModels
                     Title = "I Don't know what you did!?";
             });
         }
+
+        private DelegateCommand _closeWindow;
+        public DelegateCommand CloseWindow =>
+            _closeWindow ??= new DelegateCommand(ExecuteCloseWindow);
+
+        void ExecuteCloseWindow()
+        {
+            //App.Current.MainWindow.Close();
+            App.Current.Shutdown();
+
+        }
+
+        private DelegateCommand _minimalizeWindow;
+        public DelegateCommand MinimalizeWindow =>
+            _minimalizeWindow ??= new DelegateCommand(ExecuteMinimalizeWindow);
+
+        void ExecuteMinimalizeWindow()
+        {
+            //App.Current.MainWindow.Close();
+            App.Current.Windows[0].WindowState = WindowState.Minimized;
+
+
+        }
+
         #endregion
     }
 }
