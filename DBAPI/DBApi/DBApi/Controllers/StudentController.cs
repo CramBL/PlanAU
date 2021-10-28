@@ -55,6 +55,16 @@ namespace DBApi.Controllers
             return NotFound();
         }
 
+        [HttpPut]
+        public IActionResult PutStudent(Student student)
+        {
+            Student s = _studentService.Get(student.auId);
+            if (s == null) { return NotFound(); }
+
+            _studentService.Update(student);
+            return NoContent();
+        }
+
         //private StudentContext studentContext;
 
         //public StudentController(StudentContext context)

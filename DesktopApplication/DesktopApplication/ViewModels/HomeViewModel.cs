@@ -9,6 +9,7 @@ using Prism.Services.Dialogs;
 using System.Windows;
 using Desktop_Application.Views;
 using System.Windows.Media;
+using Desktop_Application.DataAccessLayer;
 
 namespace Desktop_Application.ViewModels
 {
@@ -28,6 +29,7 @@ namespace Desktop_Application.ViewModels
         private ICourse SWD;
         private ICourse NGK;
         private List<ILecture> lectures;
+        private DAL_Student dal_student;
 
         #region Properties
         private IDialogService _dialogService;
@@ -67,6 +69,7 @@ namespace Desktop_Application.ViewModels
             Application.Current.Resources["BackgroundBrush"] = Brushes.White;
             Student = ((App) App.Current).Student;
             _dialogService = dialogService;
+            dal_student = new DAL_Student();
 
             SetFakeCourses();
 
@@ -206,12 +209,10 @@ namespace Desktop_Application.ViewModels
 
 
         private void ExecuteOpenAddToDoItemDialog()
-        {
-            
-            
+        {  
             var tempToDoItem = new ToDoItem("", "", DateTime.Now);
             ((App)Application.Current).ToDoItem = tempToDoItem;
-            _dialogService.ShowDialog("AddToDoItemWindow", null, r =>
+            _dialogService.ShowDialog("AddToDoItemWindow", null, async r =>
             {
                 if (r.Result == ButtonResult.None)
                     Title = "Result is None";
@@ -220,6 +221,11 @@ namespace Desktop_Application.ViewModels
                     Title = "Result is OK";
                     ToDoItem = ((App)Application.Current).ToDoItem;
                     Student.ToDoItems.Add(ToDoItem);
+                    bool didUpdate = await dal_student.UpdateStudent(Student);
+                    if (!didUpdate)
+                    {
+                        MessageBox.Show("Todo was not added to DB!");
+                    }
                 }
                 else if (r.Result == ButtonResult.Cancel)
                     Title = "Result is Cancel";

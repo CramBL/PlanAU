@@ -37,5 +37,10 @@ namespace DBApi.Services
             _students.InsertOne(student);
             return student;
         }
+
+        public void Update(Student updatedStudent)
+        {
+            _students.ReplaceOne(student => student.auId == updatedStudent.auId, updatedStudent);
+        }
     }
 }

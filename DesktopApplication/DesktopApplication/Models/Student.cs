@@ -17,15 +17,14 @@ namespace Desktop_Application.Models
             DoneToDoItems = new ObservableCollection<ToDoItem>();
         }
 
-        public Student()
-        {
-        }
+        public Student() { }
 
         //public string Au_id { get; set; }
         //[JsonPropertyName("password")]
         //public string Password { get; set; }
-        //[JsonPropertyName("email")]
-        //public string Email { get; set; }
+        [JsonPropertyName("id")]
+        public string DBId { get; set; }
+        
         private string _Email;
         [JsonPropertyName("email")]
         public string Email

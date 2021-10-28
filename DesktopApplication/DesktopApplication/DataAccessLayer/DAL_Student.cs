@@ -42,6 +42,17 @@ namespace Desktop_Application.DataAccessLayer
                 return null;
         }
 
+        public async Task<bool> UpdateStudent(Student student)
+        {
+            var putContent = GetSerializedEncodedStudent(student);
+
+            var response = await Client.PutAsync(StudentUri, putContent);
+            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                return true;
+            else
+                return false;
+        }
+
         //public static async Task<List<Student>> GetStudents()
         //{
         //    var response = client.GetStreamAsync("https://localhost:44323/Student/");
