@@ -338,7 +338,9 @@
 
         <Separator Grid.Row="1" Grid.ColumnSpan="6" VerticalAlignment="Bottom" Margin="0,0,0,2" Height="1"></Separator>
 
-        <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="6" Grid.ColumnSpan="6"/>
+        <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="6" Grid.ColumnSpan="6"  CornerRadius="20" />
+        
+        
         <!--#endregion-->
 
     </Grid>
