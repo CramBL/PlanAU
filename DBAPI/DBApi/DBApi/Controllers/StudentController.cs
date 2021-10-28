@@ -42,13 +42,13 @@ namespace DBApi.Controllers
         }
 
         [HttpPost("/authorize")]
-        public ActionResult<Boolean> AutherizeStudent(Student student)
+        public ActionResult<Student> AutherizeStudent(Student student)
         {
             Student s = _studentService.Get(student.auId);
             if (s != null)
             {
                 if (s.password == student.password)
-                    return student.password == s.password;
+                    return s;
                 else
                     return Unauthorized();
             }

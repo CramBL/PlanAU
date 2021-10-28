@@ -60,12 +60,14 @@ namespace Desktop_Application.ViewModels
             if (new InputValidator().ValidUsernameSyntax(UserNameBox))
             {
 
-                ((App)App.Current).Student = new Student(UserNameBox, PasswordBox);
+                Student student = new Student(UserNameBox, PasswordBox);
 
-                Task<bool> authorizeTask = DAL_Student.LoginAttemptAuthorize(((App)App.Current).Student);
+                Task<Student> authorizeTask = DAL_Student.LoginAttemptAuthorize(student);
+                student = await authorizeTask;
 
-                if (await authorizeTask)
+                if (student != null)
                 {
+                    ((App)App.Current).Student = student;
                     HomeView homeViewInstance = new HomeView();
                     homeViewInstance.Show();
                     App.Current.MainWindow.Close();

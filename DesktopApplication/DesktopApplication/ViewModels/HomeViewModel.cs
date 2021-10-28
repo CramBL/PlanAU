@@ -209,7 +209,7 @@ namespace Desktop_Application.ViewModels
         {
             
             
-            var tempToDoItem = new ToDoItem("", "", DateTime.Now.ToString("MM-dd-yyyy"));
+            var tempToDoItem = new ToDoItem("", "", DateTime.Now);
             ((App)Application.Current).ToDoItem = tempToDoItem;
             _dialogService.ShowDialog("AddToDoItemWindow", null, r =>
             {

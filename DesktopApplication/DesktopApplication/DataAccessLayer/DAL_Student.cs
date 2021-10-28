@@ -20,7 +20,7 @@ namespace Desktop_Application.DataAccessLayer
         private static readonly string StudentUri = localHost + "/Student";
         private static readonly string MediaType = "application/json";
 
-        public static async Task<bool> LoginAttemptAuthorize(Student student)
+        public static async Task<Student> LoginAttemptAuthorize(Student student)
         {
 
             var postContent = GetSerializedEncodedStudent(student);
@@ -28,9 +28,9 @@ namespace Desktop_Application.DataAccessLayer
             var response = await PostContentToPlanAUapi<HttpContent>(AuthorizeUri, postContent);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                return true;
+                return GetDeserializedEncodedStudent(await response.Content.ReadAsStringAsync());
             else
-                return false;
+                return null;
         }
 
         //public static async Task<List<Student>> GetStudents()
@@ -54,6 +54,11 @@ namespace Desktop_Application.DataAccessLayer
             var resp = await PostContentToPlanAUapi<HttpContent>(StudentUri, postContent);
 
             return resp.StatusCode.ToString();
+        }
+
+        private static Student GetDeserializedEncodedStudent(string json)
+        {
+            return System.Text.Json.JsonSerializer.Deserialize<Student>(json);
         }
 
         private static HttpContent GetSerializedEncodedStudent(Student s)

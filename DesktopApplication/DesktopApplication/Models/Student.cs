@@ -36,7 +36,7 @@ namespace Desktop_Application.Models
         
         private string _AU_ID;
 
-        [JsonPropertyName("aU_ID")]
+        [JsonPropertyName("auId")]
 
         public string AU_ID
         {
@@ -52,7 +52,7 @@ namespace Desktop_Application.Models
         }
 
         private ObservableCollection<ToDoItem> _toDoItems;
-        [JsonIgnore]
+        [JsonPropertyName("toDos")]
         public ObservableCollection<ToDoItem> ToDoItems
         {
             get { return _toDoItems; }
