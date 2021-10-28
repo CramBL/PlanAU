@@ -22,20 +22,13 @@ namespace Test
 
         [Test]
 
-        public void SerializeStudentObject()
+        public void ToJsonString_SerializeStudentObject_ObjectIsAJsonObject()
         {
             serializer.ToJSONstring(s1);
             var JsonSerResult = serializer.ToDo_JsonString;
 
             Assert.AreEqual("{\"email\":\"netflixlover@mail.com\",\"aU_ID\":\"AU454545\",\"password\":\"HelloWorld\"}", JsonSerResult);
         }
-
-        //[Test]
-        //public void DeserializeCourse()
-        //{
-           
-        //}
-
 
     }
 
