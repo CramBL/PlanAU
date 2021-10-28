@@ -9,6 +9,7 @@ using Desktop_Application.Models;
 using Desktop_Application.DataAccessLayer;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace Desktop_Application.ViewModels
 {
@@ -96,6 +97,18 @@ namespace Desktop_Application.ViewModels
         {
             //App.Current.MainWindow.Close();
             App.Current.Shutdown();
+
+        }
+
+        private DelegateCommand _minimalizeWindow;
+        public DelegateCommand MinimalizeWindow =>
+            _minimalizeWindow ??= new DelegateCommand(ExecuteMinimalizeWindow);
+
+        void ExecuteMinimalizeWindow()
+        {
+            //App.Current.MainWindow.Close();
+            App.Current.Windows[0].WindowState = WindowState.Minimized;
+
 
         }
 

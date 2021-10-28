@@ -39,15 +39,6 @@
 
         </Border>
 
-        <Image Source="../Images/close.png" Grid.Column="2" HorizontalAlignment="Left" Height="43" 
-               Margin="10,5" Grid.Row="0" VerticalAlignment="Top" Width="32" 
-               RenderTransformOrigin="0.568,0.44" >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseDown">
-                    <prism:InvokeCommandAction Command="{Binding CloseWindow}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </Image>
 
         <!--#region reginster section-->
         <Label Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="40,55,0,0" FontSize="30" FontWeight="Medium" >Create account</Label>
@@ -110,5 +101,23 @@
 
        
         <!--#endregion-->
+        <Image Source="../Images/close.png" Grid.Column="2" HorizontalAlignment="Left" Height="43" 
+               Margin="10,5" Grid.Row="0" VerticalAlignment="Top" Width="32" 
+               RenderTransformOrigin="0.568,0.44" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <prism:InvokeCommandAction Command="{Binding CloseWindow}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Image>
+        <Image Source="../Images/minimalize.png" Grid.Column="1" HorizontalAlignment="Right" Height="43" 
+               Margin="0,5" Grid.Row="0" VerticalAlignment="Top" Width="32" 
+               RenderTransformOrigin="0.568,0.44" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <prism:InvokeCommandAction Command="{Binding MinimalizeWindow}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Image>
     </Grid>
 </Window>
