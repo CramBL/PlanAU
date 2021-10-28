@@ -11,6 +11,13 @@
         WindowStyle="None"
         AllowsTransparency="True"
         >
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseDown">
+            <prism:InvokeCommandAction Command="{Binding MoveWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
 
         <!--#region Grid Column and Row Definitions-->

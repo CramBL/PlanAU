@@ -120,6 +120,17 @@ namespace Desktop_Application.ViewModels
         #endregion
 
         #region Commands
+
+        private DelegateCommand _moveWindow;
+        public DelegateCommand MoveWindow =>
+            _moveWindow ??= new DelegateCommand(ExecuteMoveWindow);
+
+        void ExecuteMoveWindow()
+        {
+            App.Current.Windows[0].DragMove();
+        }
+
+
         private DelegateCommand _toggleDarkmode;
         public DelegateCommand ToggleDarkmode =>
             _toggleDarkmode ??= new DelegateCommand(ExecuteToggleDarkmode);
