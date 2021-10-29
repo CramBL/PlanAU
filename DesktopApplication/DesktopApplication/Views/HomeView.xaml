@@ -259,7 +259,7 @@
                     <RowDefinition Height="43*"/>
                 </Grid.RowDefinitions>
                 <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="-1,-1,-1,0" >
-                    <TextBlock FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" >Deadlines</TextBlock>
+                    <TextBlock FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Foreground="{DynamicResource TextBrush}" >Deadlines</TextBlock>
                 </Border>
                 <StackPanel Grid.Row="1" Margin="5,5,0,5">
                     <TextBlock>DAB exc 2</TextBlock>

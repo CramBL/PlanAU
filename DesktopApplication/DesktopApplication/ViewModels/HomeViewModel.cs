@@ -140,6 +140,9 @@ namespace Desktop_Application.ViewModels
             SolidColorBrush darkBrush = System.Windows.SystemColors.WindowBrush;
             darkBrush = new SolidColorBrush(
                     (Color)ColorConverter.ConvertFromString("#343434"));
+            SolidColorBrush PlanAUColourBrush = System.Windows.SystemColors.WindowBrush;
+            PlanAUColourBrush = new SolidColorBrush(
+                    (Color)ColorConverter.ConvertFromString("#FF00BE9C"));
 
             if (Application.Current.Resources["BackgroundBrush"] != Brushes.White)
             {
@@ -147,6 +150,7 @@ namespace Desktop_Application.ViewModels
                 Application.Current.Resources["MenuBrush"] = Brushes.LightGray;
                 Application.Current.Resources["TextBrush"] = Brushes.Black;
                 Application.Current.Resources["BorderBrush"] = Brushes.Black;
+                //Application.Current.Resources["MarkedItemBackgroundBrush"] = PlanAUColourBrush;
             }
             else
             {
@@ -154,8 +158,9 @@ namespace Desktop_Application.ViewModels
                 Application.Current.Resources["MenuBrush"] = new SolidColorBrush(
                     (Color)ColorConverter.ConvertFromString("#404040"));
                 Application.Current.Resources["TextBrush"] = Brushes.White;
-                Application.Current.Resources["BorderBrush"] = new SolidColorBrush(
-                    (Color)ColorConverter.ConvertFromString("#FF00BE9C"));
+                Application.Current.Resources["BorderBrush"] = PlanAUColourBrush;
+                /*Application.Current.Resources["MarkedItemBackgroundBrush"] = new SolidColorBrush(
+                    (Color)ColorConverter.ConvertFromString("#404040")); ;*/
             }
 
 

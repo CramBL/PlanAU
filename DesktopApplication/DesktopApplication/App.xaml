@@ -9,5 +9,13 @@
         <SolidColorBrush x:Key="MenuBrush" Color="LightGray"/>
         <SolidColorBrush x:Key="TextBrush" Color="Black" />
         <SolidColorBrush x:Key="BorderBrush" Color="Black" />
+        <SolidColorBrush x:Key="MarkedItemBackgroundBrush" Color="#FF00BE9C"/>
+        <Style TargetType="ListViewItem">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource MarkedItemBackgroundBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </prism:PrismApplication>
