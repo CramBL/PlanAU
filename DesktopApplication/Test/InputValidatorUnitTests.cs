@@ -64,5 +64,32 @@ namespace Test
             bool InputResult = _uut.ValidUsernameSyntax("au454545");
             Assert.AreEqual(true, InputResult);
         }
+
+        [TestCase("sT3!xyz1")]
+        [TestCase("!!656565@sE")]
+        [TestCase("123Password!")]
+        [TestCase("1337P4$$w£Rd...!!")]
+        [TestCase("1337(æøå]P4$$w..!!")]
+        public void ValidPasswordSyntax_ValidPassword(string password)
+        {
+            var isValid = _uut.ValidPasswordSyntax(password);
+
+            Assert.IsTrue(isValid);
+        }
+
+        [TestCase("passWORD123")]//no special character
+        [TestCase("!!/()@sE")]//no number
+        [TestCase("123password!")]//no capital letter
+        [TestCase("1337P4$$£R")]//no lowercase letter
+        [TestCase("1p4$$£R")]//Too short
+        [TestCase("21337P4$$£R234fds11AS")]//Too long
+        public void ValidPasswordSyntax_InvalidPassword(string password)
+        {
+            var isValid = _uut.ValidPasswordSyntax(password);
+
+            Assert.IsFalse(isValid);
+        }
+
+
     }
 }
