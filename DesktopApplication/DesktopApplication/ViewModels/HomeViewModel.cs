@@ -31,7 +31,9 @@ namespace Desktop_Application.ViewModels
         private ICourse SWD;
         private ICourse NGK;
         private List<ILecture> lectures;
-        
+        private List<ILecture> lectures2;
+
+
 
         #region Properties
         private IDialogService _dialogService;
@@ -107,9 +109,15 @@ namespace Desktop_Application.ViewModels
                 new Lecture("1.1", "Se to videoer"),
                 new Lecture("1.2", "Læs de to links")
             };
+            lectures2 = new List<ILecture>
+            {
+                new Lecture("0", "Læs s. 45-55 i bogen"),
+                new Lecture("1.1", "Se to videoer"),
+                new Lecture("1.2", "Læs de to links")
+            };
 
             PRJ = new Course("PRJ", lectures);
-            GUI = new Course("GUI", lectures);
+            GUI = new Course("GUI", lectures2);
             DAB = new Course("DAB", lectures);
             SWT = new Course("SWT", lectures);
             SWD = new Course("SWD", lectures);
