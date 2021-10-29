@@ -18,7 +18,7 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
         private LoginViewModel _uut;
 
         string validUserName = "AU999999";
-        string validPassword = "123456";
+        string validPassword = "Mn123456!";
 
         private string invalidUsername = "forkertBrugernavn";
         private string invalidPassword = "forkertKodeord";
@@ -47,9 +47,23 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
         [Test]
         public void ExecuteLoginCommand_ValidLoginAttempt_ValidUsernameSyntax()
         {
+            //arrange
+            _inputValidator.ValidPasswordSyntax(validPassword).Returns(true);
+
             _uut.LoginCommand.Execute();
 
             _inputValidator.Received(1).ValidUsernameSyntax(validUserName);
+        }
+
+        [Test]
+        public void ExecuteLoginCommand_ValidLoginAttempt_ValidPasswordSyntax()
+        {
+            //arrange
+            _inputValidator.ValidUsernameSyntax(validUserName).Returns(true);
+            //act
+            _uut.LoginCommand.Execute();
+
+            _inputValidator.Received(1).ValidPasswordSyntax(validPassword);
         }
 
         [Test]
@@ -57,6 +71,7 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
         {
             //arrange
             _inputValidator.ValidUsernameSyntax(validUserName).Returns(true);
+            _inputValidator.ValidPasswordSyntax(validPassword).Returns(true);
             
             //act
             _uut.LoginCommand.Execute();

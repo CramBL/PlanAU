@@ -66,7 +66,7 @@ namespace Desktop_Application.ViewModels
             //Der skal så kun være kald til disse funktioner og simple Show(), Close() og lignende i denne funktion
 
 
-            if (InputValidator.ValidUsernameSyntax(UserNameBox))
+            if (InputValidator.ValidUsernameSyntax(UserNameBox) && InputValidator.ValidPasswordSyntax(PasswordBox))
             {
                 Student student = new Student(UserNameBox, PasswordBox);
 
