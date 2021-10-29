@@ -53,7 +53,7 @@ namespace Test
             Student s1 = new Student(auid, password);
             Assert.AreEqual(auid, s1.AU_ID);
             ObservableCollection<ToDoItem> tasks = new ObservableCollection<ToDoItem>();
-            tasks.Add(new ToDoItem("Unit test", "lave unit test", "23-10-2021"));
+            tasks.Add(new ToDoItem("Unit test", "lave unit test", new DateTime(2021,10,29)));
             s1.ToDoItems = tasks;
 
             ToDoItem[] aCopy = new ToDoItem[s1.ToDoItems.Count];
@@ -71,7 +71,7 @@ namespace Test
             Student s1 = new Student(auid, password);
             Assert.AreEqual(auid, s1.AU_ID);
             ObservableCollection<ToDoItem> tasks = new ObservableCollection<ToDoItem>();
-            tasks.Add(new ToDoItem("Unit test", "lave unit test", "23-10-2021",true));
+            tasks.Add(new ToDoItem("Unit test", "lave unit test", new DateTime(2021,10,29),true));
             s1.DoneToDoItems = tasks;
 
             ToDoItem[] aCopy = new ToDoItem[s1.DoneToDoItems.Count];

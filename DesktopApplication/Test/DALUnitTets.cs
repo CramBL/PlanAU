@@ -1,27 +1,29 @@
 using NUnit.Framework;
-using Desktop_Application.DataAccessLayer;
 using Desktop_Application.Models;
 using System;
 using System.Threading.Tasks;
 using System.Text.Json;
+using Desktop_Application.DataAccessLayer;
 
 namespace Test
 {
     public class Tests
     {
-        //[SetUp]
-        //public void Setup()
-        //{
-        //}
+        DAL_Student dal_student = new DAL_Student();
+        [SetUp]
+        public void Setup()
+        {
+        }
 
-        //[Test]
-        //public void LoginAttemptAuthorizeValidAuIdAndPassword()
-        //{
-        //    Student S1 = new Student("AU123456", "1234Password");
-        //    var uut = DAL_Student.LoginAttemptAuthorize(S1).Result;
-        //    bool expectedResult = true;
-        //    Assert.AreEqual(expectedResult, uut);
-        //}
+        [Test]
+        public void LoginAttemptAuthorizeValidAuIdAndPassword()
+        {
+            Student S1 = new Student("au123456", "12345");
+
+            var uut = dal_student.LoginAttemptAuthorize(S1).Result;
+            bool expectedResult = true;
+            Assert.AreEqual(expectedResult, uut);
+        }
 
 
         //[Test]
