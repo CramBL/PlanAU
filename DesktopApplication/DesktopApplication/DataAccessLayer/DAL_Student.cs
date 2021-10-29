@@ -73,11 +73,13 @@ namespace Desktop_Application.DataAccessLayer
 
         public async Task<string> PostStudent(Student student)
         {
-            var postContent = GetSerializedEncodedStudent(student);
-            
-            var resp = await PostContentToPlanAUapi<HttpContent>(StudentUri, postContent);
+            using (var postContent = GetSerializedEncodedStudent(student))
+            {
 
-            return resp.StatusCode.ToString();
+                var resp = await PostContentToPlanAUapi<HttpContent>(StudentUri, postContent);
+
+                return resp.StatusCode.ToString();
+            }
         }
 
         private Student GetDeserializedEncodedStudent(string json)
