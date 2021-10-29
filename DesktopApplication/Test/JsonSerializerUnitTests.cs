@@ -27,7 +27,7 @@ namespace Test
             serializer.ToJSONstring(s1);
             var JsonSerResult = serializer.ToDo_JsonString;
 
-            Assert.AreEqual("{\"email\":\"netflixlover@mail.com\",\"aU_ID\":\"AU454545\",\"password\":\"HelloWorld\"}", JsonSerResult);
+            Assert.AreEqual("{\"id\":null,\"email\":\"netflixlover@mail.com\",\"auId\":\"AU454545\",\"password\":\"HelloWorld\",\"toDos\":[]}", JsonSerResult);
         }
 
     }

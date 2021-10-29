@@ -9,21 +9,21 @@ namespace Test
 {
     public class Tests
     {
-        DAL_Student dal_student = new DAL_Student();
-        [SetUp]
-        public void Setup()
-        {
-        }
+        //DAL_Student dal_student = new DAL_Student();
+        //[SetUp]
+        //public void Setup()
+        //{
+        //}
 
-        [Test]
-        public void LoginAttemptAuthorizeValidAuIdAndPassword()
-        {
-            Student S1 = new Student("au123456", "12345");
+        //[Test]
+        //public void LoginAttemptAuthorizeValidAuIdAndPassword()
+        //{
+        //    Student S1 = new Student("au123456", "12345");
 
-            var uut = dal_student.LoginAttemptAuthorize(S1).Result;
-            bool expectedResult = true;
-            Assert.AreEqual(expectedResult, uut);
-        }
+        //    var uut = dal_student.LoginAttemptAuthorize(S1).Result;
+        //    bool expectedResult = true;
+        //    Assert.AreEqual(expectedResult, uut);
+        //}
 
 
         //[Test]
