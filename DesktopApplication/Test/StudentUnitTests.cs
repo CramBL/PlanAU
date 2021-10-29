@@ -61,7 +61,7 @@ namespace Test
             Assert.AreEqual("Unit test",aCopy[0].ToDoTitle);
             Assert.AreEqual("lave unit test", aCopy[0].ToDoDescription);
             Assert.AreEqual(false, aCopy[0].Done);
-            Assert.AreEqual("23-10-2021", aCopy[0].Date);
+            Assert.AreEqual(new DateTime(2021, 10, 29), aCopy[0].Date);
             Assert.AreEqual("1",s1.ToDoItems.Count.ToString());
         }
 
@@ -79,7 +79,7 @@ namespace Test
             Assert.AreEqual("Unit test", aCopy[0].ToDoTitle);
             Assert.AreEqual("lave unit test", aCopy[0].ToDoDescription);
             Assert.AreEqual(true, aCopy[0].Done);
-            Assert.AreEqual("23-10-2021", aCopy[0].Date);
+            Assert.AreEqual(new DateTime(2021,10,29), aCopy[0].Date);
             Assert.AreEqual("1", s1.DoneToDoItems.Count.ToString());
         }
 
