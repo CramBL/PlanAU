@@ -31,7 +31,9 @@ namespace Desktop_Application.ViewModels
         private ICourse SWD;
         private ICourse NGK;
         private List<ILecture> lectures;
-        
+        private List<ILecture> lectures2;
+
+
 
         #region Properties
         private IDialogService _dialogService;
@@ -107,9 +109,15 @@ namespace Desktop_Application.ViewModels
                 new Lecture("1.1", "Se to videoer"),
                 new Lecture("1.2", "Læs de to links")
             };
+            lectures2 = new List<ILecture>
+            {
+                new Lecture("0", "Læs s. 45-55 i bogen"),
+                new Lecture("1.1", "Se to videoer"),
+                new Lecture("1.2", "Læs de to links")
+            };
 
             PRJ = new Course("PRJ", lectures);
-            GUI = new Course("GUI", lectures);
+            GUI = new Course("GUI", lectures2);
             DAB = new Course("DAB", lectures);
             SWT = new Course("SWT", lectures);
             SWD = new Course("SWD", lectures);
@@ -153,6 +161,9 @@ namespace Desktop_Application.ViewModels
             SolidColorBrush darkBrush = System.Windows.SystemColors.WindowBrush;
             darkBrush = new SolidColorBrush(
                     (Color)ColorConverter.ConvertFromString("#343434"));
+            SolidColorBrush PlanAUColourBrush = System.Windows.SystemColors.WindowBrush;
+            PlanAUColourBrush = new SolidColorBrush(
+                    (Color)ColorConverter.ConvertFromString("#FF00BE9C"));
 
             if (Application.Current.Resources["BackgroundBrush"] != Brushes.White)
             {
@@ -160,6 +171,7 @@ namespace Desktop_Application.ViewModels
                 Application.Current.Resources["MenuBrush"] = Brushes.LightGray;
                 Application.Current.Resources["TextBrush"] = Brushes.Black;
                 Application.Current.Resources["BorderBrush"] = Brushes.Black;
+                //Application.Current.Resources["MarkedItemBackgroundBrush"] = PlanAUColourBrush;
             }
             else
             {
@@ -167,8 +179,9 @@ namespace Desktop_Application.ViewModels
                 Application.Current.Resources["MenuBrush"] = new SolidColorBrush(
                     (Color)ColorConverter.ConvertFromString("#404040"));
                 Application.Current.Resources["TextBrush"] = Brushes.White;
-                Application.Current.Resources["BorderBrush"] = new SolidColorBrush(
-                    (Color)ColorConverter.ConvertFromString("#FF00BE9C"));
+                Application.Current.Resources["BorderBrush"] = PlanAUColourBrush;
+                /*Application.Current.Resources["MarkedItemBackgroundBrush"] = new SolidColorBrush(
+                    (Color)ColorConverter.ConvertFromString("#404040")); ;*/
             }
 
 
