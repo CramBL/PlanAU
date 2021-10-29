@@ -15,17 +15,17 @@ namespace Desktop_Application.DataAccessLayer
     {
         private readonly HttpClient Client;
 
-        private readonly string localHost;
-        private readonly string AuthorizeUri;
-        private readonly string StudentUri;
+        private readonly Uri localHost;
+        private readonly Uri AuthorizeUri;
+        private readonly Uri StudentUri;
         private readonly string MediaType;
 
         public DAL_Student()
         {
             Client = new HttpClient();
-            localHost = "https://localhost:44323";
-            AuthorizeUri = localHost + "/authorize";
-            StudentUri = localHost + "/Student";
+            localHost = new Uri("https://localhost:44323");
+            AuthorizeUri = new Uri (localHost + "/authorize");
+            StudentUri = new Uri(localHost + "/Student");
             MediaType = "application/json";
         }
 
@@ -93,7 +93,7 @@ namespace Desktop_Application.DataAccessLayer
             return new StringContent(json, Encoding.UTF8, MediaType) as HttpContent;
         }
 
-        private async Task<HttpResponseMessage> PostContentToPlanAUapi<T>(string endpoint, HttpContent content)
+        private async Task<HttpResponseMessage> PostContentToPlanAUapi<T>(Uri endpoint, HttpContent content)
         {
             return await Client.PostAsync(endpoint, content);
         }
