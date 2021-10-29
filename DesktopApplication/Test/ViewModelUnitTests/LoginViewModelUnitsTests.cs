@@ -23,9 +23,9 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
         private string invalidUsername = "forkertBrugernavn";
         private string invalidPassword = "forkertKodeord";
 
-        private IInputValidator _inputValidator = Substitute.For<IInputValidator>();
-        private IDAL_Student _dalStudent = Substitute.For<IDAL_Student>();
-        private IMessageBox _messageBox = Substitute.For<IMessageBox>();
+        private IInputValidator _inputValidator;
+        private IDAL_Student _dalStudent;
+        private IMessageBox _messageBox;
 
         [SetUp]
         public void Setup()
@@ -35,9 +35,9 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
 
 
             //substitute dependencies
-            _uut.InputValidator = _inputValidator;
-            _uut.DALStudent = _dalStudent;
-            _uut.MessageBox = _messageBox;
+            _uut.InputValidator = (_inputValidator = Substitute.For<IInputValidator>());
+            _uut.DALStudent = (_dalStudent = Substitute.For<IDAL_Student>());
+            _uut.MessageBox = (_messageBox = Substitute.For<IMessageBox>());
 
             //set test data
             _uut.UserNameBox = validUserName;
