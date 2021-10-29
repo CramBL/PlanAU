@@ -11,7 +11,13 @@ using Desktop_Application.Models;
 
 namespace Desktop_Application.DataAccessLayer
 {
-    public class DAL_Student
+    public interface IDAL_Student
+    {
+        Task<Student> LoginAttemptAuthorize(Student student);
+        Task<bool> UpdateStudent(Student student);
+
+    }
+    public class DAL_Student : IDAL_Student
     {
         private readonly HttpClient Client;
 
@@ -32,29 +38,25 @@ namespace Desktop_Application.DataAccessLayer
         public async Task<Student> LoginAttemptAuthorize(Student student)
         {
 
-            using (var postContent = GetSerializedEncodedStudent(student))
-            {
+            using var postContent = GetSerializedEncodedStudent(student);
 
-                var response = await PostContentToPlanAUapi<HttpContent>(AuthorizeUri, postContent);
+            var response = await PostContentToPlanAUapi<HttpContent>(AuthorizeUri, postContent);
 
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    return GetDeserializedEncodedStudent(await response.Content.ReadAsStringAsync());
-                else
-                    return null;
-            }
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                return GetDeserializedEncodedStudent(await response.Content.ReadAsStringAsync());
+            else
+                return null;
         }
 
         public async Task<bool> UpdateStudent(Student student)
         {
-            using (var putContent = GetSerializedEncodedStudent(student))
-            {
+            using var putContent = GetSerializedEncodedStudent(student);
 
-                var response = await Client.PutAsync(StudentUri, putContent);
-                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                    return true;
-                else
-                    return false;
-            }
+            var response = await Client.PutAsync(StudentUri, putContent);
+            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                return true;
+            else
+                return false;
         }
 
         //public static async Task<List<Student>> GetStudents()
@@ -73,13 +75,11 @@ namespace Desktop_Application.DataAccessLayer
 
         public async Task<string> PostStudent(Student student)
         {
-            using (var postContent = GetSerializedEncodedStudent(student))
-            {
+            using var postContent = GetSerializedEncodedStudent(student);
 
-                var resp = await PostContentToPlanAUapi<HttpContent>(StudentUri, postContent);
+            var resp = await PostContentToPlanAUapi<HttpContent>(StudentUri, postContent);
 
-                return resp.StatusCode.ToString();
-            }
+            return resp.StatusCode.ToString();
         }
 
         private Student GetDeserializedEncodedStudent(string json)

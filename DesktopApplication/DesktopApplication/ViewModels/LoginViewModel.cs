@@ -1,37 +1,46 @@
 ﻿using Desktop_Application.Views;
 using Prism.Commands;
 using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Net.Security;
-using System.Text;
 using Desktop_Application.Models;
 using Desktop_Application.DataAccessLayer;
 using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 using System.Windows;
+using DesktopApplication.Models;
 
 namespace Desktop_Application.ViewModels
 {
     public class LoginViewModel : BindableBase
     {
+        public LoginViewModel()
+        {
+            InputValidator = new InputValidator();
+            DALStudent = new DAL_Student();
+            MessageBox = new DesktopApplication.Models.MessageBox();
+        }
 
         #region Properties
         private string _userNameBox;
         public string UserNameBox
         {
-            get { return _userNameBox; }
-            set { SetProperty(ref _userNameBox, value); }
+            get => _userNameBox;
+            set => SetProperty(ref _userNameBox, value);
         }
 
         private string _passwordBox;
+
         public string PasswordBox
         {
-            get { return _passwordBox; }
-            set { SetProperty(ref _passwordBox, value); }
+            get => _passwordBox;
+            set => SetProperty(ref _passwordBox, value);
         }
+        #endregion
+        #region Class Dependencies
 
-     
+        public IDAL_Student DALStudent { get; set; }
+        public IInputValidator InputValidator { get; set; }
+
+        //removes the message box dialogue from the unit tests by allowing injection of fake
+        public IMessageBox MessageBox { get; set; }
         #endregion
 
         #region Command
@@ -57,12 +66,11 @@ namespace Desktop_Application.ViewModels
             //Der skal så kun være kald til disse funktioner og simple Show(), Close() og lignende i denne funktion
 
 
-            if (new InputValidator().ValidUsernameSyntax(UserNameBox))
+            if (InputValidator.ValidUsernameSyntax(UserNameBox))
             {
-                DAL_Student dal_student = new DAL_Student();
                 Student student = new Student(UserNameBox, PasswordBox);
 
-                Task<Student> authorizeTask = dal_student.LoginAttemptAuthorize(student);
+                Task<Student> authorizeTask = DALStudent.LoginAttemptAuthorize(student);
                 student = await authorizeTask;
 
                 if (student != null)
@@ -73,10 +81,10 @@ namespace Desktop_Application.ViewModels
                     App.Current.MainWindow.Close();
                 }
                 else
-                    System.Windows.MessageBox.Show("Wrong Password or UserID, try again");
+                    MessageBox.Show("Wrong Password or UserID, try again");
             }
             else
-                System.Windows.MessageBox.Show("Invalid Username - Try again!");
+                MessageBox.Show("Invalid Username - Try again!");
         }
 
         private DelegateCommand<string> _registerCommand;

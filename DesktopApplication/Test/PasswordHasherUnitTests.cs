@@ -5,7 +5,7 @@ using System.Text;
 using Desktop_Application.Models;
 namespace Test
 {
-    class PasswordHaserUnitTests
+    class PasswordHasherUnitTests
     {
         PasswordHasher hash = new PasswordHasher();
         [SetUp]

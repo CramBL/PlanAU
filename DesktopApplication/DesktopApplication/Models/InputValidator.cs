@@ -5,7 +5,11 @@ using System.Text.RegularExpressions;
 
 namespace Desktop_Application.Models
 {
-    public class InputValidator
+    public interface IInputValidator
+    {
+        bool ValidUsernameSyntax(string username);
+    }
+    public class InputValidator : IInputValidator
     {
 
         /// True if username is on form: AUxxxxxx (x is number 0-9)
