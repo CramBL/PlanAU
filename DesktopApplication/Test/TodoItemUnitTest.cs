@@ -21,7 +21,7 @@ namespace Test
             ToDoItem task_1 = new ToDoItem(title,description,new DateTime(2021,10,28));
             Assert.AreEqual(title, task_1.ToDoTitle);
             Assert.AreEqual(description, task_1.ToDoDescription);
-            Assert.AreEqual(date, task_1.Date);
+            Assert.AreEqual(new DateTime(2021, 10, 28), task_1.Date);
 
             // TodoItem der bliver lavet med contructoren med 3 parametre har altid status false på done
             Assert.AreEqual(false, task_1.Done);
