@@ -73,7 +73,7 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
             //act
             _uut.LoginCommand.Execute();
             //assert
-            _messageBox.ReceivedWithAnyArgs(1).Show("");
+            _messageBox.ReceivedWithAnyArgs(1).Show("");//AnyArgs so test still works if error message changes
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
             //act
             _uut.LoginCommand.Execute();
             //assert
-            _messageBox.ReceivedWithAnyArgs(1).Show("");
+            _messageBox.ReceivedWithAnyArgs(1).Show("");//AnyArgs so test still works if error message changes
         }
     }
 }

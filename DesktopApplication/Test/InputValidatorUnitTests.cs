@@ -8,12 +8,12 @@ namespace Test
 {
     class InputValidatorUnitTests
     {
-        private InputValidator inputValidator = new InputValidator();
+        private InputValidator _uut;
 
         [SetUp] 
         public void Setup()
         {
-
+            _uut = new InputValidator();
         }
 
         [TestCase("AU656565")]
@@ -25,7 +25,7 @@ namespace Test
 
         public void ValidUsernameSyntax_InputsUsername_ValidUsernames(String auid)
         {
-            bool InputResult = inputValidator.ValidUsernameSyntax(auid);
+            bool InputResult = _uut.ValidUsernameSyntax(auid);
             Assert.AreEqual(true, InputResult);
         }
 
@@ -37,7 +37,7 @@ namespace Test
 
         public void ValidUsernameSyntax_InputsUsername_InvalidUsernames(string auid)
         {
-            bool InputResult = inputValidator.ValidUsernameSyntax(auid);
+            bool InputResult = _uut.ValidUsernameSyntax(auid);
             Assert.AreEqual(false, InputResult);
         }
 
@@ -45,7 +45,7 @@ namespace Test
 
         public void InValidNumbersButValidLetters()
         {
-            bool InputResult = inputValidator.ValidUsernameSyntax("AU2020202");
+            bool InputResult = _uut.ValidUsernameSyntax("AU2020202");
             Assert.AreEqual(false, InputResult);
         }
 
@@ -53,7 +53,7 @@ namespace Test
 
         public void InValidNumbersAndInValidLetters()
         {
-            bool InputResult = inputValidator.ValidUsernameSyntax("HR2323232");
+            bool InputResult = _uut.ValidUsernameSyntax("HR2323232");
             Assert.AreEqual(false, InputResult);
         }
 
@@ -61,7 +61,7 @@ namespace Test
 
         public void IgnoreCase()
         {
-            bool InputResult = inputValidator.ValidUsernameSyntax("au454545");
+            bool InputResult = _uut.ValidUsernameSyntax("au454545");
             Assert.AreEqual(true, InputResult);
         }
     }

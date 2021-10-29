@@ -10,6 +10,8 @@ using System.Windows;
 using Desktop_Application.Views;
 using System.Windows.Media;
 using Desktop_Application.DataAccessLayer;
+using DesktopApplication.Models;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Desktop_Application.ViewModels
 {
@@ -29,7 +31,7 @@ namespace Desktop_Application.ViewModels
         private ICourse SWD;
         private ICourse NGK;
         private List<ILecture> lectures;
-        private DAL_Student dal_student;
+        
 
         #region Properties
         private IDialogService _dialogService;
@@ -63,13 +65,24 @@ namespace Desktop_Application.ViewModels
         }
         #endregion
 
+        #region Class Dependencies
+
+        public IDAL_Student DalStudent { get; set; }
+        public IMessageBox MessageBox { get; set; }
+
+        #endregion
+
         #region Method
         public HomeViewModel(IDialogService dialogService)
         {
-            Application.Current.Resources["BackgroundBrush"] = Brushes.White;
-            Student = ((App) App.Current).Student;
+            //Null check to support unit tests:
+            if (Application.Current != null)
+                Application.Current.Resources["BackgroundBrush"] = Brushes.White;
+            Student = ((App) App.Current)?.Student;
+
             _dialogService = dialogService;
-            dal_student = new DAL_Student();
+            DalStudent = new DAL_Student();
+            MessageBox = new DesktopApplication.Models.MessageBox();
 
             SetFakeCourses();
 
@@ -186,7 +199,7 @@ namespace Desktop_Application.ViewModels
         {
             Student.ToDoItems.Remove(currentToDoItem);
             Student.DoneToDoItems.Add(new ToDoItem(currentToDoItem.ToDoTitle, currentToDoItem.ToDoDescription, currentToDoItem.Date, currentToDoItem.Done));
-            bool didUpdate = await dal_student.UpdateStudent(Student);
+            bool didUpdate = await DalStudent.UpdateStudent(Student);
             if (!didUpdate)
             {
                 MessageBox.Show("Todo was not added to DB!");
@@ -243,7 +256,7 @@ namespace Desktop_Application.ViewModels
                     Title = "Result is OK";
                     ToDoItem = ((App)Application.Current).ToDoItem;
                     Student.ToDoItems.Add(ToDoItem);
-                    bool didUpdate = await dal_student.UpdateStudent(Student);
+                    bool didUpdate = await DalStudent.UpdateStudent(Student);
                     if (!didUpdate)
                     {
                         MessageBox.Show("Todo was not added to DB!");
