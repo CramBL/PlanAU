@@ -177,10 +177,16 @@ namespace Desktop_Application.ViewModels
         public DelegateCommand<ToDoItem> RemoveToDoItem =>
             _removeToDoItem ??= new DelegateCommand<ToDoItem>(ExecuteRemoveToDoItem);
 
-        private void ExecuteRemoveToDoItem(ToDoItem currentToDoItem)
+        private async void ExecuteRemoveToDoItem(ToDoItem currentToDoItem)
         {
             Student.ToDoItems.Remove(currentToDoItem);
             Student.DoneToDoItems.Add(new ToDoItem(currentToDoItem.ToDoTitle, currentToDoItem.ToDoDescription, currentToDoItem.Date, currentToDoItem.Done));
+            bool didUpdate = await dal_student.UpdateStudent(Student);
+            if (!didUpdate)
+            {
+                MessageBox.Show("Todo was not added to DB!");
+            }
+
         }
 
         private DelegateCommand<string> _selectOneCourse;
