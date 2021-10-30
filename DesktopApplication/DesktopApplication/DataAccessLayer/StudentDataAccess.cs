@@ -11,13 +11,13 @@ using Desktop_Application.Models;
 
 namespace Desktop_Application.DataAccessLayer
 {
-    public interface IDAL_Student
+    public interface IStudentDataAccess
     {
         Task<Student> LoginAttemptAuthorize(Student student);
         Task<bool> UpdateStudent(Student student);
 
     }
-    public class DAL_Student : IDAL_Student
+    public class StudentDataAccess : IStudentDataAccess
     {
         private readonly HttpClient Client;
 
@@ -26,7 +26,7 @@ namespace Desktop_Application.DataAccessLayer
         private readonly Uri StudentUri;
         private readonly string MediaType;
 
-        public DAL_Student()
+        public StudentDataAccess()
         {
             Client = new HttpClient();
             localHost = new Uri("https://localhost:44323");
@@ -35,6 +35,7 @@ namespace Desktop_Application.DataAccessLayer
             MediaType = "application/json";
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2007:Consider calling ConfigureAwait on the awaited task", Justification = "<Pending>")]
         public async Task<Student> LoginAttemptAuthorize(Student student)
         {
 
@@ -48,6 +49,7 @@ namespace Desktop_Application.DataAccessLayer
                 return null;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2007:Consider calling ConfigureAwait on the awaited task", Justification = "<Pending>")]
         public async Task<bool> UpdateStudent(Student student)
         {
             using var putContent = GetSerializedEncodedStudent(student);

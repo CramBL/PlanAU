@@ -69,7 +69,7 @@ namespace Desktop_Application.ViewModels
 
         #region Class Dependencies
 
-        public IDAL_Student DalStudent { get; set; }
+        public IStudentDataAccess DalStudent { get; set; }
         public IMessageBox MessageBox { get; set; }
 
         #endregion
@@ -83,7 +83,7 @@ namespace Desktop_Application.ViewModels
             Student = ((App) App.Current)?.Student;
 
             _dialogService = dialogService;
-            DalStudent = new DAL_Student();
+            DalStudent = new StudentDataAccess();
             MessageBox = new DesktopApplication.Models.MessageBox();
 
             SetFakeCourses();

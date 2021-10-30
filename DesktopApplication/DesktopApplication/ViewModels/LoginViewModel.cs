@@ -14,7 +14,7 @@ namespace Desktop_Application.ViewModels
         public LoginViewModel()
         {
             InputValidator = new InputValidator();
-            DALStudent = new DAL_Student();
+            StudDataAccess = new StudentDataAccess();
             MessageBox = new DesktopApplication.Models.MessageBox();
         }
 
@@ -36,7 +36,7 @@ namespace Desktop_Application.ViewModels
         #endregion
         #region Class Dependencies
 
-        public IDAL_Student DALStudent { get; set; }
+        public IStudentDataAccess StudDataAccess { get; set; }
         public IInputValidator InputValidator { get; set; }
 
         //removes the message box dialogue from the unit tests by allowing injection of fake
@@ -70,7 +70,7 @@ namespace Desktop_Application.ViewModels
             {
                 Student student = new Student(UserNameBox, PasswordBox);
 
-                Task<Student> authorizeTask = DALStudent.LoginAttemptAuthorize(student);
+                Task<Student> authorizeTask = StudDataAccess.LoginAttemptAuthorize(student);
                 student = await authorizeTask;
 
                 if (student != null)

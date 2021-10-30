@@ -24,7 +24,7 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
         private string invalidPassword = "forkertKodeord";
 
         private IInputValidator _inputValidator;
-        private IDAL_Student _dalStudent;
+        private IStudentDataAccess _dalStudent;
         private IMessageBox _messageBox;
 
         [SetUp]
@@ -36,7 +36,7 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
 
             //substitute dependencies
             _uut.InputValidator = (_inputValidator = Substitute.For<IInputValidator>());
-            _uut.DALStudent = (_dalStudent = Substitute.For<IDAL_Student>());
+            _uut.StudDataAccess = (_dalStudent = Substitute.For<IStudentDataAccess>());
             _uut.MessageBox = (_messageBox = Substitute.For<IMessageBox>());
 
             //set test data

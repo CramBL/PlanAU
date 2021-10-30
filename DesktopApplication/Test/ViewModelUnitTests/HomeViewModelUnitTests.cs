@@ -23,7 +23,7 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
         private ICourse course;
 
 
-        private IDAL_Student _dalStudent;
+        private IStudentDataAccess _dalStudent;
         private IMessageBox _messageBox;
         private IDialogService _dialogService;
 
@@ -38,7 +38,7 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
 
             //substitute dependencies
             
-            _uut.DalStudent = (_dalStudent = Substitute.For<IDAL_Student>());
+            _uut.DalStudent = (_dalStudent = Substitute.For<IStudentDataAccess>());
             _uut.MessageBox = (_messageBox = Substitute.For<IMessageBox>());
 
             //set test data
