@@ -265,9 +265,7 @@ namespace Desktop_Application.ViewModels
                     Title = "Result is OK";
                     ToDoItem = ((App)Application.Current).ToDoItem;
                     Student.ToDoItems.Add(ToDoItem);
-#pragma warning disable CA2007 // Consider calling ConfigureAwait on the awaited task
                     bool didUpdate = await DalStudent.UpdateStudent(Student);
-#pragma warning restore CA2007 // Consider calling ConfigureAwait on the awaited task
                     if (!didUpdate)
                     {
                         MessageBox.Show("Todo was not added to DB!");
