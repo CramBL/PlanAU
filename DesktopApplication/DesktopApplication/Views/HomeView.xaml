@@ -39,7 +39,7 @@
         </Grid.RowDefinitions>
         <!--#endregion-->
 
-        <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="6" Grid.ColumnSpan="6"  CornerRadius="20" Background="{DynamicResource MenuBrush}" />
+        <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="6" Grid.ColumnSpan="6"  CornerRadius="20" Background="{DynamicResource BackgroundBrush}" />
         <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.ColumnSpan="3" Margin="0,0,650,0" />
 
         <!--#region User Menu-->
@@ -294,7 +294,7 @@
 
                 </Border>
 
-                <Button Foreground="{DynamicResource TextBrush}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Height="25" Width="100" HorizontalAlignment="Center" Background="#FF7BEA88" VerticalAlignment="Top" Command="{Binding OpenAddToDoItemDialog}" >Add ToDo Item</Button>
+                <Button Foreground="{DynamicResource TextBrush}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Height="25" Width="100" HorizontalAlignment="Center" Background="{DynamicResource MarkedItemBackgroundBrush}" VerticalAlignment="Top" Command="{Binding OpenAddToDoItemDialog}" >Add ToDo Item</Button>
 
                 <!--<StackPanel Grid.Column="1" Margin="5,5,0,0" Grid.Row="1">
 
