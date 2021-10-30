@@ -158,11 +158,12 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteToggleDarkmode()
         {
-            SolidColorBrush darkBrush = System.Windows.SystemColors.WindowBrush;
-            darkBrush = new SolidColorBrush(
+            //udkommenteret pga. VS warnings, alt virker stadig og koden ser ud til at være redundant 
+            //SolidColorBrush darkBrush = System.Windows.SystemColors.WindowBrush;
+            SolidColorBrush darkBrush = new SolidColorBrush(
                     (Color)ColorConverter.ConvertFromString("#343434"));
-            SolidColorBrush PlanAUColourBrush = System.Windows.SystemColors.WindowBrush;
-            PlanAUColourBrush = new SolidColorBrush(
+            //SolidColorBrush PlanAUColourBrush = System.Windows.SystemColors.WindowBrush;
+            SolidColorBrush PlanAUColourBrush = new SolidColorBrush(
                     (Color)ColorConverter.ConvertFromString("#FF00BE9C"));
 
             if (Application.Current.Resources["BackgroundBrush"] != Brushes.White)
@@ -264,7 +265,9 @@ namespace Desktop_Application.ViewModels
                     Title = "Result is OK";
                     ToDoItem = ((App)Application.Current).ToDoItem;
                     Student.ToDoItems.Add(ToDoItem);
+#pragma warning disable CA2007 // Consider calling ConfigureAwait on the awaited task
                     bool didUpdate = await DalStudent.UpdateStudent(Student);
+#pragma warning restore CA2007 // Consider calling ConfigureAwait on the awaited task
                     if (!didUpdate)
                     {
                         MessageBox.Show("Todo was not added to DB!");

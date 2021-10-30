@@ -52,7 +52,9 @@ namespace Desktop_Application.DataAccessLayer
         {
             using var putContent = GetSerializedEncodedStudent(student);
 
+#pragma warning disable CA2007 // Consider calling ConfigureAwait on the awaited task
             var response = await Client.PutAsync(StudentUri, putContent);
+#pragma warning restore CA2007 // Consider calling ConfigureAwait on the awaited task
             if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                 return true;
             else
