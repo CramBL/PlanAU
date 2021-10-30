@@ -5,11 +5,11 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="640" Width="1080" 
-        Background="{DynamicResource BackgroundBrush}"
+        Background="Transparent"
         WindowStartupLocation="CenterScreen" 
         ResizeMode="CanResizeWithGrip"
         WindowStyle="None"
-        AllowsTransparency="True"
+        AllowsTransparency="True" 
         >
 
     <i:Interaction.Triggers>
@@ -39,6 +39,7 @@
         </Grid.RowDefinitions>
         <!--#endregion-->
 
+        <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="6" Grid.ColumnSpan="6"  CornerRadius="20" Background="{DynamicResource MenuBrush}" />
         <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.ColumnSpan="3" Margin="0,0,650,0" />
 
         <!--#region User Menu-->
@@ -345,7 +346,7 @@
 
         <Separator Grid.Row="1" Grid.ColumnSpan="6" VerticalAlignment="Bottom" Margin="0,0,0,2" Height="1"></Separator>
 
-        <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="6" Grid.ColumnSpan="6"  CornerRadius="20" />
+        
         
         
         <!--#endregion-->
