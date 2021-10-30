@@ -69,7 +69,7 @@ namespace Desktop_Application.ViewModels
 
         #region Class Dependencies
 
-        public IDAL_Student DalStudent { get; set; }
+        public IStudentDataAccess DalStudent { get; set; }
         public IMessageBox MessageBox { get; set; }
 
         #endregion
@@ -83,7 +83,7 @@ namespace Desktop_Application.ViewModels
             Student = ((App) App.Current)?.Student;
 
             _dialogService = dialogService;
-            DalStudent = new DAL_Student();
+            DalStudent = new StudentDataAccess();
             MessageBox = new DesktopApplication.Models.MessageBox();
 
             SetFakeCourses();
@@ -158,17 +158,18 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteToggleDarkmode()
         {
-            SolidColorBrush darkBrush = System.Windows.SystemColors.WindowBrush;
-            darkBrush = new SolidColorBrush(
+            //udkommenteret pga. VS warnings, alt virker stadig og koden ser ud til at være redundant 
+            //SolidColorBrush darkBrush = System.Windows.SystemColors.WindowBrush;
+            SolidColorBrush darkBrush = new SolidColorBrush(
                     (Color)ColorConverter.ConvertFromString("#343434"));
-            SolidColorBrush PlanAUColourBrush = System.Windows.SystemColors.WindowBrush;
-            PlanAUColourBrush = new SolidColorBrush(
+            //SolidColorBrush PlanAUColourBrush = System.Windows.SystemColors.WindowBrush;
+            SolidColorBrush PlanAUColourBrush = new SolidColorBrush(
                     (Color)ColorConverter.ConvertFromString("#FF00BE9C"));
 
             if (Application.Current.Resources["BackgroundBrush"] != Brushes.White)
             {
                 Application.Current.Resources["BackgroundBrush"] = Brushes.White;
-                Application.Current.Resources["MenuBrush"] = Brushes.LightGray;
+                Application.Current.Resources["MenuBrush"] = Brushes.White;
                 Application.Current.Resources["TextBrush"] = Brushes.Black;
                 Application.Current.Resources["BorderBrush"] = Brushes.Black;
                 //Application.Current.Resources["MarkedItemBackgroundBrush"] = PlanAUColourBrush;

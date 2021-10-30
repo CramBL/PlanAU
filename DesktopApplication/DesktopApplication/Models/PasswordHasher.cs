@@ -20,14 +20,11 @@ namespace Desktop_Application.Models
 
             //hash password given salt and iterations
             //iterations provide difficulty when cracking (10000 recommended)
-            using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations))
-            {
-                byte[] hash = pbkdf2.GetBytes(24);
+            using var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations);
+            byte[] hash = pbkdf2.GetBytes(24);
 
-                //return delimited string with "salt|hash"
-                return Convert.ToBase64String(salt) + "|" + Convert.ToBase64String(hash);
-                    
-            }
+            //return delimited string with "salt|hash"
+            return Convert.ToBase64String(salt) + "|" + Convert.ToBase64String(hash);
         }
 
         /// Returns true of hash of test password matches hashed password within origDelimHash
@@ -39,17 +36,14 @@ namespace Desktop_Application.Models
             var origHash = origHashedParts[1];
 
             //generate hash from test password and original salt and iterations
-            using (var pbkdf2 = new Rfc2898DeriveBytes(testPassword, origSalt, 100000))
-            {
-                byte[] testHash = pbkdf2.GetBytes(24);
+            using var pbkdf2 = new Rfc2898DeriveBytes(testPassword, origSalt, 100000);
+            byte[] testHash = pbkdf2.GetBytes(24);
 
-                //if hash values match
-                if (Convert.ToBase64String(testHash) == origHash)
-                    return true;
-                else
-                    return false;
-            }
-
+            //if hash values match
+            if (Convert.ToBase64String(testHash) == origHash)
+                return true;
+            else
+                return false;
         }
     }
 }
