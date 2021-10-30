@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen" 
         ResizeMode="CanResizeWithGrip"
         WindowStyle="None"
-        AllowsTransparency="True"
+        AllowsTransparency="False"
         >
 
     <i:Interaction.Triggers>
