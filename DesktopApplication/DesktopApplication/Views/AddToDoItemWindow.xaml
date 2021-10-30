@@ -27,18 +27,18 @@
         <!--#endregion-->
 
         <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.ColumnSpan="4" 
-                CornerRadius="20" Background="White" Grid.RowSpan="5">
+                CornerRadius="20" Background="{DynamicResource BackgroundBrush}" Grid.RowSpan="5">
         </Border>
 
-        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="62">ToDo Title</Label>
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="102">ToDo Description</Label>
-        <Label Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="66">ToDo Date</Label>
+        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="62" Foreground="{DynamicResource TextBrush}">ToDo Title</Label>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="102" Foreground="{DynamicResource TextBrush}">ToDo Description</Label>
+        <Label Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="66" Foreground="{DynamicResource TextBrush}">ToDo Date</Label>
 
-        <TextBox Grid.Row="1" Grid.Column="2" Margin="5,5,5,5" Text="{Binding Path=ToDoItem.ToDoTitle}" />
-        <TextBox Grid.Row="2" Grid.Column="2" Margin="5,5,5,5" Text="{Binding Path=ToDoItem.ToDoDescription}" />
+        <TextBox Grid.Row="1" Grid.Column="2" Margin="5,5,5,5" Text="{Binding Path=ToDoItem.ToDoTitle}" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource BackgroundBrush}"  />
+        <TextBox Grid.Row="2" Grid.Column="2" Margin="5,5,5,5" Text="{Binding Path=ToDoItem.ToDoDescription}" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource BackgroundBrush}" />
         <DatePicker Grid.Row="3" Grid.Column="2" Margin="5,20,5,15" SelectedDate="{Binding Path=ToDoItem.Date}"/>
 
-        <Button Grid.Row="4" Grid.Column="2" Height="30" Width="100" Command="{Binding OKButton}" >OK</Button>
-        <Button Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" Height="30" Width="100"  Command="{Binding CancelButton}" >Cancel</Button>
+        <Button Grid.Row="4" Grid.Column="2" Height="30" Width="100" Command="{Binding OKButton}" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource MarkedItemBackgroundBrush}">OK</Button>
+        <Button Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" Height="30" Width="100"  Command="{Binding CancelButton}" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource MarkedItemBackgroundBrush}" >Cancel</Button>
     </Grid>
 </UserControl>

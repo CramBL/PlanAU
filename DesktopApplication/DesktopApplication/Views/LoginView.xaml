@@ -35,7 +35,7 @@
         <!--#endregion-->
 
         <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="4" Grid.ColumnSpan="3" 
-                CornerRadius="20" Background="White">
+                CornerRadius="20" Background="{DynamicResource BackgroundBrush}">
 
 
 
@@ -56,12 +56,12 @@
                  Margin="85,45,0,0" Grid.Row="2" 
                  Text="{Binding Path=UserNameBox}"
                  FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
-                 TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="25"/>
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="25" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource BackgroundBrush}" />
 
         <TextBox Name="passwordBox" Text="{Binding PasswordBox}" Grid.Column="1" HorizontalAlignment="Left" 
                                         Margin="85,95,0,0" Grid.Row="2"  
                                         FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
-                                        VerticalAlignment="Top" Width="140" Height="25" />
+                                        VerticalAlignment="Top" Width="140" Height="25" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource BackgroundBrush}" />
 
         <!--<components:BindablePasswordBox x:Name="passwordBox" Password="{Binding PasswordBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" 
                  Margin="85,95,0,0" Grid.Row="2"  
@@ -71,17 +71,17 @@
         <Button Name="loginButton" Content="Login"  
                 Margin="80,20,97,0" Grid.Row="3" Grid.Column="1"
                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
-                VerticalAlignment="Top" Height="25" Width="70" Command="{Binding LoginCommand}" />
+                VerticalAlignment="Top" Height="25" Width="70" Command="{Binding LoginCommand}" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource MarkedItemBackgroundBrush}" />
 
         <Button Name="registerButton" Content="Register"  
                 Margin="140,20,0,0" Grid.Row="3" Grid.Column="1"
                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
-                VerticalAlignment="Top" Height="25"  Width="70"  Command="{Binding RegisterCommand}" />
+                VerticalAlignment="Top" Height="25"  Width="70"  Command="{Binding RegisterCommand}" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource MarkedItemBackgroundBrush}" />
 
         <Button Name="testButton" Content="Bypass"  
                 Margin="40,100,0,0" Grid.Row="3" Grid.Column="1"
                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
-                VerticalAlignment="Top" Height="25"  Width="80" 
+                VerticalAlignment="Top" Height="25"  Width="80" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource MarkedItemBackgroundBrush}"
                 Command="{Binding Bypass}"/>
 
         <!--#endregion-->

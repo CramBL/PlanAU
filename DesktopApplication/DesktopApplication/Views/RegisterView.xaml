@@ -35,7 +35,7 @@
         <!--#endregion-->
 
         <Border BorderThickness="5" BorderBrush="#FF00BE9C" Grid.RowSpan="4" Grid.ColumnSpan="3" 
-                CornerRadius="20" Background="White">
+                CornerRadius="20" Background="{DynamicResource BackgroundBrush}">
 
         </Border>
 
@@ -50,7 +50,7 @@
         <TextBox Name="userBox" Grid.Column="1" HorizontalAlignment="Left" 
                  Margin="85,30,0,0" Grid.Row="2" 
                  Text="{Binding Path=NewUserNameBox}"
-                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
+                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource BackgroundBrush}"
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="25"/>
 
         <Label Name="NameLabelFejl" Grid.Column="1" Grid.Row="2" Margin="225,25,0,0" FontSize="20" Visibility="Hidden" Foreground="Red">X</Label>
@@ -65,7 +65,7 @@
         <TextBox Name="mailBox" Grid.Column="1" HorizontalAlignment="Left" 
                  Margin="85,85,0,0" Grid.Row="2" 
                  Text="{Binding Path=MailBox}"
-                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
+                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource BackgroundBrush}"
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="25"/>
 
         <Label Name="MailLabelFejl" Grid.Column="1" Grid.Row="2" Margin="225,80,0,0" FontSize="20" Visibility="Hidden" Foreground="Red">X</Label>
@@ -79,7 +79,7 @@
        
         <TextBox Name="passwordBox" Text="{Binding NewPasswordBox}" Grid.Column="1" HorizontalAlignment="Left" 
                                         Margin="85,10,0,0" Grid.Row="3"  
-                                        FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
+                                        FontFamily="Halvetica" FontWeight="Light" FontSize="20" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource BackgroundBrush}"
                                         VerticalAlignment="Top" Width="140" Height="25"/>
 
         <Label Name="PasswordLabelFejl" Grid.Column="1" Grid.Row="3" Margin="225,5,0,0" FontSize="20" Visibility="Hidden" Foreground="Red">X</Label>
@@ -87,7 +87,7 @@
 
         <Button Name="createButton" Content="Create"  
                 Margin="140,90,0,0" Grid.Row="3" Grid.Column="1"
-                FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
+                FontFamily="Halvetica" FontWeight="Light" FontSize="20" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource MarkedItemBackgroundBrush}"
                 VerticalAlignment="Top" Height="25"  Width="70"  Command="{Binding CreateNewCommand}" />
 
         <CheckBox Content="I agree to the PlanAU subscriber agreement" Grid.Column="1" HorizontalAlignment="Left" Margin="2,64,0,0" Grid.Row="3" VerticalAlignment="Top" IsChecked="False"/>

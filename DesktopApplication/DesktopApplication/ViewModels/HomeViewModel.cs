@@ -168,7 +168,7 @@ namespace Desktop_Application.ViewModels
             if (Application.Current.Resources["BackgroundBrush"] != Brushes.White)
             {
                 Application.Current.Resources["BackgroundBrush"] = Brushes.White;
-                Application.Current.Resources["MenuBrush"] = Brushes.LightGray;
+                Application.Current.Resources["MenuBrush"] = Brushes.White;
                 Application.Current.Resources["TextBrush"] = Brushes.Black;
                 Application.Current.Resources["BorderBrush"] = Brushes.Black;
                 //Application.Current.Resources["MarkedItemBackgroundBrush"] = PlanAUColourBrush;
