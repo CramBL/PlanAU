@@ -7,11 +7,11 @@ namespace Test
 {
     class PasswordHasherUnitTests
     {
-        PasswordHasher hash = new PasswordHasher();
+        PasswordHasher hash;
         [SetUp]
         public void Setup()
         {
-
+            hash = new PasswordHasher();
         }
 
         [TestCase("hello")]
