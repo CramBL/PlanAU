@@ -5,8 +5,16 @@ using System.Text;
 
 namespace Desktop_Application.Models
 {
+    public interface IPasswordHasher
+    {
+        string Generate(string password, int iterations = 100000);
+
+        bool IsValid(string testPassword, string origDelimHash);
+
+    }
+
     //Adapted from https://www.cidean.com/blog/2019/password-hashing-using-rfc2898derivebytes/
-    public class PasswordHasher
+    public class PasswordHasher : IPasswordHasher
     {
         /// Return a string delimited with random salt and hashed password
         public string Generate(string password, int iterations = 100000)

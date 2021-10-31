@@ -9,11 +9,12 @@ namespace Test
 {
     public class Tests
     {
-        //DAL_Student dal_student = new DAL_Student();
-        //[SetUp]
-        //public void Setup()
-        //{
-        //}
+        StudentDataAccess _uut;
+        [SetUp]
+        public void Setup()
+        {
+            _uut = new StudentDataAccess();
+        }
 
         //[Test]
         //public void LoginAttemptAuthorizeValidAuIdAndPassword()

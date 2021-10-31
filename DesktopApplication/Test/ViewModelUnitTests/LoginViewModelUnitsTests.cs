@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
 using Desktop_Application.DataAccessLayer;
 using Desktop_Application.Models;
 using Desktop_Application.ViewModels;
@@ -101,6 +102,26 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
             _uut.LoginCommand.Execute();
             //assert
             _messageBox.ReceivedWithAnyArgs(1).Show("");//AnyArgs so test still works if error message changes
+        }
+
+        [Test]
+        public void ExecuteLoginCommand_ValidLogin_RunsWithoutExceptions()
+        {
+            //arrange
+            _inputValidator.ValidUsernameSyntax(_uut.UserNameBox).Returns(true);
+            _inputValidator.ValidPasswordSyntax(_uut.PasswordBox).Returns(true);
+            _dalStudent.LoginAttemptAuthorize(new Student()).ReturnsForAnyArgs(new Student(validUserName, validPassword));
+            //act
+            try
+            {
+                _uut.LoginCommand.Execute();
+            }
+            catch (Exception e)
+            {
+                //assert
+                Assert.Fail("Expected no exception but got:" + e.Message);
+            }
+            
         }
     }
 }
