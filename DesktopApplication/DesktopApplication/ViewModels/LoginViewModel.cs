@@ -75,10 +75,11 @@ namespace Desktop_Application.ViewModels
 
                 if (student != null)
                 {
-                    ((App)App.Current).Student = student;
+                    if (App.Current != null)
+                        ((App)App.Current).Student = student;
                     HomeView homeViewInstance = new HomeView();
                     homeViewInstance.Show();
-                    App.Current.MainWindow.Close();
+                    App.Current?.MainWindow.Close();
                 }
                 else
                     MessageBox.Show("Wrong Password or UserID, try again");
