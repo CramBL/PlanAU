@@ -113,19 +113,12 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
             _inputValidator.ValidPasswordSyntax(_uut.PasswordBox).Returns(true);
             _dalStudent.LoginAttemptAuthorize(new Student()).ReturnsForAnyArgs(new Student(validUserName, validPassword));
             //act
-            try
-            {
-                _uut.LoginCommand.Execute();
-            }
-            catch (Exception e)
-            {
-                //assert
-                Assert.Fail("Expected no exception but got:" + e.Message);
-            }
             
-            Assert.Pass("no exception thrown");
+            _uut.LoginCommand.Execute();
+            
+            
+            //assert - no exception is thrown (implicit)
 
-            
         }
     }
 }
