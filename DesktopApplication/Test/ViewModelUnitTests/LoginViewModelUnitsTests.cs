@@ -7,6 +7,7 @@ using Desktop_Application.Models;
 using Desktop_Application.ViewModels;
 using DesktopApplication.Models;
 using DryIoc.Messages;
+using FastExpressionCompiler.LightExpression;
 using NSubstitute;
 using NSubstitute.ReceivedExtensions;
 using NSubstitute.ReturnsExtensions;
@@ -121,6 +122,9 @@ namespace DesktopApplication.Test.Unit.ViewModelUnitTests
                 //assert
                 Assert.Fail("Expected no exception but got:" + e.Message);
             }
+            
+            Assert.Pass("no exception thrown");
+
             
         }
     }
