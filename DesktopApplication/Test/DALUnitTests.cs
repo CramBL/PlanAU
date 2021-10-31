@@ -9,12 +9,12 @@ namespace Test
 {
     public class Tests
     {
-        StudentDataAccess _uut;
-        [SetUp]
-        public void Setup()
-        {
-            _uut = new StudentDataAccess();
-        }
+        //StudentDataAccess _uut;
+        //[SetUp]
+        //public void Setup()
+        //{
+        //    _uut = new StudentDataAccess();
+        //}
 
         //[Test]
         //public void LoginAttemptAuthorizeValidAuIdAndPassword()
