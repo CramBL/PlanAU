@@ -22,6 +22,9 @@ namespace Test
             Student s1 = new Student(auid, password);
             Assert.AreEqual(auid,s1.AU_ID);
             Assert.AreEqual(password, s1.Password);
+            Assert.AreEqual(null, s1.DBId);
+            s1.DBId = "fakestring";
+            Assert.AreEqual("fakestring", s1.DBId);
          }
 
          [TestCase("au656565", "marsbarlover")]
