@@ -8,11 +8,11 @@ namespace Test
 {
     class TodoItemUnitTest
     {
-         DateTime date = new DateTime(2021, 10, 29);
+         
         [SetUp]
         public void Setup()
         {
-            
+            DateTime date = new DateTime(2021, 10, 29);
         }
 
         [TestCase("Unit test", "lave unit test")]
@@ -29,14 +29,27 @@ namespace Test
 
 
         [TestCase("Unit test","lave unit test")]
-        public void CToDoItem_CreateNewInstanceWith4Parameters_ObjectCreated(string title, string description)
+        public void ToDoItem_CreateNewInstanceWith4Parameters_ObjectCreated(string title, string description)
         {
             ToDoItem task_1 = new ToDoItem(title, description, new DateTime(2021,10,29), true);
             Assert.AreEqual(title, task_1.ToDoTitle);
             Assert.AreEqual(description, task_1.ToDoDescription);
-            Assert.AreEqual(date, task_1.Date);
+            Assert.AreEqual(new DateTime(2021, 10, 28), task_1.Date);
             Assert.AreEqual(true, task_1.Done);
         }
+
+
+        [Test]
+
+        public void ToDoItem_ConstructorWithNoParameters_emptyobject()
+        {
+            ToDoItem item1 = new ToDoItem();
+            Assert.AreEqual(false, item1.Done);
+            Assert.AreEqual(new DateTime(), item1.Date);
+            Assert.AreEqual(null, item1.ToDoDescription);
+            Assert.AreEqual(null, item1.ToDoTitle);
+        }
+
   
     }
 }

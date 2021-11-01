@@ -22,10 +22,18 @@ namespace Test
             Student s1 = new Student(auid, password);
             Assert.AreEqual(auid,s1.AU_ID);
             Assert.AreEqual(password, s1.Password);
+          
+         }
+
+        [TestCase("au656565", "marsbarlover")]
+        public void Student_DBgetAndSet_FirstNullAfterSetEqualtoString(string auid, string password)
+        {
+            Student s1 = new Student(auid, password);
             Assert.AreEqual(null, s1.DBId);
             s1.DBId = "fakestring";
             Assert.AreEqual("fakestring", s1.DBId);
-         }
+        }
+
 
          [TestCase("au656565", "marsbarlover")]
         public void Student_AddMail_mailStringAdded(string auid, string password)
