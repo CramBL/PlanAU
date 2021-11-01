@@ -7,9 +7,10 @@
         Title="{Binding Title}" Height="640" Width="1080" 
         Background="Transparent"
         WindowStartupLocation="CenterScreen" 
-        ResizeMode="CanResizeWithGrip"
         WindowStyle="None"
-        AllowsTransparency="False"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
+
         >
 
     <i:Interaction.Triggers>
