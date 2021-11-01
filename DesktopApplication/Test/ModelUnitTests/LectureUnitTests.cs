@@ -14,13 +14,15 @@ namespace Test
 
         }
 
-        [Test]
+        [TestCase("1","lave unit tets")]
 
-        public void creatingInstanceOfLecture()
+        public void creatingInstanceOfLecture(string number, string discription)
         {
-            Lecture lecture = new Lecture("1","lave unit test");
-            Assert.AreEqual("1", lecture.Number);
-            Assert.AreEqual("lave unit test", lecture.PreparationDescription);
+            Lecture lecture = new Lecture(number,discription);
+            Assert.AreEqual(number, lecture.Number);
+            Assert.AreEqual(discription, lecture.PreparationDescription);
+            Assert.AreEqual(null, lecture.CourseName);
+            Assert.AreEqual(null, lecture.DateString);
             
         }
         // mangler test til date
