@@ -34,7 +34,7 @@ namespace Test
             ToDoItem task_1 = new ToDoItem(title, description, new DateTime(2021,10,29), true);
             Assert.AreEqual(title, task_1.ToDoTitle);
             Assert.AreEqual(description, task_1.ToDoDescription);
-            Assert.AreEqual(new DateTime(2021, 10, 28), task_1.Date);
+            Assert.AreEqual(new DateTime(2021, 10, 29), task_1.Date);
             Assert.AreEqual(true, task_1.Done);
         }
 
