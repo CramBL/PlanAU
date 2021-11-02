@@ -12,7 +12,6 @@ using Desktop_Application.DataAccessLayer;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows;
-using Desktop_Application.DataAccessLayer;
 
 namespace Desktop_Application.ViewModels
 {
@@ -47,6 +46,18 @@ namespace Desktop_Application.ViewModels
 
         #endregion
 
+        #region Class Dependencies
+
+        public IInputValidator InputValidator { get; set; }
+        public IStudentDataAccess StudentDataAccess { get; set; }
+
+        #endregion
+
+        public RegisterViewModel()
+        {
+            InputValidator = new InputValidator();
+            StudentDataAccess = new StudentDataAccess();
+        }
         #region Command
 
         private DelegateCommand _moveWindow;
@@ -66,13 +77,13 @@ namespace Desktop_Application.ViewModels
         {
             //valider at indtastede username er på rigtig form:
 
-            if (new InputValidator().ValidUsernameSyntax(NewUserNameBox)&& new InputValidator().ValidPasswordSyntax(NewPasswordBox))
+            if (InputValidator.ValidUsernameSyntax(NewUserNameBox) && InputValidator.ValidPasswordSyntax(NewPasswordBox))
             {
                 ((App)App.Current).Student = new Student(NewUserNameBox, NewPasswordBox);
                 ((App)App.Current).Student.Email = MailBox;
 
-                StudentDataAccess studentDataAccess = new StudentDataAccess();
-                Student result = await studentDataAccess.PostStudent(((App) App.Current).Student);
+                
+                Student result = await StudentDataAccess.PostStudent(((App) App.Current).Student);
 
                 if (result != null)
                 {

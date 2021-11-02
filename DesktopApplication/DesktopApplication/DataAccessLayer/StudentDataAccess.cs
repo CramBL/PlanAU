@@ -16,6 +16,7 @@ namespace Desktop_Application.DataAccessLayer
     {
         Task<Student> LoginAttemptAuthorize(Student student);
         Task<bool> UpdateStudent(Student student);
+        Task<Student> PostStudent(Student student);
 
     }
     public class StudentDataAccess : IStudentDataAccess
