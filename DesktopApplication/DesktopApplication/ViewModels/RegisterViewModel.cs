@@ -12,6 +12,7 @@ using Desktop_Application.DataAccessLayer;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows;
+using DesktopApplication.Models;
 
 namespace Desktop_Application.ViewModels
 {
@@ -50,6 +51,7 @@ namespace Desktop_Application.ViewModels
 
         public IInputValidator InputValidator { get; set; }
         public IStudentDataAccess StudentDataAccess { get; set; }
+        public IMessageBox MessageBox { get; set; }
 
         #endregion
 
@@ -57,6 +59,7 @@ namespace Desktop_Application.ViewModels
         {
             InputValidator = new InputValidator();
             StudentDataAccess = new StudentDataAccess();
+            MessageBox = new DesktopApplication.Models.MessageBox();
         }
         #region Command
 
@@ -96,7 +99,7 @@ namespace Desktop_Application.ViewModels
                     MessageBox.Show("Something went wrong. HTTP Status code is: " + result);
             }
             else
-                System.Windows.MessageBox.Show("Invalid Username or Password(password needs between 8-20 characters 1 lower, 1 upper and one special characters) - Try again!");
+                MessageBox.Show("Invalid Username or Password(password needs between 8-20 characters 1 lower, 1 upper and one special characters) - Try again!");
         }
 
         private DelegateCommand _closeWindow;
