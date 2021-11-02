@@ -71,21 +71,18 @@ namespace Desktop_Application.ViewModels
                 ((App)App.Current).Student = new Student(NewUserNameBox, NewPasswordBox);
                 ((App)App.Current).Student.Email = MailBox;
 
-                StudentDataAccess s1 = new StudentDataAccess();
-                var result =await s1.PostStudent(((App) App.Current).Student);
+                StudentDataAccess studentDataAccess = new StudentDataAccess();
+                Student result = await studentDataAccess.PostStudent(((App) App.Current).Student);
 
-                if (result == HttpStatusCode.Created.ToString())
+                if (result != null)
                 {
+                    ((App)App.Current).Student = result;
                     HomeView HomeViewInstance = new HomeView();
                     App.Current.Windows[0].Close();
                     HomeViewInstance.Show();
                 }
                 else
-                {
-                    MessageBox.Show("Something went wrong HTTP Status code is: " + result);
-                }
-               
-
+                    MessageBox.Show("Something went wrong. HTTP Status code is: " + result);
             }
             else
                 System.Windows.MessageBox.Show("Invalid Username or Password - Try again!");
@@ -109,8 +106,6 @@ namespace Desktop_Application.ViewModels
         {
             //App.Current.MainWindow.Close();
             App.Current.Windows[0].WindowState = WindowState.Minimized;
-
-
         }
 
 

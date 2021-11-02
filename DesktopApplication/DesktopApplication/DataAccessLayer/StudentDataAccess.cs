@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 using Desktop_Application.Models;
 
 namespace Desktop_Application.DataAccessLayer
@@ -21,7 +22,7 @@ namespace Desktop_Application.DataAccessLayer
     {
         private readonly HttpClient Client;
 
-        private readonly Uri localHost;
+        private readonly string localHost;
         private readonly Uri AuthorizeUri;
         private readonly Uri StudentUri;
         private readonly string MediaType;
@@ -29,7 +30,7 @@ namespace Desktop_Application.DataAccessLayer
         public StudentDataAccess()
         {
             Client = new HttpClient();
-            localHost = new Uri("https://localhost:44323");
+            localHost = "https://localhost:44323";
             AuthorizeUri = new Uri (localHost + "/authorize");
             StudentUri = new Uri(localHost + "/Student");
             MediaType = "application/json";
@@ -75,13 +76,13 @@ namespace Desktop_Application.DataAccessLayer
         //    return student;
         //}
 
-        public async Task<string> PostStudent(Student student)
+        public async Task<Student> PostStudent(Student student)
         {
             using var postContent = GetSerializedEncodedStudent(student);
 
             var resp = await PostContentToPlanAUapi<HttpContent>(StudentUri, postContent);
 
-            return resp.StatusCode.ToString();
+            return GetDeserializedEncodedStudent(await resp.Content.ReadAsStringAsync());
         }
 
         private Student GetDeserializedEncodedStudent(string json)
