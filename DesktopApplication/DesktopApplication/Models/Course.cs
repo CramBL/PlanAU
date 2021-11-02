@@ -8,6 +8,8 @@ namespace Desktop_Application.Models
 {
     public class Course : ICourse
     {
+        public Course(){}
+
         public string Name { get; set; }
 
         private List<ILecture> _lectures;

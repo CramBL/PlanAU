@@ -24,11 +24,11 @@ namespace Desktop_Application.Models
 
     public class JsonDeserializer
     {
-        public List<ICourse> Courses { get; set; }
+        public List<Course> Courses { get; set; }
 
         public void CourseStringToJSONObject(string courseString)
         {
-            Courses.Add(System.Text.Json.JsonSerializer.Deserialize<ICourse>(courseString));
+            Courses.Add(System.Text.Json.JsonSerializer.Deserialize<Course>(courseString));
         }
         
         //Add method:

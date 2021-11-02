@@ -3,6 +3,8 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
+using System.Net;
 using System.Net.Security;
 using System.Text;
 using Desktop_Application.Models;
@@ -10,6 +12,7 @@ using Desktop_Application.DataAccessLayer;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows;
+using Desktop_Application.DataAccessLayer;
 
 namespace Desktop_Application.ViewModels
 {
@@ -57,22 +60,35 @@ namespace Desktop_Application.ViewModels
 
         private DelegateCommand _createNewCommand;
         public DelegateCommand CreateNewCommand =>
-            _createNewCommand ??= new DelegateCommand(ExecuteCreateNewCommand);
+            _createNewCommand ??= new DelegateCommand(ExecuteCreateNewCommandAsync);
 
-        public void ExecuteCreateNewCommand()
+         async void ExecuteCreateNewCommandAsync()
         {
             //valider at indtastede username er på rigtig form:
 
-            if (new InputValidator().ValidUsernameSyntax(NewUserNameBox))
+            if (new InputValidator().ValidUsernameSyntax(NewUserNameBox)&& new InputValidator().ValidPasswordSyntax(NewPasswordBox))
             {
-                ((App)App.Current).Student = new Student("AU999999", "");
-                HomeView HomeViewInstance = new HomeView();
-                App.Current.Windows[0].Close();
-                HomeViewInstance.Show();
+                ((App)App.Current).Student = new Student(NewUserNameBox, NewPasswordBox);
+                ((App)App.Current).Student.Email = MailBox;
+
+                StudentDataAccess s1 = new StudentDataAccess();
+                var result =await s1.PostStudent(((App) App.Current).Student);
+
+                if (result == HttpStatusCode.Created.ToString())
+                {
+                    HomeView HomeViewInstance = new HomeView();
+                    App.Current.Windows[0].Close();
+                    HomeViewInstance.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong HTTP Status code is: " + result);
+                }
+               
 
             }
             else
-                System.Windows.MessageBox.Show("Invalid Username - Try again!");
+                System.Windows.MessageBox.Show("Invalid Username or Password - Try again!");
         }
 
         private DelegateCommand _closeWindow;
