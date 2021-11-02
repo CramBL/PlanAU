@@ -88,7 +88,7 @@ namespace Desktop_Application.ViewModels
 
             }
             else
-                System.Windows.MessageBox.Show("Invalid Username or Password - Try again!");
+                System.Windows.MessageBox.Show("Invalid Username or Password(password needs between 8-20 characters 1 lower, 1 upper and one special characters) - Try again!");
         }
 
         private DelegateCommand _closeWindow;
