@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Navigation;
 
 namespace Desktop_Application.Models
 {
@@ -27,12 +28,16 @@ namespace Desktop_Application.Models
         /// True if username is on form: AUxxxxxx (x is number 0-9)
         public bool ValidUsernameSyntax(string username)
         {
+            _ = username ?? (username = "invalid"); //null check
+
             Match match = Regex.Match(username, _usernamePattern, RegexOptions.IgnoreCase);
             return match.Success;
         }
 
         public bool ValidPasswordSyntax(string password)
         {
+            _ = password ?? (password = "invalid"); //null check
+
             Match match = Regex.Match(password, _passwordPattern);
             return match.Success;
         }
