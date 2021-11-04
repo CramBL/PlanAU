@@ -302,5 +302,6 @@ namespace Desktop_Application.ViewModels
         }
 
         #endregion
+
     }
 }

@@ -105,8 +105,8 @@
                 <Button Grid.Column="5" Grid.Row="0" Grid.RowSpan="2" Command="{Binding SelectOneCourse}" CommandParameter="DAB" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">DAB</Button>
                 <Button Grid.Column="6" Grid.Row="0" Grid.RowSpan="2"  Command="{Binding SelectOneCourse}" CommandParameter="GUI" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}">GUI</Button>
                 <!--#region Calendar: Back and Next Buttons-->
-                <Button Grid.Column="10" Grid.Row="1" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="&lt;- Back" ></Button>
-                <Button Grid.Column="11" Grid.Row="1" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" >Next -></Button>
+                <Button Grid.Column="10" Grid.Row="1" Command="{Binding WeekBack}" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="&lt;- Back" ></Button>
+                <Button Grid.Column="11" Grid.Row="1" Command="{Binding NextWeek}" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" >Next -></Button>
                 <!--#endregion-->
             </Grid>
         </Border>
@@ -141,15 +141,17 @@
                     </Border.BorderBrush>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="186*"/>
-                            <RowDefinition Height="67*"/>
-                            <RowDefinition Height="59*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Border BorderThickness="1" Background="#FF7BEA88" BorderBrush="#FF7BEA88">
-                            <Label x:Name="label" Content="DAB 8:00-12:00"/>
-                        </Border>
-                        <Border BorderThickness="1" BorderBrush="#FFF8FF55" Grid.Row="1" Background="#FFF8FF55"/>
-                        <Label x:Name="label_homework" Content="Homework: 2 hours" Grid.Row="1"></Label>
+                        <TextBox x:Name="mandag1" Text="task" Grid.Column="1" Grid.Row="0"/>
+                        <TextBox x:Name="mandag2" Text="task" Grid.Column="1" Grid.Row="1"/>
+                        <TextBox x:Name="mandag3" Text="task" Grid.Column="1" Grid.Row="2"/>
+                        <TextBox x:Name="mandag4" Text="task" Grid.Column="1" Grid.Row="3"/>
+                        <TextBox x:Name="mandag5" Text="task" Grid.Column="1" Grid.Row="4"/>
                     </Grid>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" Margin="-1">
@@ -160,7 +162,23 @@
                             <GradientStop Color="Black" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.BorderBrush>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="tirsdag1" Text="task" Grid.Column="0" Grid.Row="0"/>
+                        <TextBox x:Name="tirsdag2" Text="task" Grid.Column="0" Grid.Row="1"/>
+                        <TextBox x:Name="tirsdag3" Text="task" Grid.Column="0" Grid.Row="2"/>
+                        <TextBox x:Name="tirsdag4" Text="task" Grid.Column="0" Grid.Row="3"/>
+                        <TextBox x:Name="tirsdag5" Text="task" Grid.Column="0" Grid.Row="4"/>
+                    </Grid>
                 </Border>
+
+
                 <Border Grid.Row="2" Grid.Column="2" BorderThickness="1" Margin="-1">
 
                     <Border.BorderBrush>
@@ -169,6 +187,20 @@
                             <GradientStop Color="Black" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.BorderBrush>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="onsdag1" Text="task" Grid.Column="0" Grid.Row="0"/>
+                        <TextBox x:Name="onsdag2" Text="task" Grid.Column="0" Grid.Row="1"/>
+                        <TextBox x:Name="onsdag3" Text="task" Grid.Column="0" Grid.Row="2"/>
+                        <TextBox x:Name="onsdag4" Text="task" Grid.Column="0" Grid.Row="3"/>
+                        <TextBox x:Name="onsdag5" Text="task" Grid.Column="0" Grid.Row="4"/>
+                    </Grid>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="3" BorderThickness="1" Margin="-1">
 
@@ -178,6 +210,20 @@
                             <GradientStop Color="Black" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.BorderBrush>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="torsdag1" Text="task" Grid.Column="0" Grid.Row="0"/>
+                        <TextBox x:Name="torsdag2" Text="task" Grid.Column="0" Grid.Row="1"/>
+                        <TextBox x:Name="torsdag3" Text="task" Grid.Column="0" Grid.Row="2"/>
+                        <TextBox x:Name="torsdag4" Text="task" Grid.Column="0" Grid.Row="3"/>
+                        <TextBox x:Name="torsdag5" Text="task" Grid.Column="0" Grid.Row="4"/>
+                    </Grid>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="4" BorderThickness="1" Margin="-1">
 
@@ -187,16 +233,22 @@
                             <GradientStop Color="Black" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.BorderBrush>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="fredag1" Text="task" Grid.Column="0" Grid.Row="0"/>
+                        <TextBox x:Name="fredag2" Text="task" Grid.Column="0" Grid.Row="1"/>
+                        <TextBox x:Name="fredag3" Text="task" Grid.Column="0" Grid.Row="2"/>
+                        <TextBox x:Name="fredag4" Text="task" Grid.Column="0" Grid.Row="3"/>
+                        <TextBox x:Name="fredag5" Text="task" Grid.Column="0" Grid.Row="4"/>
+                    </Grid>
                 </Border>
-                <Border Grid.Row="2" Grid.Column="4" BorderThickness="1" Margin="-1">
-
-                    <Border.BorderBrush>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="Black"/>
-                            <GradientStop Color="Black" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.BorderBrush>
-                </Border>
+   
                 <Border Grid.Row="2" Grid.Column="5" BorderThickness="1" Margin="-1">
 
                     <Border.BorderBrush>
@@ -205,6 +257,20 @@
                             <GradientStop Color="Black" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.BorderBrush>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="loerdag1" Text="task" Grid.Column="0" Grid.Row="0"/>
+                        <TextBox x:Name="loerdag2" Text="task" Grid.Column="0" Grid.Row="1"/>
+                        <TextBox x:Name="loerdag3" Text="task" Grid.Column="0" Grid.Row="2"/>
+                        <TextBox x:Name="loerdag4" Text="task" Grid.Column="0" Grid.Row="3"/>
+                        <TextBox x:Name="loerdag5" Text="task" Grid.Column="0" Grid.Row="4"/>
+                    </Grid>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="6" BorderThickness="1" Margin="-1">
 
@@ -214,17 +280,49 @@
                             <GradientStop Color="Black" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.BorderBrush>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="soendag1" Text="task" Grid.Column="0" Grid.Row="0"/>
+                        <TextBox x:Name="soendag2" Text="task" Grid.Column="0" Grid.Row="1"/>
+                        <TextBox x:Name="soendag3" Text="task" Grid.Column="0" Grid.Row="2"/>
+                        <TextBox x:Name="soendag4" Text="task" Grid.Column="0" Grid.Row="3"/>
+                        <TextBox x:Name="soendag5" Text="task" Grid.Column="0" Grid.Row="4"/>
+                    </Grid>
                 </Border>
 
 
 
-                <Label x:Name="labelMonday" Content="Monday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C"/>
-                <Label x:Name="labelTuesday" Content="Tuesday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="1"/>
-                <Label x:Name="labelWedensday" Content="Wedensday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="2"/>
-                <Label x:Name="labelThursday" Content="Thursday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="3"/>
-                <Label x:Name="labelFriday" Content="Friday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="4"/>
-                <Label x:Name="labelSaturday" Content="Saturday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="5"/>
-                <Label x:Name="labelSunday" Content="Sunday" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#FF00BE9C" Grid.Column="6"/>
+                <Label x:Name="labelMonday" Content="Monday" HorizontalAlignment="Center" VerticalAlignment="Bottom"  HorizontalContentAlignment="Center" FontSize="17" Foreground="#FF00BE9C"/>
+                <TextBlock x:Name="MondayDate" Text="Date" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Foreground="Black"/>
+
+                <Label x:Name="labelTuesday" Content="Tuesday" HorizontalAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontSize="17" Foreground="#FF00BE9C" Grid.Column="1"/>
+                <TextBlock x:Name="TuesdayDate" Text="Date" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Foreground="Black" Grid.Column="1"/>
+
+                <Label x:Name="labelWedensday" Content="Wedensday" HorizontalAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontSize="17" Foreground="#FF00BE9C" Grid.Column="2"/>
+                <TextBlock x:Name="WedensdayDate" Text="Date" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Foreground="Black" Grid.Column="2"/>
+
+
+                <Label x:Name="labelThursday" Content="Thursday" HorizontalAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontSize="17" Foreground="#FF00BE9C" Grid.Column="3"/>
+                <TextBlock x:Name="ThursdayDate" Text="Date" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Foreground="Black" Grid.Column="3"/>
+
+
+                <Label x:Name="labelFriday" Content="Friday" HorizontalAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontSize="17" Foreground="#FF00BE9C" Grid.Column="4"/>
+                <TextBlock x:Name="FridayDate" Text="Date" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Foreground="Black" Grid.Column="4"/>
+
+
+                <Label x:Name="labelSaturday" Content="Saturday" HorizontalAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontSize="17" Foreground="#FF00BE9C" Grid.Column="5"/>
+                <TextBlock x:Name="SaturdayDate" Text="Date" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Foreground="Black" Grid.Column="5"/>
+
+
+                <Label x:Name="labelSunday" Content="Sunday" HorizontalAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontSize="17" Foreground="#FF00BE9C" Grid.Column="6"/>
+                <TextBlock x:Name="SundayDate" Text="Date" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Foreground="Black" Grid.Column="6"/>
+
             </Grid>
         </Border>
         <!--#endregion-->
