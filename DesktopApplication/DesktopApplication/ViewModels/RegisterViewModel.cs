@@ -12,6 +12,7 @@ using Desktop_Application.DataAccessLayer;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using DesktopApplication.Models;
 
 namespace Desktop_Application.ViewModels
@@ -99,7 +100,9 @@ namespace Desktop_Application.ViewModels
                     MessageBox.Show("Something went wrong. HTTP Status code is: " + result);
             }
             else
+            {
                 MessageBox.Show("Invalid Username or Password(password needs between 8-20 characters 1 lower, 1 upper and one special characters) - Try again!");
+            }
         }
 
         private DelegateCommand _closeWindow;
