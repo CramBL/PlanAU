@@ -29,13 +29,13 @@ namespace UpdaterAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<LectureDatabaseSettings>(
-                Configuration.GetSection(nameof(LectureDatabaseSettings)));
+            services.Configure<CourseDatabaseSettings>(
+                Configuration.GetSection(nameof(CourseDatabaseSettings)));
 
-            services.AddSingleton<LectureService>();
+            services.AddSingleton<CourseService>();
 
-            services.AddSingleton<ILectureDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<LectureDatabaseSettings>>().Value);
+            services.AddSingleton<ICourseDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<CourseDatabaseSettings>>().Value);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

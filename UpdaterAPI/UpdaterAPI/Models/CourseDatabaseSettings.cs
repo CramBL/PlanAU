@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 
 namespace UpdaterAPI.Models
 {
-    public class LectureDatabaseSettings : ILectureDatabaseSettings
+    public class CourseDatabaseSettings : ICourseDatabaseSettings
     {
-        public string LectureCollectionName { get; set; }
+        public string CourseCollectionName { get; set; }
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
     }
 
-    public interface ILectureDatabaseSettings
+    public interface ICourseDatabaseSettings
     {
-        string LectureCollectionName { get; set; }
+        string CourseCollectionName { get; set; }
         string ConnectionString { get; set; }
         string DatabaseName { get; set; }
     }
