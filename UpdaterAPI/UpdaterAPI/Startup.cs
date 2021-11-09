@@ -7,10 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UpdaterAPI.Models;
+using UpdaterAPI.Services;
 
 namespace UpdaterAPI
 {
@@ -26,6 +29,13 @@ namespace UpdaterAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<LectureDatabaseSettings>(
+                Configuration.GetSection(nameof(LectureDatabaseSettings)));
+
+            services.AddSingleton<LectureService>();
+
+            services.AddSingleton<ILectureDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<LectureDatabaseSettings>>().Value);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

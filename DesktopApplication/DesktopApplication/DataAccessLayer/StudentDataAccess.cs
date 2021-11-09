@@ -33,7 +33,7 @@ namespace Desktop_Application.DataAccessLayer
             Client = new HttpClient();
             localHost = "https://localhost:44323";
             AuthorizeUri = new Uri (localHost + "/authorize");
-            StudentUri = new Uri(localHost + "/Student");
+            StudentUri = new Uri(localHost + "/");
             MediaType = "application/json";
         }
 
