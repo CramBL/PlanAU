@@ -50,6 +50,7 @@
             <MenuItem Foreground="{DynamicResource TextBrush}" Header="{Binding Student.AU_ID}" FontSize="15" Width="114" Height="39">
                 <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="_Settings">
                     <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="Toggle Darkmode" Command="{Binding ToggleDarkmode}" />
+                    <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="ImportICalFile" Command="{Binding ImportICalFile}" />
                 </MenuItem>
                 <Separator/>
                 <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="_Logout" Command="{Binding Logout}" />

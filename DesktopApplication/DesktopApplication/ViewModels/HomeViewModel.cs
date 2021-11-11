@@ -13,6 +13,9 @@ using Desktop_Application.DataAccessLayer;
 using DesktopApplication.Models;
 using MessageBox = System.Windows.MessageBox;
 using Syncfusion.UI.Xaml.Scheduler;
+using Ical.Net;
+using System.IO;
+using Ical.Net.CalendarComponents;
 
 namespace Desktop_Application.ViewModels
 {
@@ -160,6 +163,37 @@ namespace Desktop_Application.ViewModels
         #endregion
 
         #region Commands
+
+        private DelegateCommand _importICalFile;
+        public DelegateCommand ImportICalFile =>
+            _importICalFile ?? (_importICalFile = new DelegateCommand(ExecuteImportICalFile));
+
+        void ExecuteImportICalFile()
+        {
+            FileStream fs = new FileStream(@"\calendar.ics", FileMode.Open, FileAccess.Read);
+
+            var calendar = Calendar.Load(fs);
+            fs.Close();
+
+            foreach (var itemEvent in calendar.Events)
+            {
+                ScheduleAppointment appointment1 = new ScheduleAppointment();
+                string starttime = itemEvent.DtStart.ToString();
+
+                starttime = starttime.Remove(starttime.Length - 4);
+                DateTime datetimestart = DateTime.Parse(starttime);
+                appointment1.StartTime = datetimestart;
+
+                string endtime = itemEvent.DtEnd.ToString();
+
+                endtime = endtime.Remove(endtime.Length - 4);
+                DateTime datetimeend = DateTime.Parse(endtime);
+                appointment1.EndTime = datetimeend;
+
+                appointment1.Subject = itemEvent.Summary;
+                AppointmentCollection.Add(appointment1);
+            }
+        }
 
         private DelegateCommand _moveWindow;
         public DelegateCommand MoveWindow =>
