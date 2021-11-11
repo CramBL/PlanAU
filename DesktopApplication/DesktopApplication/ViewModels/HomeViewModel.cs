@@ -13,7 +13,10 @@ using Desktop_Application.DataAccessLayer;
 using DesktopApplication.Models;
 using MessageBox = System.Windows.MessageBox;
 using Syncfusion.UI.Xaml.Scheduler;
-using Syncfusion.Blazor;
+using Ical.Net;
+using System.IO;
+using Ical.Net.CalendarComponents;
+using Microsoft.Win32;
 
 namespace Desktop_Application.ViewModels
 {
@@ -84,20 +87,40 @@ namespace Desktop_Application.ViewModels
         #endregion
 
         #region Method
+        public void loadSchema(Calendar calendar)
+        {
+            foreach (var itemEvent in calendar.Events)
+            {
+                ScheduleAppointment appointment1 = new ScheduleAppointment();
+                string starttime = itemEvent.DtStart.ToString();
+
+                starttime = starttime.Remove(20);
+                DateTime datetimestart = DateTime.Parse(starttime);
+                appointment1.StartTime = datetimestart;
+
+                string endtime = itemEvent.DtEnd.ToString();
+
+                endtime = endtime.Remove(20);
+                DateTime datetimeend = DateTime.Parse(endtime);
+                appointment1.EndTime = datetimeend;
+
+                appointment1.Subject = itemEvent.Summary;
+                AppointmentCollection.Add(appointment1);
+            }
+        }
+
         public HomeViewModel(IDialogService dialogService)
         {
             AppointmentCollection = new ScheduleAppointmentCollection();
-
-            //example of creating appointment:
-            ScheduleAppointment clientMeeting = new ScheduleAppointment();
-            DateTime currentDate = DateTime.Now;
-            DateTime startTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 10, 0, 0);
-            DateTime endTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 12, 0, 0);
-            clientMeeting.StartTime = startTime;
-            clientMeeting.EndTime = endTime;
-            clientMeeting.Subject = "ClientMeeting";
-            AppointmentCollection.Add(clientMeeting);
-
+            //Creating new event   
+            //ScheduleAppointment clientMeeting = new ScheduleAppointment();
+            //DateTime currentDate = DateTime.Now;
+            //DateTime startTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 10, 0, 0);
+            //DateTime endTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 12, 0, 0);
+            //clientMeeting.StartTime = startTime;
+            //clientMeeting.EndTime = endTime;
+            //clientMeeting.Subject = "ClientMeeting";
+            //AppointmentCollection.Add(clientMeeting);
 
             //Null check to support unit tests:
             if (Application.Current != null)
@@ -170,7 +193,40 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteImportICalFile()
         {
+            var openDialog = new OpenFileDialog
+            {
+                Filter = "iCalendar files (*.ics)|*.ics",
+                //DefaultExt = "ics"
+            };
+            if (openDialog.ShowDialog(Application.Current.Windows[0])==true)
+            {
+                FileStream fs = new FileStream(openDialog.FileName, FileMode.Open, FileAccess.Read);
+
+                var calendar = Calendar.Load(fs);
+                loadSchema(calendar);
+                fs.Close();
+            }
+
             
+
+            //foreach (var itemEvent in calendar.Events)
+            //{
+            //    ScheduleAppointment appointment1 = new ScheduleAppointment();
+            //    string starttime = itemEvent.DtStart.ToString();
+
+            //    starttime = starttime.Remove(starttime.Length - 4);
+            //    DateTime datetimestart = DateTime.Parse(starttime);
+            //    appointment1.StartTime = datetimestart;
+
+            //    string endtime = itemEvent.DtEnd.ToString();
+
+            //    endtime = endtime.Remove(endtime.Length - 4);
+            //    DateTime datetimeend = DateTime.Parse(endtime);
+            //    appointment1.EndTime = datetimeend;
+
+            //    appointment1.Subject = itemEvent.Summary;
+            //    AppointmentCollection.Add(appointment1);
+            //}
         }
 
         private DelegateCommand _moveWindow;
