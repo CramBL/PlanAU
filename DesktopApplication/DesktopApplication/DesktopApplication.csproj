@@ -22,6 +22,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
+    <PackageReference Include="Syncfusion.SfScheduler.WPF" Version="19.3.0.48" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="calendar.ics" />

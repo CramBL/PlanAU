@@ -113,14 +113,14 @@ namespace Desktop_Application.ViewModels
         {
             AppointmentCollection = new ScheduleAppointmentCollection();
             //Creating new event   
-            ScheduleAppointment clientMeeting = new ScheduleAppointment();
-            DateTime currentDate = DateTime.Now;
-            DateTime startTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 10, 0, 0);
-            DateTime endTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 12, 0, 0);
-            clientMeeting.StartTime = startTime;
-            clientMeeting.EndTime = endTime;
-            clientMeeting.Subject = "ClientMeeting";
-            AppointmentCollection.Add(clientMeeting);
+            //ScheduleAppointment clientMeeting = new ScheduleAppointment();
+            //DateTime currentDate = DateTime.Now;
+            //DateTime startTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 10, 0, 0);
+            //DateTime endTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 12, 0, 0);
+            //clientMeeting.StartTime = startTime;
+            //clientMeeting.EndTime = endTime;
+            //clientMeeting.Subject = "ClientMeeting";
+            //AppointmentCollection.Add(clientMeeting);
 
             //Null check to support unit tests:
             if (Application.Current != null)
