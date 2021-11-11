@@ -94,13 +94,13 @@ namespace Desktop_Application.ViewModels
                 ScheduleAppointment appointment1 = new ScheduleAppointment();
                 string starttime = itemEvent.DtStart.ToString();
 
-                starttime = starttime.Remove(starttime.Length - 4);
+                starttime = starttime.Remove(20);
                 DateTime datetimestart = DateTime.Parse(starttime);
                 appointment1.StartTime = datetimestart;
 
                 string endtime = itemEvent.DtEnd.ToString();
 
-                endtime = endtime.Remove(endtime.Length - 4);
+                endtime = endtime.Remove(20);
                 DateTime datetimeend = DateTime.Parse(endtime);
                 appointment1.EndTime = datetimeend;
 
