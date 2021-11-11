@@ -50,7 +50,7 @@
             <MenuItem Foreground="{DynamicResource TextBrush}" Header="{Binding Student.AU_ID}" FontSize="15" Width="114" Height="39">
                 <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="_Settings">
                     <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="Toggle Darkmode" Command="{Binding ToggleDarkmode}" />
-                    <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="Import ICal file" Command="{Binding ImportICalFile}" />
+                    <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="ImportICalFile" Command="{Binding ImportICalFile}" />
                 </MenuItem>
                 <Separator/>
                 <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="_Logout" Command="{Binding Logout}" />
@@ -108,13 +108,18 @@
                 <Button Grid.Column="5" Grid.Row="0" Grid.RowSpan="2" Command="{Binding SelectOneCourse}" CommandParameter="DAB" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="DAB"/>
                 <Button Grid.Column="6" Grid.Row="0" Grid.RowSpan="2"  Command="{Binding SelectOneCourse}" CommandParameter="GUI" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="GUI"/>
                 <!--#region Calendar: Back and Next Buttons-->
-                <Button Grid.Column="10" Grid.Row="1" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="&lt;- Back" />
-                <Button Grid.Column="11" Grid.Row="1" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="Next -&gt;" />
+                <!--<Button Grid.Column="10" Grid.Row="1" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="&lt;- Back" />-->
+                <!--<Button Grid.Column="11" Grid.Row="1" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="Next -&gt;" />-->
                 <!--#endregion-->
             </Grid>
         </Border>
 
         <!--#endregion-->
+
+        <syncfusion:SfScheduler ViewType="Week" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"
+                                ItemsSource="{Binding AppointmentCollection}"
+                                />
+
 
         <!--#region Calendar Mockup-->
         <!--
