@@ -12,6 +12,7 @@ using System.Windows.Media;
 using Desktop_Application.DataAccessLayer;
 using DesktopApplication.Models;
 using MessageBox = System.Windows.MessageBox;
+using Syncfusion.UI.Xaml.Scheduler;
 
 namespace Desktop_Application.ViewModels
 {
@@ -36,6 +37,13 @@ namespace Desktop_Application.ViewModels
 
 
         #region Properties
+        private ScheduleAppointmentCollection _appointmentCollection;
+        public ScheduleAppointmentCollection AppointmentCollection
+        {
+            get { return _appointmentCollection; }
+            set { SetProperty(ref _appointmentCollection, value); }
+        }
+
         private IDialogService _dialogService;
 
         private ObservableCollection<Models.ICourse> _selectedCourses;
@@ -77,6 +85,17 @@ namespace Desktop_Application.ViewModels
         #region Method
         public HomeViewModel(IDialogService dialogService)
         {
+            AppointmentCollection = new ScheduleAppointmentCollection();
+            //Creating new event   
+            ScheduleAppointment clientMeeting = new ScheduleAppointment();
+            DateTime currentDate = DateTime.Now;
+            DateTime startTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 10, 0, 0);
+            DateTime endTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 12, 0, 0);
+            clientMeeting.StartTime = startTime;
+            clientMeeting.EndTime = endTime;
+            clientMeeting.Subject = "ClientMeeting";
+            AppointmentCollection.Add(clientMeeting);
+
             //Null check to support unit tests:
             if (Application.Current != null)
                 Application.Current.Resources["BackgroundBrush"] = Brushes.White;
