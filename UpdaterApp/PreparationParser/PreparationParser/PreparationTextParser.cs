@@ -8,7 +8,7 @@ namespace PreparationParser
 {
     class PreparationTextParser
     {
-        private string _keywordPatternPrefix = "(?=";
+        private string _keywordPatternPrefix = "(?=";//evt optimer med ^ og uden lookahead?
         private const string _keywordPatternSuffix = ").*";
         public string RegExPattern { get; set; }
 
@@ -18,6 +18,7 @@ namespace PreparationParser
             "watch ", "read ", "look at"
         };
 
+		//Denne liste kunne matches som en alternativ word group, evt. positive lookahead på "://" eller lignende.
         //standard keywords indicating content to be watched/read/etc.
         public List<string> ReferencedContentList { get; set; } = new List<string>()
         {
