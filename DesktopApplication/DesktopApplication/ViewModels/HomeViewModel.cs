@@ -89,7 +89,7 @@ namespace Desktop_Application.ViewModels
         #region Method
         public void loadSchema(Calendar calendar)
         {
-            foreach (var itemEvent in calendar.Events)
+            foreach (var itemEvent in calendar?.Events)
             {
                 ScheduleAppointment appointment1 = new ScheduleAppointment();
                 string starttime = itemEvent.DtStart.ToString();
