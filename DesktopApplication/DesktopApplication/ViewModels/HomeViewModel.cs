@@ -87,7 +87,7 @@ namespace Desktop_Application.ViewModels
         #endregion
 
         #region Method
-        public void loadSchema(Calendar calendar)
+        public void ConvertICALToSFFormat(Calendar calendar)
         {
 
             foreach (var itemEvent in calendar?.Events)
@@ -205,7 +205,7 @@ namespace Desktop_Application.ViewModels
                 FileStream fs = new FileStream(openDialog.FileName, FileMode.Open, FileAccess.Read);
 
                 var calendar = Calendar.Load(fs);
-                loadSchema(calendar);
+                ConvertICALToSFFormat(calendar);
                 fs.Close();
             }
 
