@@ -6,7 +6,6 @@
     <AssemblyName>DesktopApplication</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="calendar.ics" />
     <None Remove="Images\close.png" />
     <None Remove="Images\close_black.png" />
     <None Remove="Images\mail.png" />
@@ -25,7 +24,6 @@
     <PackageReference Include="Syncfusion.SfScheduler.WPF" Version="19.3.0.48" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="calendar.ics" />
     <Resource Include="Images\close.png" />
     <Resource Include="Images\close_black.png" />
     <Resource Include="Images\mail.png" />

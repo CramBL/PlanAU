@@ -89,23 +89,26 @@ namespace Desktop_Application.ViewModels
         #region Method
         public void loadSchema(Calendar calendar)
         {
-            foreach (var itemEvent in calendar.Events)
+            if (calendar != null)
             {
-                ScheduleAppointment appointment1 = new ScheduleAppointment();
-                string starttime = itemEvent.DtStart.ToString();
+                foreach (var itemEvent in calendar.Events)
+                {
+                    ScheduleAppointment appointment1 = new ScheduleAppointment();
+                    string starttime = itemEvent.DtStart.ToString();
 
-                starttime = starttime.Remove(20);
-                DateTime datetimestart = DateTime.Parse(starttime);
-                appointment1.StartTime = datetimestart;
+                    starttime = starttime.Remove(20);
+                    DateTime datetimestart = DateTime.Parse(starttime);
+                    appointment1.StartTime = datetimestart;
 
-                string endtime = itemEvent.DtEnd.ToString();
+                    string endtime = itemEvent.DtEnd.ToString();
 
-                endtime = endtime.Remove(20);
-                DateTime datetimeend = DateTime.Parse(endtime);
-                appointment1.EndTime = datetimeend;
+                    endtime = endtime.Remove(20);
+                    DateTime datetimeend = DateTime.Parse(endtime);
+                    appointment1.EndTime = datetimeend;
 
-                appointment1.Subject = itemEvent.Summary;
-                AppointmentCollection.Add(appointment1);
+                    appointment1.Subject = itemEvent.Summary;
+                    AppointmentCollection.Add(appointment1);
+                }
             }
         }
 
