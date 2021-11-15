@@ -89,27 +89,26 @@ namespace Desktop_Application.ViewModels
         #region Method
         public void loadSchema(Calendar calendar)
         {
-            if (calendar != null)
+
+            foreach (var itemEvent in calendar?.Events)
             {
-                foreach (var itemEvent in calendar.Events)
-                {
-                    ScheduleAppointment appointment1 = new ScheduleAppointment();
-                    string starttime = itemEvent.DtStart.ToString();
+                ScheduleAppointment appointment1 = new ScheduleAppointment();
+                string starttime = itemEvent.DtStart.ToString();
 
-                    starttime = starttime.Remove(20);
-                    DateTime datetimestart = DateTime.Parse(starttime);
-                    appointment1.StartTime = datetimestart;
+                starttime = starttime.Remove(20);
+                DateTime datetimestart = DateTime.Parse(starttime);
+                appointment1.StartTime = datetimestart;
 
-                    string endtime = itemEvent.DtEnd.ToString();
+                string endtime = itemEvent.DtEnd.ToString();
 
-                    endtime = endtime.Remove(20);
-                    DateTime datetimeend = DateTime.Parse(endtime);
-                    appointment1.EndTime = datetimeend;
+                endtime = endtime.Remove(20);
+                DateTime datetimeend = DateTime.Parse(endtime);
+                appointment1.EndTime = datetimeend;
 
-                    appointment1.Subject = itemEvent.Summary;
-                    AppointmentCollection.Add(appointment1);
-                }
+                appointment1.Subject = itemEvent.Summary;
+                AppointmentCollection.Add(appointment1);
             }
+
         }
 
         public HomeViewModel(IDialogService dialogService)
@@ -128,7 +127,7 @@ namespace Desktop_Application.ViewModels
             //Null check to support unit tests:
             if (Application.Current != null)
                 Application.Current.Resources["BackgroundBrush"] = Brushes.White;
-            Student = ((App) App.Current)?.Student;
+            Student = ((App)App.Current)?.Student;
 
             _dialogService = dialogService;
             DalStudent = new StudentDataAccess();
@@ -201,7 +200,7 @@ namespace Desktop_Application.ViewModels
                 Filter = "iCalendar files (*.ics)|*.ics",
                 //DefaultExt = "ics"
             };
-            if (openDialog.ShowDialog(Application.Current.Windows[0])==true)
+            if (openDialog.ShowDialog(Application.Current.Windows[0]) == true)
             {
                 FileStream fs = new FileStream(openDialog.FileName, FileMode.Open, FileAccess.Read);
 
@@ -210,7 +209,7 @@ namespace Desktop_Application.ViewModels
                 fs.Close();
             }
 
-            
+
 
             //foreach (var itemEvent in calendar.Events)
             //{
@@ -343,7 +342,7 @@ namespace Desktop_Application.ViewModels
 
 
         private void ExecuteOpenAddToDoItemDialog()
-        {  
+        {
             var tempToDoItem = new ToDoItem("", "", DateTime.Now);
             ((App)Application.Current).ToDoItem = tempToDoItem;
             _dialogService.ShowDialog("AddToDoItemWindow", null, async r =>
