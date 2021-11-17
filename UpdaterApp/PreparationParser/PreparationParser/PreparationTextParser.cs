@@ -80,7 +80,7 @@ namespace PreparationParser
         public List<string> SplitToCintoModules(string RawTableOfContents)
         {
             var ListOfModules =
-                Regex.Split(RawTableOfContents, TableOfContentPattern)
+                Regex.Split(RawTableOfContents,  @"(?=(ModuleId))")
                     .Where(i =>
                         !string.IsNullOrEmpty(i)
                         && i.Contains("ModuleId\"")).ToList();// "ModuleId\"" identifies the individual module JSON-objects

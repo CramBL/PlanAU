@@ -103,7 +103,7 @@ namespace PreparationParser
 
             if (moduleTextPart != null)
             {
-                var activityMatchesList = Regex.Matches(moduleTextPart, @"(optional|watch |read |look at|link).+?(?=(link|\\n))", RegexOptions.IgnoreCase)
+                var activityMatchesList = Regex.Matches(moduleTextPart, @"(optional|watch |read |link).+?(?=(link|\\n))", RegexOptions.IgnoreCase)
                     .Select(m=>m.Value)
                     .Where(s => 
                         !s.Contains("optional", StringComparison.OrdinalIgnoreCase))

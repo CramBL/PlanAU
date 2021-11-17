@@ -37,7 +37,7 @@ namespace DataAccessBrightspace
             Client = new HttpClient(ClientHandler);
             Host = "https://testaarhus.brightspace.com/d2l/";
             loginUri = new Uri(Host + "lp/auth/login/login.d2l");
-            ModuleToCUri = new Uri(Host + "api/le/1.23/11056/content/toc");
+            ModuleToCUri = new Uri(Host + "api/le/1.23/11056/content/toc"); //11056 = course ID
             //MediaType = "application/json";
         }
 
