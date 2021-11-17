@@ -23,7 +23,9 @@ namespace DataAccessBrightspace
 
             var prepParser = new PreparationTextParser();
 
-            var prepItems = prepParser.ParseText(responseString.Result);
+            
+
+            var prepItems = prepParser.ParseModuleTableOfContents(responseString.Result);
 
             foreach (var prepItem in prepItems)
             {

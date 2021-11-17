@@ -3,67 +3,131 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Channels;
 
 namespace PreparationParser
 {
     class PreparationTextParser
     {
-        private string _keywordPatternPrefix = "(?=";
-        private const string _keywordPatternSuffix = ").*";
-        public string RegExPattern { get; set; }
-
-        //standard keywords indicating an act of preparation expected of the student e.g. watch/read
-        public List<string> PreparationKeywordsList { get; set; } = new List<string>()
+        
+        public Dictionary<int, List<string>> ParseModuleTableOfContents(string RawTableOfContents)
         {
-            "watch ", "read ", "look at"
-        };
 
-        //standard keywords indicating content to be watched/read/etc.
-        public List<string> ReferencedContentList { get; set; } = new List<string>()
-        {
-            "link", "video"
-        };
+            var moduleDescriptionList = SplitToCintoModules(RawTableOfContents);
 
 
-        public PreparationTextParser()
-        {
-            RegExPattern = BuildKeywordPattern(PreparationKeywordsList, ReferencedContentList);
+            return ExtractLecturePreparationItems(moduleDescriptionList);
         }
 
-        public string BuildKeywordPattern(List<string> preparationList, List<string> contentList)
+        public List<string> SplitToCintoModules(string RawTableOfContents)
         {
+            var ListOfModules =
+                Regex.Split(RawTableOfContents, @"(?=(ModuleId))")
+                    .Where(i =>
+                        !string.IsNullOrEmpty(i)
+                        && i.Contains("ModuleId\"")).ToList();// "ModuleId\"" identifies the individual module JSON-objects
 
-            _keywordPatternPrefix += string.Join('|', preparationList) 
-                                     + '|' 
-                                     + string.Join('|', contentList);
+            List<string> moduleDescriptionList = 
+                ListOfModules.Select(module => 
+                    Regex.Matches(
+                        module, 
+                        @"(Description\"":).+?}", 
+                        RegexOptions.IgnoreCase)
+                        .FirstOrDefault()?
+                        .ToString())
+                    .ToList();
 
-            return _keywordPatternPrefix + _keywordPatternSuffix;
+            return moduleDescriptionList;
         }
 
-        public List<string> ParseText(string preparationText)
+        private Dictionary<int, List<string>> ExtractLecturePreparationItems(List<string> moduleDescriptionList)
         {
-            List<string> preparationItemList = new();
 
-            //find all matches with keywords in preparation text
-            var matches = Regex.Matches(preparationText, RegExPattern, RegexOptions.IgnoreCase);
+            Dictionary<int, List<string>> moduleDictionary = new();
 
-            /*
-             [if] Separate all matches that are activities e.g. "read this"/"watch this"
-             [else if] Append all links/video descriptions to the activity preceding it     
-            */
-            foreach (var match in matches)
+            int moduleNo = 0;
+            foreach (var moduleDescription in moduleDescriptionList)
             {
-                if (PreparationKeywordsList.Any(PreparationKeywordsList => match
-                        .ToString().Contains(PreparationKeywordsList, StringComparison.OrdinalIgnoreCase)))//Ordinal is faster (culture is irrelevant)
-                    preparationItemList.Add(match.ToString());
-                else if (ReferencedContentList.Any(ReferencedContentList => match
-                    .ToString().Contains(ReferencedContentList, StringComparison.OrdinalIgnoreCase)))
-                    preparationItemList[^1] += "\n"+match;
+                moduleDictionary.Add(moduleNo++, CollectDescriptionItems(moduleDescription));
             }
 
-            return preparationItemList;
+            return moduleDictionary;
         }
 
+        private List<string> CollectDescriptionItems(string moduleDescription)
+        {
 
+
+            var contentMatchesList = CollectContentMatches(moduleDescription);
+
+            var activityMatchesList = CollectActivityMatches(moduleDescription);
+
+            activityMatchesList = ReplaceEmbeddedWithRealLinks(activityMatchesList, contentMatchesList);
+
+            activityMatchesList = CleanUpSymbolsAndHtml(activityMatchesList);
+
+
+            return activityMatchesList;
+        }
+
+        private List<string> CleanUpSymbolsAndHtml(List<string> activityMatchesList)
+        {
+            for (int i = 0; i < activityMatchesList.Count; i++)
+            {
+                activityMatchesList[i] = Regex.Replace(activityMatchesList[i], "(\\\\)|(\\\"\\>).+?(<\\/a>)", string.Empty);
+            }
+
+            return activityMatchesList;
+        }
+
+        private List<string> ReplaceEmbeddedWithRealLinks(List<string> activityMatchesList, List<string> contentMatchesList)
+        {
+            for (int i = 0; i < activityMatchesList.Count; i++)
+            {
+                int index = contentMatchesList.FindIndex(c => c.Contains(activityMatchesList[i]));
+                if (index != -1)
+                    activityMatchesList[i] = contentMatchesList[index];
+            }
+
+            return activityMatchesList;
+        }
+
+        private List<string> CollectActivityMatches(string moduleDescription)
+        {
+            string moduleTextPart = Regex.Split(moduleDescription, @"(?=(Html\"":))")
+                .Where(i =>
+                    !string.IsNullOrEmpty(i)
+                    && i.Contains(@"""Text"":"))
+                .ToList()
+                .FirstOrDefault();
+
+            if (moduleTextPart != null)
+            {
+                var activityMatchesList = Regex.Matches(moduleTextPart, @"(optional|watch |read |look at|link).+?(?=(link|\\n))", RegexOptions.IgnoreCase)
+                    .Select(m=>m.Value)
+                    .Where(s => 
+                        !s.Contains("optional", StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                return activityMatchesList;
+            }
+            return null;
+            
+        }
+
+        private List<string> CollectContentMatches(string moduleDescription)
+        {
+            string moduleHtmlPart = Regex.Split(moduleDescription, @"(?=(Html\"":))")
+                .Where(i =>
+                    !string.IsNullOrEmpty(i)
+                    && i.Contains(@"Html"":"))
+                .ToList()[^1];
+            
+            var contentMatchesList  = Regex.Matches(moduleHtmlPart, @"(http:|https:).+?(<\/a>)", RegexOptions.IgnoreCase)
+                .Select(m=>m.Value)
+                .ToList();
+            
+            return contentMatchesList;
+        }
     }
 }
