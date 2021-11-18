@@ -237,7 +237,7 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteMoveWindow()
         {
-            App.Current.Windows[0].DragMove();
+             App.Current.Windows[0].DragMove();
         }
 
 
