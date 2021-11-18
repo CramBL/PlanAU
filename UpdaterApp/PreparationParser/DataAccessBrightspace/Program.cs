@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http.Headers;
-using System.Threading;
-using Desktop_Application.Models;
+using DataAccessBrightspace.Models;
 using PreparationParser;
 
 namespace DataAccessBrightspace
@@ -11,7 +9,7 @@ namespace DataAccessBrightspace
     {
         static void Main(string[] args)
         {
-            var DataAccess = new DataAccessBrightspace();
+            var DataAccess = new DAL.DataAccessBrightspace();
 
             var watch = new System.Diagnostics.Stopwatch();
 
@@ -39,13 +37,13 @@ namespace DataAccessBrightspace
             watch.Reset();
             watch.Start();
 
-            var prepItems = Parser.ParseModuleTableOfContents(responseString.Result);
+            var preparationDictionary = Parser.ParseModuleTableOfContents(responseString.Result);
             
             watch.Stop();
             
             Console.WriteLine($"Execution time for parsing: {watch.ElapsedMilliseconds}");
 
-            foreach (var Item in prepItems)
+            foreach (var Item in preparationDictionary)
             {
                 foreach (var value in Item.Value)
                 {
@@ -55,20 +53,13 @@ namespace DataAccessBrightspace
                 
             }
 
-            var SoftwareDesignCourse = new Course("SWD", new List<ILecture>());
+            var courseFormatter = new CourseFormatter();
+
+            var SoftwareDesignCourse = courseFormatter.DictionaryToCourseObject("SWD", preparationDictionary);
 
 
-            foreach (var item in prepItems)
-            {
-                var lecturePrepItemsList = new List<string>();
-                SoftwareDesignCourse.Lectures.Add(new Lecture(item.Key.ToString(), lecturePrepItemsList));
-                foreach (var value in item.Value)
-                {
-                    SoftwareDesignCourse.Lectures[item.Key].PreparationDescription.Add(value);
-                }
-            }
-
-            //int lol =SoftwareDesignCourse.Lectures.Count;
+            
+            int lol = SoftwareDesignCourse.Lectures.Count;
             
         }
     }
