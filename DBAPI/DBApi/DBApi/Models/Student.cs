@@ -12,6 +12,7 @@ namespace DBApi.Models {
 		public string password { get; set; }
 		public string email { get; set; }
 
+		public List<string> courses { get; set; }
 		public List<ToDo> toDos { get; set; }
 	}
 }
