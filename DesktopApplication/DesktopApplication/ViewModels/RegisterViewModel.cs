@@ -84,8 +84,9 @@ namespace Desktop_Application.ViewModels
             {
                 ((App)App.Current).Student = new Student(NewUserNameBox, NewPasswordBox);
                 ((App)App.Current).Student.Email = MailBox;
+                ((App)App.Current).Student.Courses.Add("RTF");
 
-                
+
                 Student result = await StudentDataAccess.PostStudent(((App) App.Current).Student);
 
                 if (result != null)

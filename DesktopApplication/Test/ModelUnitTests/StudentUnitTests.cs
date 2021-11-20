@@ -93,7 +93,5 @@ namespace Test
             Assert.AreEqual(new DateTime(2021,10,29), aCopy[0].Date);
             Assert.AreEqual("1", s1.DoneToDoItems.Count.ToString());
         }
-
-
     }
 }

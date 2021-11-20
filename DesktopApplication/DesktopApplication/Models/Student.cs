@@ -15,6 +15,7 @@ namespace Desktop_Application.Models
             Password = password;
             ToDoItems = new ObservableCollection<ToDoItem>();
             DoneToDoItems = new ObservableCollection<ToDoItem>();
+            Courses = new ObservableCollection<string>();
         }
 
         public Student() 
@@ -66,6 +67,14 @@ namespace Desktop_Application.Models
         {
             get { return _doneToDoItems; }
             set { SetProperty(ref _doneToDoItems, value); }
+        }
+
+        private ObservableCollection<string> _courses;
+        [JsonPropertyName("courses")]
+        public ObservableCollection<string> Courses
+        {
+            get { return _courses; }
+            set { SetProperty(ref _courses, value); }
         }
     }
 }
