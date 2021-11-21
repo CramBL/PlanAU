@@ -1,4 +1,5 @@
-﻿using Desktop_Application.Views;
+﻿using System.Diagnostics;
+using Desktop_Application.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Desktop_Application.Models;
@@ -50,7 +51,7 @@ namespace Desktop_Application.ViewModels
 
         void ExecuteMoveWindow()
         {
-            App.Current.MainWindow.DragMove();
+            App.Current.Windows[0].DragMove();
         }
 
 
@@ -79,7 +80,8 @@ namespace Desktop_Application.ViewModels
                         ((App)App.Current).Student = student;
                     HomeView homeViewInstance = new HomeView();
                     homeViewInstance.Show();
-                    App.Current?.MainWindow.Close();
+                    App.Current.Windows[0].Close();
+
                 }
                 else
                     MessageBox.Show("Wrong Password or UserID, try again");
@@ -134,11 +136,13 @@ namespace Desktop_Application.ViewModels
             HomeView HomeViewInstance = new HomeView();
             HomeViewInstance.Show();
             App.Current.MainWindow.Close();
+
+
         }
 
         #endregion
 
-        
+
 
     }
 }
