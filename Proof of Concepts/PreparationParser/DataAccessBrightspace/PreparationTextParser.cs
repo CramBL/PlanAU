@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Channels;
 
-namespace PreparationParser
+namespace DataAccessBrightspace
 {
     class PreparationTextParser
     {

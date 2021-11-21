@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Channels;
+using System.Threading.Tasks;
 
 namespace PreparationParser
 {
-    class PreparationTextParser
+    class ParallelPreparationTextParser
     {
+        
         private string _keywordPatternPrefix = "(?=";//evt optimer med ^ og uden lookahead?
         private const string _keywordPatternSuffix = ").*";
         public string RegExPattern { get; set; }
@@ -29,7 +30,7 @@ namespace PreparationParser
         };
 
 
-        public PreparationTextParser()
+        public ParallelPreparationTextParser()
         {
             RegExPattern = BuildKeywordPattern(PreparationKeywordsList, ReferencedContentList);
         }
@@ -68,6 +69,7 @@ namespace PreparationParser
             return preparationItemList;
         }
 
+        
         public Dictionary<int, List<string>> ParseModuleTableOfContents(string RawTableOfContents)
         {
 
@@ -80,7 +82,7 @@ namespace PreparationParser
         public List<string> SplitToCintoModules(string RawTableOfContents)
         {
             var ListOfModules =
-                Regex.Split(RawTableOfContents,  @"(?=(ModuleId))")
+                Regex.Split(RawTableOfContents, @"(?=(ModuleId))")
                     .Where(i =>
                         !string.IsNullOrEmpty(i)
                         && i.Contains("ModuleId\"")).ToList();// "ModuleId\"" identifies the individual module JSON-objects
@@ -108,6 +110,7 @@ namespace PreparationParser
             {
                 moduleDictionary.Add(moduleNo++, CollectDescriptionItems(moduleDescription));
             }
+            
 
             return moduleDictionary;
         }
@@ -115,10 +118,24 @@ namespace PreparationParser
         private List<string> CollectDescriptionItems(string moduleDescription)
         {
 
+            List<string> contentMatchesList  = new List<string>();
+            List<string> activityMatchesList  = new();
 
-            var contentMatchesList = CollectContentMatches(moduleDescription);
+            Parallel.Invoke(
+                () =>
+                    {
+                        contentMatchesList  = CollectContentMatches(moduleDescription);
+                    }, 
+                () =>
+                    {
+                        activityMatchesList = CollectActivityMatches(moduleDescription);
+                    }
+                        );
 
-            var activityMatchesList = CollectActivityMatches(moduleDescription);
+
+            //var contentMatchesList = CollectContentMatches(moduleDescription);
+
+            //var activityMatchesList = CollectActivityMatches(moduleDescription);
 
             activityMatchesList = ReplaceEmbeddedWithRealLinks(activityMatchesList, contentMatchesList);
 
@@ -130,22 +147,40 @@ namespace PreparationParser
 
         private List<string> CleanUpSymbolsAndHtml(List<string> activityMatchesList)
         {
-            for (int i = 0; i < activityMatchesList.Count; i++)
+
+            Parallel.For(0, activityMatchesList.Count, i =>
             {
-                activityMatchesList[i] = Regex.Replace(activityMatchesList[i], "(\\\\)|(\\\"\\>).+?(<\\/a>)", string.Empty);
-            }
+                activityMatchesList[i] =
+                    Regex.Replace(activityMatchesList[i], "(\\\\)|(\\\"\\>).+?(<\\/a>)", string.Empty);
+
+            });
+
+
+
+            //for (int i = 0; i < activityMatchesList.Count; i++)
+            //{
+            //    activityMatchesList[i] = Regex.Replace(activityMatchesList[i], "(\\\\)|(\\\"\\>).+?(<\\/a>)", string.Empty);
+            //}
 
             return activityMatchesList;
         }
 
         private List<string> ReplaceEmbeddedWithRealLinks(List<string> activityMatchesList, List<string> contentMatchesList)
         {
-            for (int i = 0; i < activityMatchesList.Count; i++)
+            
+            Parallel.For(0, activityMatchesList.Count, i =>
             {
                 int index = contentMatchesList.FindIndex(c => c.Contains(activityMatchesList[i]));
                 if (index != -1)
                     activityMatchesList[i] = contentMatchesList[index];
-            }
+            });
+
+            //for (int i = 0; i < activityMatchesList.Count; i++)
+            //{
+            //    int index = contentMatchesList.FindIndex(c => c.Contains(activityMatchesList[i]));
+            //    if (index != -1)
+            //        activityMatchesList[i] = contentMatchesList[index];
+            //}
 
             return activityMatchesList;
         }
