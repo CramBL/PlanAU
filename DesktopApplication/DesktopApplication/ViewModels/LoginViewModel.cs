@@ -99,7 +99,7 @@ namespace Desktop_Application.ViewModels
 
             RegisterView RegisterViewInstance = new RegisterView();
             RegisterViewInstance.Show();
-            App.Current.MainWindow.Close();
+            App.Current.Windows[0].Close();
         }
 
         private DelegateCommand _closeWindow;
