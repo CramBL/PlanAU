@@ -11,11 +11,13 @@ namespace Desktop_Application.ViewModels
 {
     public class LoginViewModel : BindableBase
     {
+        public IPasswordHasher PasswordHasher;
         public LoginViewModel()
         {
             InputValidator = new InputValidator();
             StudDataAccess = new StudentDataAccess();
             MessageBox = new DesktopApplication.Models.MessageBox();
+            PasswordHasher = new PasswordHasher();
         }
 
         #region Properties
@@ -69,10 +71,9 @@ namespace Desktop_Application.ViewModels
             if (InputValidator.ValidUsernameSyntax(UserNameBox) && InputValidator.ValidPasswordSyntax(PasswordBox))
             {
                 Student student = new Student(UserNameBox, PasswordBox);
-
                 Task<Student> authorizeTask = StudDataAccess.LoginAttemptAuthorize(student);
                 student = await authorizeTask;
-
+              
                 if (student != null)
                 {
                     if (App.Current != null)

@@ -12,10 +12,11 @@ namespace DBApi.Controllers
     public class StudentController : Controller
     {
         private readonly StudentService _studentService;
-
+        private IPasswordHasher _passwordHasher;
         public StudentController(StudentService studentService)
         {
             _studentService = studentService;
+            _passwordHasher = new PasswordHasher();
         }
 
         [HttpGet("/")]
@@ -46,7 +47,7 @@ namespace DBApi.Controllers
             Student s = _studentService.Get(student.auId);
             if (s != null)
             {
-                if (s.password == student.password)
+                if (_passwordHasher.IsValid(student.password, s.password)) 
                     return s;
                 else
                     return Unauthorized();

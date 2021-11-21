@@ -45,6 +45,7 @@ namespace Desktop_Application.DataAccessLayer
 
             var response = await PostContentToPlanAUapi<HttpContent>(AuthorizeUri, postContent);
 
+
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 return GetDeserializedEncodedStudent(await response.Content.ReadAsStringAsync());
             else
@@ -57,6 +58,7 @@ namespace Desktop_Application.DataAccessLayer
             using var putContent = GetSerializedEncodedStudent(student);
 
             var response = await Client.PutAsync(StudentUri, putContent);
+
             if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                 return true;
             else

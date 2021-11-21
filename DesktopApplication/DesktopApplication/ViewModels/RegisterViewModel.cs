@@ -53,6 +53,8 @@ namespace Desktop_Application.ViewModels
         public IStudentDataAccess StudentDataAccess { get; set; }
         public IMessageBox MessageBox { get; set; }
 
+        public IPasswordHasher PasswordHasher { get; set; }
+
         #endregion
 
         public RegisterViewModel()
@@ -60,6 +62,7 @@ namespace Desktop_Application.ViewModels
             InputValidator = new InputValidator();
             StudentDataAccess = new StudentDataAccess();
             MessageBox = new DesktopApplication.Models.MessageBox();
+            PasswordHasher = new PasswordHasher();
         }
         #region Command
 
@@ -82,7 +85,8 @@ namespace Desktop_Application.ViewModels
 
             if (InputValidator.ValidUsernameSyntax(NewUserNameBox) && InputValidator.ValidPasswordSyntax(NewPasswordBox))
             {
-                ((App)App.Current).Student = new Student(NewUserNameBox, NewPasswordBox);
+                var hashedPassword = PasswordHasher.Generate(NewPasswordBox);
+                ((App)App.Current).Student = new Student(NewUserNameBox, hashedPassword);
                 ((App)App.Current).Student.Email = MailBox;
                 ((App)App.Current).Student.Courses.Add("RTF");
 
