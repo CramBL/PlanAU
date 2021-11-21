@@ -12,14 +12,22 @@ namespace Desktop_Application.Models
         private DateTime _date;
         public string Number { get; set; }
         public DateTime Date { get => _date; set => _date = new DateTime(2021, 09, 24); }
-        public string PreparationDescription { get; set; }
+        private List<string> _preparationItems;
+        public List<string> PreparationItems
+        {
+            get => _preparationItems;
+            set {
+                if (_preparationItems == value) return;
+                _preparationItems = value;
+            }
+        }
         public string DateString { get; set; }
         
-        public Lecture(string number, string prepDiscription)
+        public Lecture(string number, List<string> prepItems)
         {
             Number = number;
             Date = new DateTime(2021, 09, 23);
-            PreparationDescription = prepDiscription;
+            PreparationItems = prepItems;
         }
     }
 
@@ -28,7 +36,7 @@ namespace Desktop_Application.Models
         string CourseName { get; set; }
         string Number { get; set; }
         DateTime Date { get; set; }
-        string PreparationDescription { get; set; }
+        List<string> PreparationItems { get; set; }
         string DateString { get; set; }
     }
 }

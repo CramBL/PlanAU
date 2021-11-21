@@ -150,21 +150,26 @@ namespace Desktop_Application.ViewModels
 
         private void SetFakeCourses()
         {
+            List<string> prepStrings1 = new List<string>();
+            List<string> prepStrings2 = new List<string>();
+            List<string> prepStrings3 = new List<string>();
+
+            prepStrings1.Add("Læs:");
+            prepStrings1.Add(" s. 45-55 i bogen");
+            prepStrings1.Add("Links:");
+            prepStrings1.Add("google.com");
+            prepStrings2.Add("this is prep");
+            prepStrings3.Add("Learn the lyrics to Barbie girl");
+
             lectures = new List<ILecture>
             {
-                new Lecture("0", "Læs s. 45-55 i bogen"),
-                new Lecture("1.1", "Se to videoer"),
-                new Lecture("1.2", "Læs de to links")
-            };
-            lectures2 = new List<ILecture>
-            {
-                new Lecture("0", "Læs s. 45-55 i bogen"),
-                new Lecture("1.1", "Se to videoer"),
-                new Lecture("1.2", "Læs de to links")
+                new Lecture("0", prepStrings1),
+                new Lecture("1.1", prepStrings2),
+                new Lecture("1.2", prepStrings3)
             };
 
             PRJ = new Course("PRJ", lectures);
-            GUI = new Course("GUI", lectures2);
+            GUI = new Course("GUI", lectures);
             DAB = new Course("DAB", lectures);
             SWT = new Course("SWT", lectures);
             SWD = new Course("SWD", lectures);

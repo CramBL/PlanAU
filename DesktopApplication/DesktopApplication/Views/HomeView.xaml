@@ -256,7 +256,14 @@
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding CourseName}" Header="Course" />
                             <GridViewColumn DisplayMemberBinding="{Binding Number}" Header="Lec Nr."/>
-                            <GridViewColumn DisplayMemberBinding="{Binding PreparationDescription}" Header="Description" />
+                            <GridViewColumn Header="Description">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ListBox ItemsSource="{Binding PreparationItems}"
+                                            />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding="{Binding DateString}" Header="Date"/>
                         </GridView>
                     </ListView.View>
