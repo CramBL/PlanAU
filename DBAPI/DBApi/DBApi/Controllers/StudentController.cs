@@ -42,7 +42,7 @@ namespace DBApi.Controllers
         }
 
         [HttpPost("/authorize")]
-        public ActionResult<Student> AutherizeStudent(Student student)
+        public ActionResult<Student> AuthorizeStudent(Student student)
         {
             Student s = _studentService.Get(student.auId);
             if (s != null)
