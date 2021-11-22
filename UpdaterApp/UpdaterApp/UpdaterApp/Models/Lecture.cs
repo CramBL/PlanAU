@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace UpdaterApp.Models
 {
     public class Lecture : ILecture
     {
+        [JsonPropertyName("courseName")]
         public string CourseName { get; set; }
-        private DateTime _date;
+
+        [JsonPropertyName("number")]
         public string Number { get; set; }
-        public DateTime Date { get => _date; set => _date = new DateTime(2021, 09, 24); }
+
+        [JsonPropertyName("date")]
+        public DateTime Date { get; set; }
+
         private List<string> _preparationItems;
+        [JsonPropertyName("preparationDescription")]
         public List<string> PreparationItems
         {
             get => _preparationItems;
@@ -18,8 +25,9 @@ namespace UpdaterApp.Models
                 _preparationItems = value;
             }
         }
-        public string DateString { get; set; }
         
+        public Lecture() { }
+
         public Lecture(string number, List<string> prepItems)
         {
             Number = number;
@@ -34,6 +42,5 @@ namespace UpdaterApp.Models
         string Number { get; set; }
         DateTime Date { get; set; }
         List<string> PreparationItems { get; set; }
-        string DateString { get; set; }
     }
 }

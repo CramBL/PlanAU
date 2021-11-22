@@ -21,7 +21,7 @@ namespace UpdaterAPI.Services
 
         public List<Course> Get() => _courses.Find(Course => true).ToList();
 
-        public Course Get(string id) => _courses.Find<Course>(course => course.Id == id).FirstOrDefault();
+        public Course Get(string courseName) => _courses.Find<Course>(course => course.Name == courseName).FirstOrDefault();
 
         public Course Create(Course course)
         {

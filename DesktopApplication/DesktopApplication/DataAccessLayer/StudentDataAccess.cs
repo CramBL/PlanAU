@@ -90,12 +90,12 @@ namespace Desktop_Application.DataAccessLayer
 
         private Student GetDeserializedEncodedStudent(string json)
         {
-            return System.Text.Json.JsonSerializer.Deserialize<Student>(json);
+            return JsonSerializer.Deserialize<Student>(json);
         }
 
         private HttpContent GetSerializedEncodedStudent(Student s)
         {
-            var json = System.Text.Json.JsonSerializer.Serialize<Student>(s);
+            var json = JsonSerializer.Serialize<Student>(s);
             return new StringContent(json, Encoding.UTF8, MediaType) as HttpContent;
         }
 

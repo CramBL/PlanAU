@@ -22,6 +22,7 @@ namespace UpdaterAPI.Models
 
     public interface ICourse
     {
+        public string Id { get; set; }
         string Name { get; set; }
         List<Lecture> Lectures { get; set; }
     }

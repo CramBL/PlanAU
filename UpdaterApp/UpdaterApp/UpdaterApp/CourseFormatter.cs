@@ -7,7 +7,7 @@ namespace UpdaterApp
     {
         public ICourse DictionaryToCourseObject(string courseName, Dictionary<int, List<string>> parsedContentDictionary)
         {
-            var course = new Course(courseName, new List<ILecture>());
+            var course = new Course(courseName, new List<Lecture>());
 
             foreach (var keyValuePair in parsedContentDictionary)
             {

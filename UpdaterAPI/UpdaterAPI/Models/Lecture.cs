@@ -14,7 +14,7 @@ namespace UpdaterAPI.Models
         public string CourseName { get; set; }
         public string Number { get; set; }
         public DateTime Date { get; set; }
-        public string PreparationDescription { get; set; }
+        public List<string> PreparationDescription { get; set; }
 
         public Lecture() { }
     }
@@ -24,6 +24,6 @@ namespace UpdaterAPI.Models
         string CourseName { get; set; }
         string Number { get; set; }
         DateTime Date { get; set; }
-        string PreparationDescription { get; set; }
+        List<string> PreparationDescription { get; set; }
     }
 }

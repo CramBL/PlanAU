@@ -22,26 +22,26 @@ namespace UpdaterAPI.Controllers
         [HttpGet]
         public ActionResult<List<Course>> Get() => _courseService.Get();
 
-        [HttpGet("{id}", Name = "GetStudent")]
-        public ActionResult<Course> GetStudent(string id)
+        [HttpGet("{courseName}", Name = "GetCourse")]
+        public ActionResult<Course> GetCourse(string courseName)
         {
-            var course = _courseService.Get(id);
-            if (course == null) { NotFound(); }
+            var course = _courseService.Get(courseName);
+            if (course == null) { return NotFound(); }
 
             return course;
         }
 
         [HttpPost]
-        public ActionResult<Course> PostStudent(Course course)
+        public ActionResult<Course> PostCourse(Course course)
         {
             _courseService.Create(course);
-            return CreatedAtRoute("GetStudent", new { id = course.Id }, course);
+            return CreatedAtRoute("GetCourse", new { courseName = course.Name }, course);
         }
 
         [HttpPut]
-        public IActionResult PutStudent(Course course)
+        public IActionResult PutCourse(Course course)
         {
-            Course s = _courseService.Get(course.Id);
+            Course s = _courseService.Get(course.Name);
             if (s == null) { return NotFound(); }
 
             _courseService.Update(course);

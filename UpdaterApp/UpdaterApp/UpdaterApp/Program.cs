@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Net;
 using UpdaterApp.DAL;
+using UpdaterApp.Models;
 
 namespace UpdaterApp
 {
@@ -39,10 +41,21 @@ namespace UpdaterApp
 
             var updaterApi = new DataAccessUpdaterAPI();
 
-            var response = await updaterApi.PutCourse(SoftwareDesignCourse);
+            Console.WriteLine("Prep 1: " + SoftwareDesignCourse.Lectures[0].PreparationItems[0].ToString());
 
-            Console.WriteLine(response.Content.ToString());
+            Course doesCourseExist = updaterApi.GetCourse(SoftwareDesignCourse.Name).Result;
 
+            if (doesCourseExist != null)
+            {
+                SoftwareDesignCourse.Id = doesCourseExist.Id;
+                var response = await updaterApi.PutCourse(SoftwareDesignCourse);
+                Console.WriteLine("SWD was put with status code: " + response.StatusCode.ToString());
+            }
+            else
+            {
+                var response = await updaterApi.PostCourse(SoftwareDesignCourse);
+                Console.WriteLine("SWD was posted with status code: " + response.StatusCode.ToString());
+            }
 
         }
     }
