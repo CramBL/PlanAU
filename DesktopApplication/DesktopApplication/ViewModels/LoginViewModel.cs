@@ -136,7 +136,8 @@ namespace Desktop_Application.ViewModels
 
             HomeView HomeViewInstance = new HomeView();
             HomeViewInstance.Show();
-            App.Current.MainWindow.Close();
+            App.Current.Windows[0].Close();
+
 
 
         }
