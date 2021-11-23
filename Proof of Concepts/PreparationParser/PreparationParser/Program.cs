@@ -34,35 +34,35 @@ namespace PreparationParser
 
 
 
-            int iterations = 10;
+            int iterations = 2;
 
             double totalElapsedTimeParallel = 0;
             double totalElapsedTimeSequential = 0;
 
-            //for (int i = 0; i < iterations; i++)
-            //{
+            for (int i = 0; i < iterations; i++)
+            {
 
-            //    stopWatch.Start();
+                stopWatch.Start();
 
-            //    foreach (var desc in descArray)
-            //    {
-            //        listDictionary.Add(LDindex++, parallelParser.ParseModuleTableOfContents(desc));
-            //    }
+                foreach (var desc in descArray)
+                {
+                    listDictionary.Add(LDindex++, parallelParser.ParseModuleTableOfContents(desc));
+                }
 
 
-            //    foreach (var desc in descArray2)
-            //    {
-            //        listDictionary.Add(LDindex++, parallelParser.ParseModuleTableOfContents(desc));
-            //    }
+                foreach (var desc in descArray2)
+                {
+                    listDictionary.Add(LDindex++, parallelParser.ParseModuleTableOfContents(desc));
+                }
 
-            //    stopWatch.Stop();
+                stopWatch.Stop();
 
-            //    totalElapsedTimeParallel += stopWatch.ElapsedMilliseconds;
+                totalElapsedTimeParallel += stopWatch.ElapsedMilliseconds;
 
-            //    stopWatch.Restart();
+                stopWatch.Restart();
 
-            //}
-            //stopWatch.Reset();
+            }
+            stopWatch.Reset();
 
             for (int i = 0; i < iterations; i++)
             {
