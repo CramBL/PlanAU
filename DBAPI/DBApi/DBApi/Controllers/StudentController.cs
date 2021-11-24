@@ -19,13 +19,13 @@ namespace DBApi.Controllers
             _passwordHasher = new PasswordHasher();
         }
 
-        [HttpGet("/")]
+        [HttpGet("/Student")]
         public ActionResult<List<Student>> GetStudents()
         {
             return _studentService.Get();
         }
 
-        [HttpGet("{id}", Name = "GetStudent")]
+        [HttpGet("/Student/{id}", Name = "GetStudent")]
         public ActionResult<Student> GetStudent(string id)
         {
             var student = _studentService.Get(id);
@@ -34,7 +34,7 @@ namespace DBApi.Controllers
             return student;
         }
 
-        [HttpPost("/")]
+        [HttpPost("/Student")]
         public ActionResult<Student> PostStudent(Student student)
         {
             _studentService.Post(student);
@@ -55,7 +55,7 @@ namespace DBApi.Controllers
             return NotFound();
         }
 
-        [HttpPut("/")]
+        [HttpPut("/Student")]
         public IActionResult PutStudent(Student student)
         {
             Student s = _studentService.Get(student.auId);

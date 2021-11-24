@@ -6,7 +6,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using DBApi.Models;
 using Microsoft.Extensions.Options;
-using DBApi.Controllers;
 using DBApi.Services;
 
 namespace DBApi
@@ -30,6 +29,14 @@ namespace DBApi
                 sp.GetRequiredService<IOptions<StudentDatabaseSettings>>().Value);
 
             services.AddSingleton<StudentService>();
+
+            services.Configure<CourseDatabaseSettings>(
+                Configuration.GetSection(nameof(CourseDatabaseSettings)));
+
+            services.AddSingleton<CourseService>();
+
+            services.AddSingleton<ICourseDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<CourseDatabaseSettings>>().Value);
 
             services.AddControllers();
             
