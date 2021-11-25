@@ -40,16 +40,18 @@ namespace Desktop_Application.DataAccessLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2007:Consider calling ConfigureAwait on the awaited task", Justification = "<Pending>")]
         public async Task<Student> LoginAttemptAuthorize(Student student)
         {
-
             using var postContent = GetSerializedEncodedStudent(student);
 
-            var response = await PostContentToPlanAUapi<HttpContent>(AuthorizeUri, postContent);
-
-
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                return GetDeserializedEncodedStudent(await response.Content.ReadAsStringAsync());
-            else
+            try { 
+                var response = await PostContentToPlanAUapi<HttpContent>(AuthorizeUri, postContent);
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    return GetDeserializedEncodedStudent(await response.Content.ReadAsStringAsync());
+                else
+                    return null;
+            } catch (HttpRequestException e)
+            {
                 return null;
+            }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2007:Consider calling ConfigureAwait on the awaited task", Justification = "<Pending>")]
@@ -57,12 +59,17 @@ namespace Desktop_Application.DataAccessLayer
         {
             using var putContent = GetSerializedEncodedStudent(student);
 
-            var response = await Client.PutAsync(StudentUri, putContent);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                return true;
-            else
+            try
+            {
+                var response = await Client.PutAsync(StudentUri, putContent);
+                if (response.StatusCode != System.Net.HttpStatusCode.NoContent)
+                    return false;
+                else
+                    return true;
+            } catch (HttpRequestException e)
+            {
                 return false;
+            }
         }
 
         //public static async Task<List<Student>> GetStudents()
