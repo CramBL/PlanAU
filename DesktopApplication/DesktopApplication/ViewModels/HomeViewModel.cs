@@ -315,14 +315,16 @@ namespace Desktop_Application.ViewModels
         public DelegateCommand<string> SelectOneCourse =>
             _selectOneCourse ??= new DelegateCommand<string>(ExecuteSelectOneCourse);
 
-        private void ExecuteSelectOneCourse(string selectedCourse)
+        private async void ExecuteSelectOneCourse(string selectedCourse)
         {
             SelectedCourses.Clear();
-            SelectedCourses.Add(new Course(selectedCourse, lectures));
+            var course = await dataAccessUpdater.GetCourse(selectedCourse);
+            SelectedCourses.Add(course);
             //PreparationItems.Clear();
             //makePreparationItemStrings();
             UnpackLecturesForPrep();
         }
+
 
         private DelegateCommand _selectAllCourses;
         public DelegateCommand SelectAllCourses =>

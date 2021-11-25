@@ -54,13 +54,13 @@ namespace DesktopApplication.Models
             {
                 var TimeStart = datelist[i].AddDays(-1);
                 DateTime dateStart = new DateTime(TimeStart.Year, TimeStart.Month, TimeStart.Day, 16, 0, 0);
-                DateTime dateEnd = dateStart.AddHours(1);
+                DateTime dateEnd = dateStart.AddHours(2);
 
                 string subject = "";
-
                 foreach (string varPrepitem in course.Lectures[i].PreparationItems)
                 {
                     subject += $"{varPrepitem}\n";
+
                 }
 
                 sI.InsertItem(subject, dateStart, dateEnd, col);
