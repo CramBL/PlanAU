@@ -149,9 +149,8 @@ namespace Desktop_Application.ViewModels
             //SelectedCourses.Add(SWT);
             //SelectedCourses.Add(SWD);
             //SelectedCourses.Add(NGK);
-            setCourses();
             UnpackedLectures = new ObservableCollection<ILecture>();
-            UnpackLecturesForPrep();
+            setCourses();
 
         }
 
@@ -162,6 +161,7 @@ namespace Desktop_Application.ViewModels
                 var course = await dataAccessUpdater.GetCourse(varCourse);
                 SelectedCourses.Add(course);
             }
+            UnpackLecturesForPrep();
         }
         private void SetFakeCourses()
         {
@@ -333,15 +333,16 @@ namespace Desktop_Application.ViewModels
         private void ExecuteSelectAllCourses()
         {
             SelectedCourses.Clear();
-            SelectedCourses.Add(PRJ);
-            SelectedCourses.Add(GUI);
-            SelectedCourses.Add(DAB);
-            SelectedCourses.Add(SWT);
-            SelectedCourses.Add(SWD);
-            SelectedCourses.Add(NGK);
+            //SelectedCourses.Add(PRJ);
+            //SelectedCourses.Add(GUI);
+            //SelectedCourses.Add(DAB);
+            //SelectedCourses.Add(SWT);
+            //SelectedCourses.Add(SWD);
+            //SelectedCourses.Add(NGK);
             //PreparationItems.Clear();
             //makePreparationItemStrings();
-            UnpackLecturesForPrep();
+            setCourses();
+            //UnpackLecturesForPrep();
         }
 
         private DelegateCommand _openAddToDoItemDialog;
