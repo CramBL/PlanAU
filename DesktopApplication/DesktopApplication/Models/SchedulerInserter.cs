@@ -8,13 +8,14 @@ namespace DesktopApplication.Models
 {
     public interface ISchedulerInserter
     {
-        public void InsertItem(string subject, DateTime start,DateTime end, ScheduleAppointmentCollection col);
+        public void InsertItem(string subject, DateTime start, DateTime end, ScheduleAppointmentCollection col);
     }
     public class SchedulerInserter : ISchedulerInserter
     {
-        ScheduleAppointment appointment1 = new ScheduleAppointment();
+      
         public void InsertItem(string subject, DateTime start, DateTime end, ScheduleAppointmentCollection col)
         {
+            ScheduleAppointment appointment1 = new ScheduleAppointment();
             appointment1.StartTime = start;
             appointment1.EndTime = end;
             appointment1.Subject = subject;
@@ -33,9 +34,9 @@ namespace DesktopApplication.Models
 
                 if (varAppointment.Subject.Length > 5)
                 {
-                   AppointmentName = varAppointment.Subject.Remove(5);
+                    AppointmentName = varAppointment.Subject.Remove(5);
                 }
-                
+
 
                 if (course.Name == AppointmentName)
                 {
@@ -52,7 +53,7 @@ namespace DesktopApplication.Models
             for (int i = 0; i < course.Lectures.Count; i++)
             {
                 var TimeStart = datelist[i].AddDays(-1);
-                DateTime dateStart = new DateTime(TimeStart.Year, TimeStart.Month, TimeStart.Day,16,0,0);
+                DateTime dateStart = new DateTime(TimeStart.Year, TimeStart.Month, TimeStart.Day, 16, 0, 0);
                 DateTime dateEnd = dateStart.AddHours(1);
 
                 string subject = "";
@@ -62,8 +63,8 @@ namespace DesktopApplication.Models
                     subject += $"{varPrepitem}\n";
                 }
 
-                sI.InsertItem(subject,dateStart,dateEnd,col);
-              
+                sI.InsertItem(subject, dateStart, dateEnd, col);
+
             }
         }
 
