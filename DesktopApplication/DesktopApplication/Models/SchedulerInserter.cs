@@ -29,7 +29,15 @@ namespace DesktopApplication.Models
             List<DateTime> dates = new List<DateTime>();
             foreach (ScheduleAppointment varAppointment in col)
             {
-                if (course.Name == varAppointment.Subject.Remove(5))
+                var AppointmentName = varAppointment.Subject;
+
+                if (varAppointment.Subject.Length > 5)
+                {
+                   AppointmentName = varAppointment.Subject.Remove(5);
+                }
+                
+
+                if (course.Name == AppointmentName)
                 {
                     dates.Add(varAppointment.StartTime);
                 }
