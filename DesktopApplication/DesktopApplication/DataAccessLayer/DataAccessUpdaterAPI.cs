@@ -27,24 +27,6 @@ namespace DesktopApplication.DAL
             MediaType = "application/json";
         }
 
-        public async Task<HttpResponseMessage> PutCourse(ICourse course)
-        {
-            using var postContent = SerializeCourseToJson(course);
-
-            var resp = await Client.PutAsync(CourseUri, postContent);
-
-            return resp;
-        }
-
-        public async Task<HttpResponseMessage> PostCourse(ICourse course)
-        {
-            using var postContent = SerializeCourseToJson(course);
-
-            var resp = await Client.PostAsync(CourseUri, postContent);
-
-            return resp;
-        }
-
         public async Task<Course> GetCourse(string courseName)
         {
             Uri GetUri = new Uri($"{CourseUri.AbsoluteUri}/" + courseName);
@@ -53,12 +35,6 @@ namespace DesktopApplication.DAL
             Console.WriteLine(await response.Content.ReadAsStringAsync());
             Course course = JsonSerializer.Deserialize<Course>(await response.Content.ReadAsStringAsync());
             return course;
-        }
-
-        public StringContent SerializeCourseToJson(ICourse course)
-        {
-            var json = JsonSerializer.Serialize<Course>((Course)course);
-            return new StringContent(json, Encoding.UTF8, MediaType);
         }
     }
 }
