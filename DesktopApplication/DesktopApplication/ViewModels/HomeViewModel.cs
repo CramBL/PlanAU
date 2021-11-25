@@ -128,6 +128,7 @@ namespace Desktop_Application.ViewModels
             if (Application.Current != null)
                 Application.Current.Resources["BackgroundBrush"] = Brushes.White;
             Student = ((App)App.Current)?.Student;
+            Student.Courses.Add("PRJ"); //test
 
             _dialogService = dialogService;
             DalStudent = new StudentDataAccess();

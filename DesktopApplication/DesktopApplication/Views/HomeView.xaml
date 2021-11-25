@@ -100,12 +100,28 @@
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <Button Grid.Column="1" Grid.Row="1" Grid.RowSpan="1"  Command="{Binding SelectAllCourses}" CommandParameter="All" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="All"/>
-                <Button Grid.Column="2" Grid.Row="1" Grid.RowSpan="1"  Command="{Binding SelectOneCourse}" CommandParameter="PRJ" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="PRJ"/>
+                <!--<Button Grid.Column="2" Grid.Row="1" Grid.RowSpan="1"  Command="{Binding SelectOneCourse}" CommandParameter="PRJ" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="PRJ"/>
                 <Button Grid.Column="3" Grid.Row="1" Grid.RowSpan="1"  Command="{Binding SelectOneCourse}" CommandParameter="NGK" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="NGK"/>
                 <Button Grid.Column="4" Grid.Row="1" Grid.RowSpan="1"  Command="{Binding SelectOneCourse}" CommandParameter="SWT" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="SWT"/>
                 <Button Grid.Column="5" Grid.Row="1" Grid.RowSpan="1"  Command="{Binding SelectOneCourse}" CommandParameter="SWD" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="SWD"/>
                 <Button Grid.Column="6" Grid.Row="1" Grid.RowSpan="1" Command="{Binding SelectOneCourse}" CommandParameter="DAB" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="DAB"/>
-                <Button Grid.Column="7" Grid.Row="1" Grid.RowSpan="1"  Command="{Binding SelectOneCourse}" CommandParameter="GUI" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="GUI"/>
+                <Button Grid.Column="7" Grid.Row="1" Grid.RowSpan="1"  Command="{Binding SelectOneCourse}" CommandParameter="GUI" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="GUI"/>-->
+
+                <ListBox ItemsSource="{Binding Student.Courses}" x:Name="PrepButtonsLtb"
+                         Grid.Column="2" Grid.ColumnSpan="6" Grid.Row="1"
+                         Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}"
+                         >
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <prism:InvokeCommandAction Command="{Binding SelectOneCourse}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},Path=SelectedItem}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ListBox>
                 <!--#region Calendar: Back and Next Buttons-->
                 <!--<Button Grid.Column="10" Grid.Row="1" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="&lt;- Back" />-->
                 <!--<Button Grid.Column="11" Grid.Row="1" Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Content="Next -&gt;" />-->
