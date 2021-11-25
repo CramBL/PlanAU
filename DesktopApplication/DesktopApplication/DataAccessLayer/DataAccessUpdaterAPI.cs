@@ -22,7 +22,7 @@ namespace DesktopApplication.DAL
         public DataAccessUpdaterAPI()
         {
             Client = new HttpClient();
-            localHost = "https://localhost:44372";
+            localHost = "https://localhost:44323";
             CourseUri = new Uri(localHost + "/Course");
             MediaType = "application/json";
         }
