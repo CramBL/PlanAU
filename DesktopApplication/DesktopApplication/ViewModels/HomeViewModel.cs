@@ -15,6 +15,8 @@ using MessageBox = System.Windows.MessageBox;
 using Syncfusion.UI.Xaml.Scheduler;
 using Ical.Net;
 using System.IO;
+using System.Threading.Tasks;
+using DesktopApplication.DAL;
 using Ical.Net.CalendarComponents;
 using Microsoft.Win32;
 
@@ -35,10 +37,11 @@ namespace Desktop_Application.ViewModels
         private ICourse SWT;
         private ICourse SWD;
         private ICourse NGK;
-        private List<ILecture> lectures;
-        private List<ILecture> lectures2;
-
-
+        private List<Lecture> lectures;
+        private List<Lecture> lectures2;
+        private ISchedulerInserter schedulerInserter;
+        private DataAccessUpdaterAPI dataAccessUpdater;
+        private Schedular schedular;
 
         #region Properties
         private ScheduleAppointmentCollection _appointmentCollection;
@@ -114,6 +117,9 @@ namespace Desktop_Application.ViewModels
         public HomeViewModel(IDialogService dialogService)
         {
             AppointmentCollection = new ScheduleAppointmentCollection();
+            schedulerInserter = new SchedulerInserter(); 
+            dataAccessUpdater = new DataAccessUpdaterAPI();
+            schedular = new Schedular();
             //Creating new event   
             //ScheduleAppointment clientMeeting = new ScheduleAppointment();
             //DateTime currentDate = DateTime.Now;
@@ -133,21 +139,29 @@ namespace Desktop_Application.ViewModels
             DalStudent = new StudentDataAccess();
             MessageBox = new DesktopApplication.Models.MessageBox();
 
-            SetFakeCourses();
+            //SetFakeCourses();
 
             SelectedCourses = new ObservableCollection<ICourse>();
-            SelectedCourses.Add(PRJ);
-            SelectedCourses.Add(GUI);
-            SelectedCourses.Add(DAB);
-            SelectedCourses.Add(SWT);
-            SelectedCourses.Add(SWD);
-            SelectedCourses.Add(NGK);
-
+            //SelectedCourses.Add(PRJ);
+            //SelectedCourses.Add(GUI);
+            //SelectedCourses.Add(DAB);
+            //SelectedCourses.Add(SWT);
+            //SelectedCourses.Add(SWD);
+            //SelectedCourses.Add(NGK);
+            setCourses();
             UnpackedLectures = new ObservableCollection<ILecture>();
             UnpackLecturesForPrep();
 
         }
 
+        private async void setCourses()
+        {
+            foreach (string varCourse in Student.Courses)
+            {
+                var course = await dataAccessUpdater.GetCourse(varCourse);
+                SelectedCourses.Add(course);
+            }
+        }
         private void SetFakeCourses()
         {
             List<string> prepStrings1 = new List<string>();
@@ -161,7 +175,7 @@ namespace Desktop_Application.ViewModels
             prepStrings2.Add("this is prep");
             prepStrings3.Add("Learn the lyrics to Barbie girl");
 
-            lectures = new List<ILecture>
+            lectures = new List<Lecture>
             {
                 new Lecture("0", prepStrings1),
                 new Lecture("1.1", prepStrings2),
@@ -198,7 +212,7 @@ namespace Desktop_Application.ViewModels
         public DelegateCommand ImportICalFile =>
             _importICalFile ?? (_importICalFile = new DelegateCommand(ExecuteImportICalFile));
 
-        void ExecuteImportICalFile()
+        async void  ExecuteImportICalFile()
         {
             var openDialog = new OpenFileDialog
             {
@@ -214,26 +228,12 @@ namespace Desktop_Application.ViewModels
                 fs.Close();
             }
 
-
-
-            //foreach (var itemEvent in calendar.Events)
-            //{
-            //    ScheduleAppointment appointment1 = new ScheduleAppointment();
-            //    string starttime = itemEvent.DtStart.ToString();
-
-            //    starttime = starttime.Remove(starttime.Length - 4);
-            //    DateTime datetimestart = DateTime.Parse(starttime);
-            //    appointment1.StartTime = datetimestart;
-
-            //    string endtime = itemEvent.DtEnd.ToString();
-
-            //    endtime = endtime.Remove(endtime.Length - 4);
-            //    DateTime datetimeend = DateTime.Parse(endtime);
-            //    appointment1.EndTime = datetimeend;
-
-            //    appointment1.Subject = itemEvent.Summary;
-            //    AppointmentCollection.Add(appointment1);
-            //}
+            foreach (string varCourse in Student.Courses)
+            {
+                var course = await dataAccessUpdater.GetCourse(varCourse);
+                schedular.insertPrep(_appointmentCollection, course);
+            }
+            
         }
 
         private DelegateCommand _moveWindow;

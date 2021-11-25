@@ -24,12 +24,12 @@ namespace DesktopApplication.Models
 
     public class Schedular
     {
-        public List<DateTime> CreateListOfLecturesDateForCourse(ScheduleAppointmentCollection col, Course course)
+        private List<DateTime> CreateListOfLecturesDateForCourse(ScheduleAppointmentCollection col, Course course)
         {
             List<DateTime> dates = new List<DateTime>();
             foreach (ScheduleAppointment varAppointment in col)
             {
-                if (course.Name.Remove(5) == varAppointment.Subject.Remove(5))
+                if (course.Name == varAppointment.Subject.Remove(5))
                 {
                     dates.Add(varAppointment.StartTime);
                 }

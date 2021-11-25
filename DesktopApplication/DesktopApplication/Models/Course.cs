@@ -14,9 +14,9 @@ namespace Desktop_Application.Models
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        private List<ILecture> _lectures;
+        private List<Lecture> _lectures;
         [JsonPropertyName("lectures")]
-        public List<ILecture> Lectures
+        public List<Lecture> Lectures
         {
             get => _lectures;
             set {
@@ -24,7 +24,9 @@ namespace Desktop_Application.Models
                 _lectures = value;
             }
         }
-        public Course(string name, List<ILecture> lectures)
+
+        public Course() {}
+        public Course(string name, List<Lecture> lectures)
         {
             Name = name;
             Lectures = lectures;
@@ -34,6 +36,6 @@ namespace Desktop_Application.Models
     public interface ICourse
     {
         string Name { get; set; }
-        List<ILecture> Lectures { get; set; }
+        List<Lecture> Lectures { get; set; }
     }
 }
