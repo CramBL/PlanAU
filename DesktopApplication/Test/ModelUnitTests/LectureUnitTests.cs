@@ -14,18 +14,18 @@ namespace Test
 
         }
 
-        //[TestCase("1","lave unit tets")]
+        [TestCase("1", "lave unit tets")]
 
-        //public void creatingInstanceOfLecture(string number, string description)
-        //{
-        //    Lecture lecture = new Lecture(number,description);
-        //    Assert.AreEqual(number, lecture.Number);
-        //    Assert.AreEqual(description, lecture.PreparationDescription);
-        //    Assert.AreEqual(null, lecture.CourseName);
-        //    Assert.AreEqual(null, lecture.DateString);
-            
-        //}
-        // mangler test til date
+        public void creatingInstanceOfLecture(string number, List<string> description)
+        {
+            Lecture lecture = new Lecture(number, description);
+            Assert.AreEqual(number, lecture.Number);
+            Assert.AreEqual(description, lecture.PreparationItems);
+            Assert.AreEqual(null, lecture.CourseName);
+            Assert.AreEqual(null, lecture.DateString);
+
+        }
+
 
 
     }

@@ -10,6 +10,8 @@
     <None Remove="Images\close_black.png" />
     <None Remove="Images\mail.png" />
     <None Remove="Images\minimalize.png" />
+    <None Remove="Images\options_cog.png" />
+    <None Remove="Images\option_cog.png" />
     <None Remove="Images\password.png" />
     <None Remove="Images\PlanAU.png" />
     <None Remove="Images\user.png" />
@@ -28,6 +30,7 @@
     <Resource Include="Images\close_black.png" />
     <Resource Include="Images\mail.png" />
     <Resource Include="Images\minimalize.png" />
+    <Resource Include="Images\options_cog.png" />
     <Resource Include="Images\password.png" />
     <Resource Include="Images\PlanAU.png" />
     <Resource Include="Images\user.png" />
