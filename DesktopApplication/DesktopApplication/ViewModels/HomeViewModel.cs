@@ -152,6 +152,7 @@ namespace Desktop_Application.ViewModels
             UnpackedLectures = new ObservableCollection<ILecture>();
             setCourses();
 
+
         }
 
         private async void setCourses()
@@ -228,14 +229,44 @@ namespace Desktop_Application.ViewModels
                 ConvertICALToSFFormat(calendar);
                 fs.Close();
             }
+            List<String> ExistingCalenderCourses = new List<String>();
+
+
+         
+            foreach (string varCourse in Student.Courses)
+            {
+                foreach(ScheduleAppointment schedule in _appointmentCollection)
+                {
+                    if(schedule.Subject.Remove(5) == varCourse)
+                    {
+                        ExistingCalenderCourses.Add(varCourse);
+                    }
+                }
+            }
 
             foreach (string varCourse in Student.Courses)
             {
-                var course = await dataAccessUpdater.GetCourse(varCourse);
-                schedular.insertPrep(_appointmentCollection, course);
-            }
-            
+                if (CheckIfCourseExsistInCalender(varCourse))
+                {
+                    var course = await dataAccessUpdater.GetCourse(varCourse);
+                    schedular.insertPrep(_appointmentCollection, course, Student);
+                }
         }
+}
+
+       private bool CheckIfCourseExsistInCalender(String refCourse)
+        {
+            foreach (ScheduleAppointment appointment in _appointmentCollection)
+            {
+                if (appointment.Subject.Remove(5) == refCourse)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
 
         private DelegateCommand _moveWindow;
         public DelegateCommand MoveWindow =>
