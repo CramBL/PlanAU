@@ -88,8 +88,9 @@ namespace Desktop_Application.ViewModels
                 var hashedPassword = PasswordHasher.Generate(NewPasswordBox);
                 ((App)App.Current).Student = new Student(NewUserNameBox, hashedPassword);
                 ((App)App.Current).Student.Email = MailBox;
-                ((App)App.Current).Student.Courses.Add("RTF");
-
+                ((App)App.Current).Student.Courses.Add("I4RTF");
+                ((App)App.Current).Student.Courses.Add("I4SWD");
+                ((App)App.Current).Student.Courses.Add("I4DAB");
 
                 Student result = await StudentDataAccess.PostStudent(((App) App.Current).Student);
 
