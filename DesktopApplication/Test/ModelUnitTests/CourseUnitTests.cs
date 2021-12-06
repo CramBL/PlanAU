@@ -5,31 +5,31 @@ using System.Text;
 
 namespace Desktop_Application.Models
 {
+   
     class CourseUnitTests
     {
+        private List<Lecture> Lectures;
+        private List<string> prepList;
         [SetUp]
         public void Setup()
         {
-
+        
         }
 
-        //[Test]
-        //public void ConstructorAndLectureList_CreateInstance_newInstanceCreates()
-        //{
-        //    List<ILecture> lectures = new List<ILecture>();
-        //    lectures = new List<ILecture>
-        //        {
-        //            new Lecture("0", "Læs s. 45-55 i bogen"),
-        //        };
+        [TestCase("prj4", "drikke kaffe")]
+        public void CourseConstructor_NewInstanceOfCoursewithLectures_CoúrseHasListOfLectures(string name, string prep) 
+        {
+            Lectures = new List<Lecture>();
+            prepList = new List<string>();
+            prepList.Add(prep);
+            Lectures.Add(new Lecture("0", prepList));
 
-        //    ICourse Subject;
-        //    Subject = new Course("Subject", lectures);
-        //    Lecture[] aCopy = new Lecture[lectures.Count];
-        //    Subject.Lectures.CopyTo(aCopy, 0);
-        //    Assert.AreEqual(1, Subject.Lectures.Count);
-        //    Assert.AreEqual("0",aCopy[0].Number);
-        //    Assert.AreEqual("Læs s. 45-55 i bogen", aCopy[0].PreparationDescription);
-        //}
+            Course c1 = new Course(name,Lectures);
+
+            Assert.AreEqual(c1.Lectures.ToString(), Lectures.ToString());
+            Assert.AreEqual(name, c1.Name);
+
+        }
 
 
 
