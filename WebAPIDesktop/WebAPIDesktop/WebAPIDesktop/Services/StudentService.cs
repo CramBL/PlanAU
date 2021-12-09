@@ -1,14 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using DBApi.Models;
+﻿using System.Collections.Generic;
 using MongoDB.Driver;
+using WebAPIDesktop.Models;
 
-namespace DBApi.Services
+namespace WebAPIDesktop.Services
 {
     public class StudentService
     {

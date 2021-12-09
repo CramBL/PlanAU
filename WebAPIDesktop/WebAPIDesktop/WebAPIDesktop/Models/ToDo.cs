@@ -1,10 +1,7 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace DBApi.Models
+namespace WebAPIDesktop.Models
 {
     public class ToDo
     {

@@ -1,9 +1,8 @@
-﻿using DBApi.Models;
+﻿using System.Collections.Generic;
 using MongoDB.Driver;
-using System.Collections.Generic;
-using System.Linq;
+using WebAPIDesktop.Models;
 
-namespace DBApi.Services
+namespace WebAPIDesktop.Services
 {
     public class CourseService
     {

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
 
-namespace DBApi.Models
+namespace WebAPIDesktop.Models
 {
     public interface IPasswordHasher
     {

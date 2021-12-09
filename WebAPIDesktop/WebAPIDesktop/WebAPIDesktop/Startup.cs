@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using DBApi.Models;
 using Microsoft.Extensions.Options;
-using DBApi.Services;
+using Microsoft.OpenApi.Models;
+using WebAPIDesktop.Models;
+using WebAPIDesktop.Services;
 
-namespace DBApi
+namespace WebAPIDesktop
 {
     public class Startup
     {

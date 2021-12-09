@@ -1,12 +1,9 @@
-﻿using DBApi.Models;
-using DBApi.Services;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using WebAPIDesktop.Models;
+using WebAPIDesktop.Services;
 
-namespace DBApi.Controllers
+namespace WebAPIDesktop.Controllers
 {
     [ApiController]
     public class StudentController : Controller
