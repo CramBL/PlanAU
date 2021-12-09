@@ -1,0 +1,339 @@
+BEGIN:VCALENDAR
+PRODID:-//Eveoh//Eveoh iCalExporter 1.3//EN
+VERSION:2.0
+METHOD:PUBLISH
+CALSCALE:GREGORIAN
+X-WR-TIMEZONE:Europe/Copenhagen
+X-WR-CALNAME:Aarhus Universitet: personlig timeplan (654286)
+X-WR-CALDESC:Aarhus Universitet: personlig timeplan (654286)
+BEGIN:VTIMEZONE
+TZID:Europe/Copenhagen
+LAST-MODIFIED:20201011T015911Z
+TZURL:http://tzurl.org/zoneinfo-outlook/Europe/Copenhagen
+X-LIC-LOCATION:Europe/Copenhagen
+BEGIN:DAYLIGHT
+TZNAME:CEST
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZNAME:CET
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211115T100000
+DTEND;TZID=Europe/Copenhagen:20211115T120000
+SUMMARY:I4SWD-01 Software design
+LOCATION:5125-430 Seminarrum
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!27164-16@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-430 Seminarrum\n\n
+ Underviser(e): Frank Bodholdt Jakobsen\, Henrik Bitsch Kirk\n\nHold: I4S
+ WD-E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synkronis
+ eret på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211116T080000
+DTEND;TZID=Europe/Copenhagen:20211116T100000
+SUMMARY:I4SWT-02 Software test
+LOCATION:5125-416 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!27165-16@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-416 Undervisningsl
+ okale\n\nUnderviser(e): Frank Bodholdt Jakobsen\, Henrik Ejersbo\n\nHold
+ : I4SWT-E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synk
+ roniseret på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211116T100000
+DTEND;TZID=Europe/Copenhagen:20211116T120000
+SUMMARY:I4GUI-01 GUI-programmering
+LOCATION:5125-416 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!33724-16@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-416 Undervisningsl
+ okale\n\nUnderviser(e): Jung Min Kim\, Poul Ejnar Rovsing\n\nHold: I4GUI
+ -E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synkroniser
+ et på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211116T120000
+DTEND;TZID=Europe/Copenhagen:20211116T160000
+SUMMARY:I4NGK-01 Netværksprogrammering og grundlæggende kommunikationsnet
+ værk
+LOCATION:5789-018 Øvelseslab
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!44423-16@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5789-018 Øvelseslab\n\n
+ Underviser(e): Poul Ejnar Rovsing\n\nHold: I4NGK-E21\n\nThis appointment
+  is managed by MyTimetable.\n\nSidst synkroniseret på 2021-12-09 kl. 19:
+ 36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211117T080000
+DTEND;TZID=Europe/Copenhagen:20211117T100000
+SUMMARY:I4GUI-01 GUI-programmering
+LOCATION:5125-424 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!27161-16@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-424 Undervisningsl
+ okale\n\nUnderviser(e): Jung Min Kim\, Poul Ejnar Rovsing\n\nHold: I4GUI
+ -E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synkroniser
+ et på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211118T080000
+DTEND;TZID=Europe/Copenhagen:20211118T100000
+SUMMARY:I4SWD-01 Software design
+LOCATION:5125-430 Seminarrum
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!33706-16@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-430 Seminarrum\n\n
+ Underviser(e): Frank Bodholdt Jakobsen\, Henrik Bitsch Kirk\n\nHold: I4S
+ WD-E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synkronis
+ eret på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211118T100000
+DTEND;TZID=Europe/Copenhagen:20211118T120000
+SUMMARY:I4SWT-02 Software test
+LOCATION:5125-424 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!33723-16@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-424 Undervisningsl
+ okale\n\nUnderviser(e): Frank Bodholdt Jakobsen\, Henrik Ejersbo\n\nHold
+ : I4SWT-E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synk
+ roniseret på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211118T120000
+DTEND;TZID=Europe/Copenhagen:20211118T160000
+SUMMARY:I4PRJ4-02 Semesterprojekt 4
+LOCATION:5128-217 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!27163-16@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5128-217 Undervisningsl
+ okale\n\nUnderviser(e): Poul Ejnar Rovsing\n\nHold: I4PRJ4-E21\n\nMødeti
+ dspunkt for studerende som samarbejder på tværs af retninger\n\nThis app
+ ointment is managed by MyTimetable.\n\nSidst synkroniseret på 2021-12-09
+  kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211119T080000
+DTEND;TZID=Europe/Copenhagen:20211119T120000
+SUMMARY:I4DAB-01 Databaser
+LOCATION:5125-424 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!27160-16@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-424 Undervisningsl
+ okale\n\nUnderviser(e): Henrik Bitsch Kirk\, Jesper Rosholm Tørresø\n\nH
+ old: I4DAB-E21\n\nThis appointment is managed by MyTimetable.\n\nSidst s
+ ynkroniseret på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211122T100000
+DTEND;TZID=Europe/Copenhagen:20211122T120000
+SUMMARY:I4SWD-01 Software design
+LOCATION:5125-430 Seminarrum
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!27164-17@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-430 Seminarrum\n\n
+ Underviser(e): Frank Bodholdt Jakobsen\, Henrik Bitsch Kirk\n\nHold: I4S
+ WD-E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synkronis
+ eret på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211123T080000
+DTEND;TZID=Europe/Copenhagen:20211123T100000
+SUMMARY:I4SWT-02 Software test
+LOCATION:5125-416 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!27165-17@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-416 Undervisningsl
+ okale\n\nUnderviser(e): Frank Bodholdt Jakobsen\, Henrik Ejersbo\n\nHold
+ : I4SWT-E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synk
+ roniseret på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211123T100000
+DTEND;TZID=Europe/Copenhagen:20211123T120000
+SUMMARY:I4GUI-01 GUI-programmering
+LOCATION:5125-416 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!33724-17@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-416 Undervisningsl
+ okale\n\nUnderviser(e): Jung Min Kim\, Poul Ejnar Rovsing\n\nHold: I4GUI
+ -E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synkroniser
+ et på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211123T120000
+DTEND;TZID=Europe/Copenhagen:20211123T160000
+SUMMARY:I4NGK-01 Netværksprogrammering og grundlæggende kommunikationsnet
+ værk
+LOCATION:5344-101 Benjaminhallen
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!34855-17@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5344-101 Benjaminhallen
+ \n\nUnderviser(e): Poul Ejnar Rovsing\n\nHold: I4NGK-E21\n\nThis appoint
+ ment is managed by MyTimetable.\n\nSidst synkroniseret på 2021-12-09 kl.
+  19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211124T080000
+DTEND;TZID=Europe/Copenhagen:20211124T100000
+SUMMARY:I4GUI-01 GUI-programmering
+LOCATION:5125-424 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!27161-17@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-424 Undervisningsl
+ okale\n\nUnderviser(e): Jung Min Kim\, Poul Ejnar Rovsing\n\nHold: I4GUI
+ -E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synkroniser
+ et på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211125T080000
+DTEND;TZID=Europe/Copenhagen:20211125T100000
+SUMMARY:I4SWD-01 Software design
+LOCATION:5125-430 Seminarrum
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!33706-17@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-430 Seminarrum\n\n
+ Underviser(e): Frank Bodholdt Jakobsen\, Henrik Bitsch Kirk\n\nHold: I4S
+ WD-E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synkronis
+ eret på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211125T100000
+DTEND;TZID=Europe/Copenhagen:20211125T120000
+SUMMARY:I4SWT-02 Software test
+LOCATION:5125-424 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!33723-17@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-424 Undervisningsl
+ okale\n\nUnderviser(e): Frank Bodholdt Jakobsen\, Henrik Ejersbo\n\nHold
+ : I4SWT-E21\n\nThis appointment is managed by MyTimetable.\n\nSidst synk
+ roniseret på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211125T120000
+DTEND;TZID=Europe/Copenhagen:20211125T160000
+SUMMARY:I4PRJ4-02 Semesterprojekt 4
+LOCATION:5128-217 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!27163-17@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5128-217 Undervisningsl
+ okale\n\nUnderviser(e): Poul Ejnar Rovsing\n\nHold: I4PRJ4-E21\n\nMødeti
+ dspunkt for studerende som samarbejder på tværs af retninger\n\nThis app
+ ointment is managed by MyTimetable.\n\nSidst synkroniseret på 2021-12-09
+  kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20211209T183604Z
+DTSTART;TZID=Europe/Copenhagen:20211126T080000
+DTEND;TZID=Europe/Copenhagen:20211126T120000
+SUMMARY:I4DAB-01 Databaser
+LOCATION:5125-424 Undervisningslokale
+STATUS:CONFIRMED
+SEQUENCE:0
+CREATED:20211209T183604Z
+LAST-MODIFIED:20211209T183604Z
+UID:2020!27160-17@mytimetable.au.dk
+DESCRIPTION:Type: Holdundervisning\n\nLokale(r):\n5125-424 Undervisningsl
+ okale\n\nUnderviser(e): Henrik Bitsch Kirk\, Jesper Rosholm Tørresø\n\nH
+ old: I4DAB-E21\n\nThis appointment is managed by MyTimetable.\n\nSidst s
+ ynkroniseret på 2021-12-09 kl. 19:36 CET
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
