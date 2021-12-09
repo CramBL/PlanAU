@@ -16,11 +16,13 @@ namespace Test
 
         [TestCase("1", "lave unit tets")]
 
-        public void creatingInstanceOfLecture(string number, List<string> description)
+        public void creatingInstanceOfLecture(string number, string description)
         {
-            Lecture lecture = new Lecture(number, description);
+            List<string> list = new List<string>();
+            list.Add(description);
+            Lecture lecture = new Lecture(number, list);
             Assert.AreEqual(number, lecture.Number);
-            Assert.AreEqual(description, lecture.PreparationItems);
+            Assert.AreEqual(description, lecture.PreparationItems[0]);
             Assert.AreEqual(null, lecture.CourseName);
             Assert.AreEqual(null, lecture.DateString);
 
