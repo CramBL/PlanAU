@@ -56,7 +56,7 @@
                     <Image Source="../Images/options_cog.png" Width="30" Height="25" Margin="0,0,0,5" />
                 </MenuItem.Header>
                 <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="Toggle Darkmode" Command="{Binding ToggleDarkmode}" />
-                <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="ImportICalFile" Command="{Binding ImportICalFile}" />
+                <MenuItem Background="{DynamicResource MenuBrush}" Foreground="{DynamicResource TextBrush}" Header="Import ICal-File" Command="{Binding ImportICalFile}" />
             </MenuItem>
         </Menu>
 
