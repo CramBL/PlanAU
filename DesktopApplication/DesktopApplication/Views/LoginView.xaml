@@ -78,11 +78,11 @@
                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
                 VerticalAlignment="Top" Height="25"  Width="70"  Command="{Binding RegisterCommand}" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource MarkedItemBackgroundBrush}" />
 
-        <Button Name="testButton" Content="Bypass"  
+        <!--<Button Name="testButton" Content="Bypass"  
                 Margin="40,100,0,0" Grid.Row="3" Grid.Column="1"
                 FontFamily="Halvetica" FontWeight="Light" FontSize="20" 
                 VerticalAlignment="Top" Height="25"  Width="80" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource MarkedItemBackgroundBrush}"
-                Command="{Binding Bypass}"/>
+                Command="{Binding Bypass}"/>-->
 
         <!--#endregion-->
 
